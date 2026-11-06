@@ -1,8 +1,8 @@
 {
   "date": "2026-11-06",
-  "updated_at": "2026-11-06T11:26:29.465819+08:00",
-  "collected": 88,
-  "selected": 0,
+  "updated_at": "2026-11-06T11:29:40.006088+08:00",
+  "collected": 85,
+  "selected": 2,
   "sources": [
     {
       "name": "NVIDIA Blog",
@@ -134,8 +134,43 @@
   "failures": [
     {
       "source": "GDELT",
-      "error": "articles: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://api.gdeltproject.org/api/v2/doc/doc?query=%22AI+infrastructure%22&mode=ArtList&format=json&maxrecords=30&sort=datedesc&startdatetime=20261105022601&enddatetime=20261106032602'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429"
+      "error": "articles: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://api.gdeltproject.org/api/v2/doc/doc?query=%22AI+infrastructure%22&mode=ArtList&format=json&maxrecords=30&sort=datedesc&startdatetime=20261105022802&enddatetime=20261106032802'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429"
     }
   ],
-  "items": []
+  "items": [
+    {
+      "title": "中国移动陈忠岳提出构建通信网、算力网、智能网“三张网”",
+      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9YYzR0S05CWk1aQ1JoSWloSUVvUGFDODlTeXdVT05NZ3pMZ1NZNjB4R19lRy1VbUlUcHFGdkFyT2MxNlByRFMzNzRkQmZlUjluaWNuSXJQeFllQjUtRmc?oc=5",
+      "source": "SmartHey",
+      "published_at": "2026-11-06T02:35:00+00:00",
+      "fetched_at": "2026-11-06T03:28:03.281748+00:00",
+      "category": "财报与经营",
+      "tags": [
+        "中国移动",
+        "陈忠岳",
+        "算力网",
+        "智能网",
+        "AI基础设施"
+      ],
+      "score": 9.0,
+      "summary": "据SmartHey报道，中国移动董事长陈忠岳提出构建通信网、算力网、智能网“三张网”的战略，旨在夯实智能经济底座。该消息来自Google News转载的SmartHey报道，发布于2026年11月6日。所提供源内容仅为标题，未包含具体投资规模、建设时间表或技术细节，相关数据有待进一步核实。"
+    },
+    {
+      "title": "IREN推迟向微软交付AI算力并计划150亿美元支出",
+      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPSnlxQ1JoQmdtMWZ4UzhHRWJacmNRTGNCeDJmTWRRV2xpdU9xUzY2MzhVSklqMkNxeG93QVNnRUZCYUxvVUNBaHVta2lPS2VxMDlxQnZvandHTXZQVk1LNmVTakZxTzJjcHFGbjBwUHd0ajBwdl9HUERfaEsyWGNicU9yeklKMldtNldLMk5rNWpRNnMyWXY1QUNVa3lLU21tcXEwbXUzMFUzTTZtNnRN?oc=5",
+      "source": "Reuters",
+      "published_at": "2026-11-05T21:35:00+00:00",
+      "fetched_at": "2026-11-06T03:28:03.373808+00:00",
+      "category": "算力租赁",
+      "tags": [
+        "IREN",
+        "Microsoft",
+        "AI data center",
+        "GPU cloud rental",
+        "capital expenditure"
+      ],
+      "score": 8.0,
+      "summary": "据路透社报道，AI数据中心公司IREN正在推迟向微软交付AI算力，同时计划推进约150亿美元的支出。该消息基于报道标题，具体推迟时长、涉及容量、支出时间表及原因等细节在所提供来源中未予说明，无法进一步核实。"
+    }
+  ]
 }
