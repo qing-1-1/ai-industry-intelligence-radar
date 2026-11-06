@@ -16,12 +16,13 @@ def export_radar(config, items, collected, report, directory=Path('docs/radar-da
             continue
         artifact = processing.artifacts.get('zh')
         block = next((b for b in artifact.blocks if b.primary or b.id == 'summary'), None) if artifact else None
+        sections = [{'title': b.title, 'content': b.content} for b in artifact.blocks if b.content.strip()] if artifact else []
         records.append({'title': artifact.title if artifact else item.title, 'url': str(item.url),
             'source': item.metadata.get('feed_name') or item.metadata.get('source_name') or item.metadata.get('repo') or item.author or item.source_type.value,
             'published_at': item.published_at.isoformat(), 'fetched_at': item.fetched_at.isoformat(),
             'category': LABELS.get(processing.classification.profile, processing.classification.profile),
             'tags': processing.analysis.tags, 'score': processing.analysis.score,
-            'summary': block.content if block else processing.analysis.summary})
+            'sections': sections, 'summary': block.content if block else processing.analysis.summary})
     sources = []
     for source in config.sources.rss:
         sources.append({'name':source.name,'method':'RSS','category':source.category or '综合','enabled':source.enabled})
