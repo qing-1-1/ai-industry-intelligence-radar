@@ -1,0 +1,18 @@
+theme: jekyll-theme-cayman
+title: AI 行业情报雷达
+description: AI Industry Intelligence Radar
+markdown: kramdown
+future: true
+plugins:
+  - jekyll-feed
+feed:
+  path: feed.xml
+exclude:
+  - .github
+  - node_modules
+defaults:
+  - scope:
+      path: ''
+      type: posts
+    values:
+      layout: default
