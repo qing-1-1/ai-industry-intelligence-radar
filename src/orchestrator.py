@@ -288,6 +288,10 @@ class HorizonOrchestrator:
                     f"→ {len(merged_items)} unique items\n"
                 )
 
+            # Bound model spending after URL deduplication.
+            if self.config.collection.candidate_limit:
+                merged_items = sorted(merged_items, key=lambda item: item.published_at, reverse=True)[:self.config.collection.candidate_limit]
+
             # 4. Analyze with AI
             analyzed_items = await self.analyze_items(merged_items)
             self.console.print(
@@ -311,6 +315,11 @@ class HorizonOrchestrator:
 
             # 6. Search related stories + enrich with background knowledge (2nd AI pass)
             await self.enrich_items(important_items)
+
+            # Export structured, dated records for the static radar.
+            if self.config.processing.default_profile.startswith("radar-"):
+                from .radar_export import export_radar
+                export_radar(self.config, important_items, len(all_items), self.last_fetch_report)
 
             # 7. Generate and save daily summaries for each configured language
             today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
@@ -507,8 +516,13 @@ class HorizonOrchestrator:
 
             # Google News RSS (key-less news search)
             if self.config.sources.google_news and self.config.sources.google_news.enabled:
-                gn_scraper = GoogleNewsScraper(self.config.sources.google_news, client)
-                tasks.append(self._fetch_with_progress("Google News", gn_scraper, since))
+                gn_config = self.config.sources.google_news
+                for query in gn_config.queries or [gn_config.query]:
+                    updates = {"query": query}
+                    if not query.isascii():
+                        updates.update({"language": "zh-CN", "country": "CN", "ceid": "CN:zh-Hans"})
+                    gn_scraper = GoogleNewsScraper(gn_config.model_copy(update=updates), client)
+                    tasks.append(self._fetch_with_progress(f"Google News: {query}", gn_scraper, since))
 
             # Fetch all concurrently
             outcomes = await asyncio.gather(*tasks)

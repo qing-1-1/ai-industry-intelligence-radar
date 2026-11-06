@@ -480,6 +480,7 @@ class GoogleNewsConfig(BaseModel):
 
     enabled: bool = False
     query: str = "artificial intelligence"
+    queries: List[str] = Field(default_factory=list)
     language: str = "en"  # hl
     country: str = "US"  # gl
     ceid: Optional[str] = None  # when None scraper derives it as "{country}:{language}"
@@ -592,6 +593,7 @@ class CollectionConfig(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     time_window_hours: int = 24
+    candidate_limit: Optional[int] = Field(default=None, gt=0)
 
 
 class DigestConfig(BaseModel):

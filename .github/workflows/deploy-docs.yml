@@ -3,7 +3,7 @@ name: Deploy Docs
 on:
   push:
     branches: [main]
-    paths: ['docs/**', 'skills/horizon/**', 'LICENSE', '.github/workflows/deploy-docs.yml']
+    paths: ['docs/**', 'data/config.radar.json', 'scripts/radar_catalog.py', 'skills/horizon/**', 'LICENSE', '.github/workflows/deploy-docs.yml']
   workflow_dispatch:
 
 jobs:
@@ -17,6 +17,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
+
+      - name: Generate radar source catalog
+        run: python scripts/radar_catalog.py
 
       - name: Package Horizon skill
         run: |

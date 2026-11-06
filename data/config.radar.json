@@ -1,0 +1,232 @@
+{
+  "ai": {
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "api_key_env": "DEEPSEEK_API_KEY",
+    "languages": [
+      "zh"
+    ],
+    "temperature": 0.2,
+    "max_tokens": 2048,
+    "analysis_concurrency": 2,
+    "enrichment_concurrency": 2
+  },
+  "processing": {
+    "profiles_dir": "profiles",
+    "default_profile": "radar-industry",
+    "profile_settings": {
+      "radar-router": {
+        "threshold": 6.0,
+        "topic_dedup": true
+      },
+      "radar-token": {
+        "threshold": 6.0,
+        "topic_dedup": true
+      },
+      "radar-compute": {
+        "threshold": 6.0,
+        "topic_dedup": true
+      },
+      "radar-finance": {
+        "threshold": 6.0,
+        "topic_dedup": true
+      },
+      "radar-industry": {
+        "threshold": 6.0,
+        "topic_dedup": true
+      }
+    }
+  },
+  "sources": {
+    "github": [
+      {
+        "type": "repo_releases",
+        "owner": "BerriAI",
+        "repo": "litellm",
+        "enabled": true,
+        "profile": [
+          "radar-router",
+          "radar-token",
+          "radar-compute",
+          "radar-finance",
+          "radar-industry"
+        ]
+      },
+      {
+        "type": "repo_releases",
+        "owner": "vllm-project",
+        "repo": "vllm",
+        "enabled": true,
+        "profile": [
+          "radar-router",
+          "radar-token",
+          "radar-compute",
+          "radar-finance",
+          "radar-industry"
+        ]
+      }
+    ],
+    "rss": [
+      {
+        "name": "NVIDIA Blog",
+        "url": "https://blogs.nvidia.com/feed/",
+        "enabled": true,
+        "category": "AI 基础设施",
+        "profile": [
+          "radar-router",
+          "radar-token",
+          "radar-compute",
+          "radar-finance",
+          "radar-industry"
+        ]
+      },
+      {
+        "name": "AWS Machine Learning",
+        "url": "https://aws.amazon.com/blogs/machine-learning/feed/",
+        "enabled": true,
+        "category": "云与推理",
+        "profile": [
+          "radar-router",
+          "radar-token",
+          "radar-compute",
+          "radar-finance",
+          "radar-industry"
+        ]
+      },
+      {
+        "name": "Google Cloud AI",
+        "url": "https://cloudblog.withgoogle.com/products/ai-machine-learning/rss/",
+        "enabled": true,
+        "category": "云与 AI",
+        "profile": [
+          "radar-router",
+          "radar-token",
+          "radar-compute",
+          "radar-finance",
+          "radar-industry"
+        ]
+      },
+      {
+        "name": "vLLM Blog",
+        "url": "https://vllm.ai/blog/rss.xml",
+        "enabled": true,
+        "category": "推理",
+        "profile": [
+          "radar-router",
+          "radar-token",
+          "radar-compute",
+          "radar-finance",
+          "radar-industry"
+        ]
+      },
+      {
+        "name": "Portkey Blog",
+        "url": "https://portkey.ai/blog/rss/",
+        "enabled": true,
+        "category": "模型网关",
+        "profile": [
+          "radar-router",
+          "radar-token",
+          "radar-compute",
+          "radar-finance",
+          "radar-industry"
+        ]
+      },
+      {
+        "name": "量子位",
+        "url": "https://www.qbitai.com/feed",
+        "enabled": true,
+        "category": "AI 行业",
+        "profile": [
+          "radar-router",
+          "radar-token",
+          "radar-compute",
+          "radar-finance",
+          "radar-industry"
+        ]
+      },
+      {
+        "name": "极客公园",
+        "url": "https://www.geekpark.net/rss",
+        "enabled": true,
+        "category": "AI 行业",
+        "profile": [
+          "radar-router",
+          "radar-token",
+          "radar-compute",
+          "radar-finance",
+          "radar-industry"
+        ]
+      }
+    ],
+    "google_news": {
+      "enabled": true,
+      "query": "AI model router OR LLM gateway",
+      "queries": [
+        "AI model router OR LLM gateway",
+        "中国电信 TokenHub",
+        "中国移动 Token 大模型",
+        "中国联通 Token 大模型",
+        "GPU 算力租赁",
+        "算力采购 招标",
+        "AI infrastructure cloud revenue capital expenditure",
+        "工信部 人工智能 算力"
+      ],
+      "max_results": 30,
+      "profile": [
+        "radar-router",
+        "radar-token",
+        "radar-compute",
+        "radar-finance",
+        "radar-industry"
+      ]
+    },
+    "gdelt": {
+      "enabled": true,
+      "query": "\"AI infrastructure\"",
+      "max_records": 30,
+      "profile": [
+        "radar-router",
+        "radar-token",
+        "radar-compute",
+        "radar-finance",
+        "radar-industry"
+      ]
+    },
+    "hackernews": {
+      "enabled": false
+    },
+    "reddit": {
+      "enabled": false
+    },
+    "telegram": {
+      "enabled": false
+    }
+  },
+  "collection": {
+    "time_window_hours": 48,
+    "candidate_limit": 120
+  },
+  "digest": {
+    "max_items": 30,
+    "profile_order": [
+      "radar-router",
+      "radar-token",
+      "radar-compute",
+      "radar-finance",
+      "radar-industry"
+    ],
+    "group_by": "profile"
+  },
+  "webhook": {
+    "enabled": true,
+    "url_env": "HORIZON_WEBHOOK_URL",
+    "delivery": "summary",
+    "platform": "feishu",
+    "layout": "collapsible",
+    "fallback_layout": "markdown",
+    "languages": [
+      "zh"
+    ]
+  }
+}

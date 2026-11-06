@@ -1,0 +1,20 @@
+{
+  "id": "radar-router",
+  "name": "AI Model Router",
+  "display_names": {
+    "zh": "AI Model Router"
+  },
+  "match": "match.md",
+  "analysis": "analysis.md",
+  "enrichment": {
+    "prompt": "enrichment.md",
+    "blocks": [
+      {
+        "id": "summary",
+        "type": "section",
+        "tools": [],
+        "primary": true
+      }
+    ]
+  }
+}

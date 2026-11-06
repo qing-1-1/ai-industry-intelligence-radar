@@ -1,0 +1,20 @@
+{
+  "id": "radar-token",
+  "name": "运营商 Token",
+  "display_names": {
+    "zh": "运营商 Token"
+  },
+  "match": "match.md",
+  "analysis": "analysis.md",
+  "enrichment": {
+    "prompt": "enrichment.md",
+    "blocks": [
+      {
+        "id": "summary",
+        "type": "section",
+        "tools": [],
+        "primary": true
+      }
+    ]
+  }
+}

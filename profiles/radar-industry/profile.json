@@ -1,0 +1,20 @@
+{
+  "id": "radar-industry",
+  "name": "其他 AI 行业新闻",
+  "display_names": {
+    "zh": "其他 AI 行业新闻"
+  },
+  "match": "match.md",
+  "analysis": "analysis.md",
+  "enrichment": {
+    "prompt": "enrichment.md",
+    "blocks": [
+      {
+        "id": "summary",
+        "type": "section",
+        "tools": [],
+        "primary": true
+      }
+    ]
+  }
+}
