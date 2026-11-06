@@ -3,6 +3,12 @@ on:
   schedule:
     - cron: '17 0 * * *' # 08:17 Asia/Shanghai; avoids peak on the hour
   workflow_dispatch:
+    inputs:
+      max_candidates:
+        description: Maximum AI candidates for this run (1–120)
+        required: false
+        default: "120"
+        type: string
 concurrency:
   group: radar-pages
   cancel-in-progress: false
@@ -41,7 +47,10 @@ jobs:
       - name: Generate briefing
         env:
           SENSENOVA_API_KEY: ${{ secrets.SENSENOVA_API_KEY }}
-        run: uv run horizon --config data/config.radar.json --hours 25
+          RADAR_MAX_CANDIDATES: ${{ inputs.max_candidates || '120' }}
+        run: |
+          python scripts/radar_run_config.py
+          uv run horizon --config "$RUNNER_TEMP/radar-config.json" --hours 25
       - name: Preserve archive on gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:
