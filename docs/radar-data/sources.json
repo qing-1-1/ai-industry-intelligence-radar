@@ -102,6 +102,24 @@
     "enabled": true
   },
   {
+    "name": "site:chinatelecom.com.cn 人工智能 算力 Token",
+    "method": "Google News 搜索发现",
+    "category": "综合",
+    "enabled": true
+  },
+  {
+    "name": "site:chinaunicom.com.cn 人工智能 算力 Token",
+    "method": "Google News 搜索发现",
+    "category": "综合",
+    "enabled": true
+  },
+  {
+    "name": "site:chinamobileltd.com 人工智能 算力 云",
+    "method": "Google News 搜索发现",
+    "category": "综合",
+    "enabled": true
+  },
+  {
     "name": "\"AI infrastructure\"",
     "method": "GDELT 搜索发现",
     "category": "综合",

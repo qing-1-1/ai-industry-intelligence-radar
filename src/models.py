@@ -195,6 +195,8 @@ class AIConfig(BaseModel):
 
     provider: AIProvider
     provider_chain: Optional[str] = None
+    fallback_models: List[str] = Field(default_factory=list)
+    json_response_format: bool = True
     model: str
     base_url: Optional[str] = None
     api_key_env: str

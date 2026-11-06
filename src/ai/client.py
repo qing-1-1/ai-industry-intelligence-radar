@@ -368,7 +368,7 @@ class OpenAIClient(AIClient):
         request_kwargs[token_param] = max_tokens
         if include_temperature:
             request_kwargs["temperature"] = temperature
-        if self.provider not in self._NO_RESPONSE_FORMAT:
+        if self.provider not in self._NO_RESPONSE_FORMAT and self.config.json_response_format:
             request_kwargs["response_format"] = {"type": "json_object"}
         if self.config.extra_body:
             request_kwargs["extra_body"] = _chat_extra_body(
@@ -726,6 +726,31 @@ def _create_chained_client(config: AIConfig) -> ChainedAIClient:
     return ChainedAIClient(chain_configs)
 
 
+class ModelFallbackClient(AIClient):
+    """Retry failed or empty completions on another model at the same endpoint."""
+
+    def __init__(self, config: AIConfig):
+        self.config = config
+        self.clients = [
+            _create_single_client(config.model_copy(update={"model": model, "fallback_models": []}))
+            for model in [config.model, *config.fallback_models]
+        ]
+
+    async def complete(self, system, user, temperature=None, max_tokens=None):
+        last_error = None
+        for index, client in enumerate(self.clients):
+            try:
+                result = await client.complete(system, user, temperature, max_tokens)
+                if not isinstance(result, str) or not result.strip():
+                    raise ValueError("Empty model response")
+                return result
+            except Exception as exc:
+                last_error = exc
+                if index + 1 < len(self.clients):
+                    logger.warning("Model %s failed (%s); trying %s", [self.config.model, *self.config.fallback_models][index], type(exc).__name__, self.config.fallback_models[index])
+        raise RuntimeError("All configured models failed") from last_error
+
+
 def create_ai_client(config: AIConfig) -> AIClient:
     """Factory function to create appropriate AI client.
 
@@ -740,4 +765,6 @@ def create_ai_client(config: AIConfig) -> AIClient:
     """
     if config.provider_chain:
         return _create_chained_client(config)
+    if config.fallback_models:
+        return ModelFallbackClient(config)
     return _create_single_client(config)

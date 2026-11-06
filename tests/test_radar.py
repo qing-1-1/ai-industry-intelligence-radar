@@ -28,7 +28,24 @@ def test_radar_exports_real_items_and_preserves_archive(tmp_path):
 
 def test_radar_config_has_bounded_candidates_and_distinct_searches():
     config = Config.model_validate(json.loads(open('data/config.radar.json', encoding='utf-8').read()))
-    assert config.collection.time_window_hours == 48
+    assert config.collection.time_window_hours == 25
     assert config.collection.candidate_limit == 120
     assert len(config.sources.google_news.queries) >= 5
     assert all(not s.content_extractor for s in config.sources.rss)
+
+
+def test_same_endpoint_model_fallback(monkeypatch):
+    import asyncio
+    from src.ai import client as module
+    calls = []
+    class Fake:
+        def __init__(self, config): self.config = config
+        async def complete(self, *args):
+            calls.append((self.config.model, self.config.base_url, self.config.api_key_env))
+            if len(calls) == 1: raise RuntimeError("unavailable")
+            return "ok"
+    monkeypatch.setattr(module, "_create_single_client", Fake)
+    config = Config.model_validate(json.loads(open("data/config.radar.json", encoding="utf-8").read()))
+    assert asyncio.run(module.create_ai_client(config.ai).complete("system", "user")) == "ok"
+    assert [x[0] for x in calls] == ["sensenova-6.8-flash", "deepseek-flash"]
+    assert calls[0][1:] == calls[1][1:]

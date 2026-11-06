@@ -1,15 +1,20 @@
 {
   "ai": {
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "api_key_env": "DEEPSEEK_API_KEY",
+    "provider": "openai",
+    "model": "sensenova-6.8-flash",
+    "api_key_env": "SENSENOVA_API_KEY",
     "languages": [
       "zh"
     ],
     "temperature": 0.2,
     "max_tokens": 2048,
     "analysis_concurrency": 2,
-    "enrichment_concurrency": 2
+    "enrichment_concurrency": 2,
+    "base_url": "https://token.sensenova.cn/v1",
+    "fallback_models": [
+      "deepseek-flash"
+    ],
+    "json_response_format": false
   },
   "processing": {
     "profiles_dir": "profiles",
@@ -170,7 +175,10 @@
         "GPU 算力租赁",
         "算力采购 招标",
         "AI infrastructure cloud revenue capital expenditure",
-        "工信部 人工智能 算力"
+        "工信部 人工智能 算力",
+        "site:chinatelecom.com.cn 人工智能 算力 Token",
+        "site:chinaunicom.com.cn 人工智能 算力 Token",
+        "site:chinamobileltd.com 人工智能 算力 云"
       ],
       "max_results": 30,
       "profile": [
@@ -204,7 +212,7 @@
     }
   },
   "collection": {
-    "time_window_hours": 48,
+    "time_window_hours": 25,
     "candidate_limit": 120
   },
   "digest": {
@@ -219,7 +227,7 @@
     "group_by": "profile"
   },
   "webhook": {
-    "enabled": true,
+    "enabled": false,
     "url_env": "HORIZON_WEBHOOK_URL",
     "delivery": "summary",
     "platform": "feishu",

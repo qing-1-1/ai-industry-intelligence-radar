@@ -1,16 +1,21 @@
 name: Radar daily
 on:
   schedule:
-    - cron: '0 0 * * *' # 08:00 Asia/Shanghai, subject to GitHub delay
+    - cron: '17 0 * * *' # 08:17 Asia/Shanghai; avoids peak on the hour
   workflow_dispatch:
 concurrency:
-  group: radar-publish
+  group: radar-pages
   cancel-in-progress: false
 jobs:
   generate:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     permissions:
       contents: write
+      pages: write
+      id-token: write
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v5
@@ -35,15 +40,23 @@ jobs:
       - run: python scripts/radar_catalog.py
       - name: Generate briefing
         env:
-          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
-          HORIZON_WEBHOOK_URL: ${{ secrets.HORIZON_WEBHOOK_URL }}
-        run: |
-          if [ -z "$HORIZON_WEBHOOK_URL" ]; then unset HORIZON_WEBHOOK_URL; fi
-          uv run horizon --config data/config.radar.json --hours 48
-      - uses: peaceiris/actions-gh-pages@v4
+          SENSENOVA_API_KEY: ${{ secrets.SENSENOVA_API_KEY }}
+        run: uv run horizon --config data/config.radar.json --hours 25
+      - name: Preserve archive on gh-pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
           keep_files: true
           publish_branch: gh-pages
           enable_jekyll: true
+      - uses: actions/configure-pages@v5
+      - uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./docs
+          destination: ./_site
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+      - id: deployment
+        uses: actions/deploy-pages@v4
