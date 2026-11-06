@@ -12,7 +12,11 @@
     "enrichment_concurrency": 1,
     "base_url": "https://token.sensenova.cn/v1",
     "fallback_models": [
-      "deepseek-flash"
+      "deepseek-flash",
+      "deepseek-v4-flash",
+      "glm-5.3",
+      "glm-5.2",
+      "kimi-k3"
     ],
     "json_response_format": false,
     "request_timeout_sec": 25,

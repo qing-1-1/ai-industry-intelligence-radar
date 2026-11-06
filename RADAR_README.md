@@ -5,7 +5,7 @@
 ## 本地运行
 
 1. 安装 Python 3.11+ 和 uv，执行 `uv sync --extra dev`。
-2. 通过环境变量或未提交的 `.env` 设置 `SENSENOVA_API_KEY`。默认使用商汤接口 `https://token.sensenova.cn/v1`，主模型 `sensenova-6.8-flash`，接口报错或返回空内容时切换同一接口的 `deepseek-flash`；模型可用性需用实际账号验证。
+2. 通过环境变量或未提交的 `.env` 设置 `SENSENOVA_API_KEY`。默认使用商汤接口 `https://token.sensenova.cn/v1`，主模型 `sensenova-6.8-flash`，接口报错或返回空内容时依次切换同一接口的 `deepseek-flash`、`deepseek-v4-flash`、`glm-5.3`、`glm-5.2`、`kimi-k3`；模型名称和账号权限需以商汤控制台及实际调用为准。
 3. 飞书推送目前关闭。不要提交密钥。
 4. `uv run horizon --config data/config.radar.json --hours 25`。结果存于 `data/summaries/`、`docs/_posts/`、`docs/radar-data/`。启动静态 HTTP 服务并访问 `docs/` 可预览看板；Jekyll 页面需 Jekyll 构建。
 

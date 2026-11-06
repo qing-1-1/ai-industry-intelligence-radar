@@ -68,6 +68,23 @@ def test_backup_rate_limit_is_retried_once(monkeypatch):
     monkeypatch.setattr(module, '_create_single_client', Fake)
     monkeypatch.setattr(module.asyncio, 'sleep', sleep)
     config = Config.model_validate(json.loads(open('data/config.radar.json', encoding='utf-8').read()))
+    config.ai.fallback_models = ['deepseek-flash']
     assert asyncio.run(module.create_ai_client(config.ai).complete('system', 'user')) == 'ok'
     assert calls == ['sensenova-6.8-flash', 'deepseek-flash', 'deepseek-flash']
     assert waits == [60]
+
+
+def test_model_fallback_reaches_later_candidates(monkeypatch):
+    import asyncio
+    from src.ai import client as module
+    calls = []
+    class Fake:
+        def __init__(self, config): self.config = config
+        async def complete(self, *args):
+            calls.append(self.config.model)
+            if self.config.model != 'kimi-k3': raise RuntimeError('unavailable')
+            return 'ok'
+    monkeypatch.setattr(module, '_create_single_client', Fake)
+    config = Config.model_validate(json.loads(open('data/config.radar.json', encoding='utf-8').read()))
+    assert asyncio.run(module.create_ai_client(config.ai).complete('system', 'user')) == 'ok'
+    assert calls == ['sensenova-6.8-flash', 'deepseek-flash', 'deepseek-v4-flash', 'glm-5.3', 'glm-5.2', 'kimi-k3']
