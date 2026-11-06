@@ -14,7 +14,9 @@
     "fallback_models": [
       "deepseek-flash"
     ],
-    "json_response_format": false
+    "json_response_format": false,
+    "request_timeout_sec": 25,
+    "request_max_retries": 0
   },
   "processing": {
     "profiles_dir": "profiles",

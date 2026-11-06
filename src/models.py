@@ -197,6 +197,8 @@ class AIConfig(BaseModel):
     provider_chain: Optional[str] = None
     fallback_models: List[str] = Field(default_factory=list)
     json_response_format: bool = True
+    request_timeout_sec: Optional[float] = Field(default=None, gt=0)
+    request_max_retries: Optional[int] = Field(default=None, ge=0)
     model: str
     base_url: Optional[str] = None
     api_key_env: str

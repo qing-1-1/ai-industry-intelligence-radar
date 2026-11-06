@@ -256,6 +256,10 @@ class OpenAIClient(AIClient):
         api_key = _resolve_api_key(config, fallback=fallback)
 
         kwargs = {"api_key": api_key}
+        if config.request_timeout_sec is not None:
+            kwargs["timeout"] = config.request_timeout_sec
+        if config.request_max_retries is not None:
+            kwargs["max_retries"] = config.request_max_retries
         base_url = self._resolve_base_url(config)
         if base_url:
             kwargs["base_url"] = base_url
@@ -748,7 +752,7 @@ class ModelFallbackClient(AIClient):
                 last_error = exc
                 if index + 1 < len(self.clients):
                     logger.warning("Model %s failed (%s); trying %s", [self.config.model, *self.config.fallback_models][index], type(exc).__name__, self.config.fallback_models[index])
-        raise RuntimeError("All configured models failed") from last_error
+        raise AIProviderUnavailableError(f"All configured models failed; last error: {type(last_error).__name__}") from last_error
 
 
 def create_ai_client(config: AIConfig) -> AIClient:
