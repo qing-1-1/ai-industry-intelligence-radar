@@ -7,9 +7,9 @@
       "zh"
     ],
     "temperature": 0.2,
-    "max_tokens": 2048,
-    "analysis_concurrency": 2,
-    "enrichment_concurrency": 2,
+    "max_tokens": 1024,
+    "analysis_concurrency": 1,
+    "enrichment_concurrency": 1,
     "base_url": "https://token.sensenova.cn/v1",
     "fallback_models": [
       "deepseek-flash"

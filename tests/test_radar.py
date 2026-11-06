@@ -50,3 +50,24 @@ def test_same_endpoint_model_fallback(monkeypatch):
     assert asyncio.run(module.create_ai_client(config.ai).complete("system", "user")) == "ok"
     assert [x[0] for x in calls] == ["sensenova-6.8-flash", "deepseek-flash"]
     assert calls[0][1:] == calls[1][1:]
+
+
+def test_backup_rate_limit_is_retried_once(monkeypatch):
+    import asyncio
+    from src.ai import client as module
+    calls, waits = [], []
+    class Limited(Exception): status_code = 429
+    class Fake:
+        def __init__(self, config): self.config = config
+        async def complete(self, *args):
+            calls.append(self.config.model)
+            if self.config.model == 'sensenova-6.8-flash': raise RuntimeError('unavailable')
+            if calls.count('deepseek-flash') == 1: raise Limited()
+            return 'ok'
+    async def sleep(seconds): waits.append(seconds)
+    monkeypatch.setattr(module, '_create_single_client', Fake)
+    monkeypatch.setattr(module.asyncio, 'sleep', sleep)
+    config = Config.model_validate(json.loads(open('data/config.radar.json', encoding='utf-8').read()))
+    assert asyncio.run(module.create_ai_client(config.ai).complete('system', 'user')) == 'ok'
+    assert calls == ['sensenova-6.8-flash', 'deepseek-flash', 'deepseek-flash']
+    assert waits == [60]

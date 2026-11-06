@@ -2,6 +2,7 @@
 
 import os
 import re
+import asyncio
 from abc import ABC, abstractmethod
 from typing import Any, Dict, List, Optional
 from openai import AsyncAzureOpenAI, AsyncOpenAI, APIStatusError as OpenAIStatusError
@@ -743,15 +744,22 @@ class ModelFallbackClient(AIClient):
     async def complete(self, system, user, temperature=None, max_tokens=None):
         last_error = None
         for index, client in enumerate(self.clients):
-            try:
-                result = await client.complete(system, user, temperature, max_tokens)
-                if not isinstance(result, str) or not result.strip():
-                    raise ValueError("Empty model response")
-                return result
-            except Exception as exc:
-                last_error = exc
-                if index + 1 < len(self.clients):
-                    logger.warning("Model %s failed (%s); trying %s", [self.config.model, *self.config.fallback_models][index], type(exc).__name__, self.config.fallback_models[index])
+            for attempt in range(2):
+                try:
+                    result = await client.complete(system, user, temperature, max_tokens)
+                    if not isinstance(result, str) or not result.strip():
+                        raise ValueError("Empty model response")
+                    return result
+                except Exception as exc:
+                    last_error = exc
+                    # Give minute-based rate limits one chance to reset on the last model.
+                    if index == len(self.clients) - 1 and attempt == 0 and getattr(exc, "status_code", None) == 429:
+                        logger.warning("Backup model rate limited; waiting 60 seconds before one retry")
+                        await asyncio.sleep(60)
+                        continue
+                    if index + 1 < len(self.clients):
+                        logger.warning("Model %s failed (%s); trying %s", [self.config.model, *self.config.fallback_models][index], type(exc).__name__, self.config.fallback_models[index])
+                    break
         raise AIProviderUnavailableError(f"All configured models failed; last error: {type(last_error).__name__}") from last_error
 
 
