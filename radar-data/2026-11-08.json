@@ -1,0 +1,325 @@
+{
+  "date": "2026-11-08",
+  "updated_at": "2026-11-08T14:20:13.330472+08:00",
+  "collected": 78,
+  "selected": 8,
+  "sources": [
+    {
+      "name": "NVIDIA Blog",
+      "method": "RSS",
+      "category": "AI 基础设施",
+      "enabled": true
+    },
+    {
+      "name": "AWS Machine Learning",
+      "method": "RSS",
+      "category": "云与推理",
+      "enabled": true
+    },
+    {
+      "name": "Google Cloud AI",
+      "method": "RSS",
+      "category": "云与 AI",
+      "enabled": true
+    },
+    {
+      "name": "vLLM Blog",
+      "method": "RSS",
+      "category": "推理",
+      "enabled": true
+    },
+    {
+      "name": "Portkey Blog",
+      "method": "RSS",
+      "category": "模型网关",
+      "enabled": true
+    },
+    {
+      "name": "量子位",
+      "method": "RSS",
+      "category": "AI 行业",
+      "enabled": true
+    },
+    {
+      "name": "极客公园",
+      "method": "RSS",
+      "category": "AI 行业",
+      "enabled": true
+    },
+    {
+      "name": "BerriAI/litellm",
+      "method": "GitHub Releases",
+      "category": "开源",
+      "enabled": true
+    },
+    {
+      "name": "vllm-project/vllm",
+      "method": "GitHub Releases",
+      "category": "开源",
+      "enabled": true
+    },
+    {
+      "name": "AI model router OR LLM gateway",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "中国电信 TokenHub",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "中国移动 Token 大模型",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "中国联通 Token 大模型",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "GPU 算力租赁",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "算力采购 招标",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "AI infrastructure cloud revenue capital expenditure",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "工信部 人工智能 算力",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "site:chinatelecom.com.cn 人工智能 算力 Token",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "site:chinaunicom.com.cn 人工智能 算力 Token",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "site:chinamobileltd.com 人工智能 算力 云",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "\"AI infrastructure\"",
+      "method": "GDELT 搜索发现",
+      "category": "综合",
+      "enabled": true
+    }
+  ],
+  "failures": [],
+  "items": [
+    {
+      "title": "OpenAI 据报道以 1.25 万亿美元估值完成新一轮 110 亿美元融资",
+      "url": "https://www.businessworld.in/article/openai-raises-11-bn-at-1-25-tn-valuation-in-fresh-round-632586",
+      "source": "businessworld.in",
+      "published_at": "2026-11-07T07:00:00+00:00",
+      "fetched_at": "2026-11-08T06:02:49.072220+00:00",
+      "category": "财报与经营",
+      "tags": [
+        "OpenAI",
+        "funding round",
+        "valuation",
+        "AI",
+        "capital raise"
+      ],
+      "score": 9.0,
+      "sections": [
+        {
+          "title": "核心事件",
+          "content": "据 businessworld.in 报道，OpenAI 在一轮新融资中募集 110 亿美元，投后估值达到 1.25 万亿美元。该消息来自二手新闻源，原文正文内容未提供，具体投资方、融资结构与时间安排尚待进一步核实。"
+        }
+      ],
+      "summary": "据 businessworld.in 报道，OpenAI 在一轮新融资中募集 110 亿美元，投后估值达到 1.25 万亿美元。该消息来自二手新闻源，原文正文内容未提供，具体投资方、融资结构与时间安排尚待进一步核实。"
+    },
+    {
+      "title": "IREN比特币挖矿收入下降，AI云销售近三倍增长",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNbkFZMEhlZlFPQjR6TW96ZURpeld0Vl9uZDFtNWlnOU5yWHhnb3NGRmtMZUl6aVk3ZkVCRlhfSVgtVXQ0ci1CM3FfbkhLX2otY251OHZVQW14MjB3a2ZVSHNsOXBfcDRvM2YydzF4dEpUZWdQeEc0ZU5taVI1M2t3Smx6MGJhRXh2TnpQQU1ZY25tSHpyb2wyU2l6bUcxMTJZczMtNUVaQW1WQlpqUHJJeXF4Y0VSR3VuLWJXNC04NV9FUUE?oc=5",
+      "source": "TradingView",
+      "published_at": "2026-11-07T20:00:00+00:00",
+      "fetched_at": "2026-11-08T06:02:26.237784+00:00",
+      "category": "财报与经营",
+      "tags": [
+        "IREN",
+        "AI cloud revenue",
+        "bitcoin mining",
+        "financial results",
+        "business strategy"
+      ],
+      "score": 7.0,
+      "sections": [
+        {
+          "title": "核心事件",
+          "content": "据TradingView报道，IREN的比特币挖矿收入出现下降，同期其AI云服务销售额增长接近三倍，显示公司业务重心正向AI云服务转移。报道未披露具体金额、报告期间及币种。"
+        }
+      ],
+      "summary": "据TradingView报道，IREN的比特币挖矿收入出现下降，同期其AI云服务销售额增长接近三倍，显示公司业务重心正向AI云服务转移。报道未披露具体金额、报告期间及币种。"
+    },
+    {
+      "title": "Oracle Q4 FY2026 营收创纪录达 192 亿美元，OCI 增长 93%，但融资风险拖累股价跌至 142 美元",
+      "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxNa0l6LXIwUnF2RXdJQ0sxbURacm40NUxKRmpIVndwZ253YlVtTGVId2VaN2p3YV8wdmhtaWVTa2hHNkR0aUN3ZDdxNndSdE84NW1EWVAxcy00bXhTS25JS19FcHh6bHpUT0ZuX2hqdzFPLW9QS1R5UmVsbW96Wnl0WGlMWTNuMVN2cUF5LUJBWFlkMGlVdUNjdUFZQnlvWWVlcWdwVFB1bmZ4VFVadVA0NUNFNno3NGVReWd0ODZRaUZfbzJTUllMcnJzLWw2Ny1zV21OYnhlLVdfVnNESmFGdVBiczgxdHN0c2MzU3dmY3dWSm5z?oc=5",
+      "source": "TradingKey",
+      "published_at": "2026-11-07T13:38:53+00:00",
+      "fetched_at": "2026-11-08T06:02:26.237824+00:00",
+      "category": "财报与经营",
+      "tags": [
+        "Oracle",
+        "OCI",
+        "cloud revenue",
+        "financial results",
+        "stock price"
+      ],
+      "score": 7.0,
+      "sections": [
+        {
+          "title": "核心事件",
+          "content": "据 TradingKey 报道，Oracle 公布 2026 财年第四季度营收创纪录达 192 亿美元，其中云基础设施业务（OCI）同比增长 93%。但报道同时指出，融资风险导致公司股价下跌至 142 美元。以上数据来自 TradingKey 的新闻标题，文章正文未提供，具体财务口径与细节未经原始财报核实。"
+        }
+      ],
+      "summary": "据 TradingKey 报道，Oracle 公布 2026 财年第四季度营收创纪录达 192 亿美元，其中云基础设施业务（OCI）同比增长 93%。但报道同时指出，融资风险导致公司股价下跌至 142 美元。以上数据来自 TradingKey 的新闻标题，文章正文未提供，具体财务口径与细节未经原始财报核实。"
+    },
+    {
+      "title": "微软终止甲骨文算力租约，称旧一代英伟达GPU不再符合要求",
+      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE02NExWTnhnQ3hPNERrVXQya1dFTGxMOXNWV3N0VUJnRjZSMmllMkZqUnNpb2g1VU9FSUt5azFDZXhHQ3BIcFM0TWg0bkk1WDByenVPLTB5bXc?oc=5",
+      "source": "驱动之家",
+      "published_at": "2026-11-08T05:50:00+00:00",
+      "fetched_at": "2026-11-08T06:02:26.224076+00:00",
+      "category": "算力租赁",
+      "tags": [
+        "Microsoft",
+        "Oracle",
+        "NVIDIA",
+        "GPU cloud rental",
+        "data center procurement"
+      ],
+      "score": 7.0,
+      "sections": [
+        {
+          "title": "核心事件",
+          "content": "据驱动之家2026年11月8日报道，微软已终止与甲骨文的算力租约，理由是旧一代英伟达GPU不再符合其要求。该事件涉及微软、甲骨文与英伟达三方，属于AI算力租赁与数据中心采购领域的具体变动。"
+        },
+        {
+          "title": "进展细节",
+          "content": "多家媒体口径一致但表述略有差异：Coinpaper将其描述为微软从甲骨文AI云协议中撤出，原因是旧一代英伟达芯片价值下降；潮起网在数智周报中称，微软正在收缩AI算力租赁，据称逐步退出甲骨文云协议。上述报道均未披露涉及的具体算力规模、合同金额或时间安排。"
+        }
+      ],
+      "summary": "据驱动之家2026年11月8日报道，微软已终止与甲骨文的算力租约，理由是旧一代英伟达GPU不再符合其要求。该事件涉及微软、甲骨文与英伟达三方，属于AI算力租赁与数据中心采购领域的具体变动。"
+    },
+    {
+      "title": "微软10亿美元阿姆斯特丹数据中心项目因AI基础设施成本引发抗议",
+      "url": "https://www.livemint.com/companies/news/microsofts-1-billion-amsterdam-data-centre-project-faces-protests-over-ai-infrastructure-costs-details-inside-11794048139305.html",
+      "source": "livemint.com",
+      "published_at": "2026-11-07T11:30:00+00:00",
+      "fetched_at": "2026-11-08T06:02:49.072145+00:00",
+      "category": "算力租赁",
+      "tags": [
+        "Microsoft",
+        "data centre",
+        "Amsterdam",
+        "AI infrastructure",
+        "protests"
+      ],
+      "score": 7.0,
+      "sections": [
+        {
+          "title": "核心事件",
+          "content": "据livemint.com报道，微软在阿姆斯特丹投资10亿美元的数据中心项目正面临公众抗议，抗议焦点为AI基础设施成本。报道发布于2026年11月7日。原文正文内容未提供，抗议规模、诉求细节及项目时间安排等具体信息来源未披露。"
+        }
+      ],
+      "summary": "据livemint.com报道，微软在阿姆斯特丹投资10亿美元的数据中心项目正面临公众抗议，抗议焦点为AI基础设施成本。报道发布于2026年11月7日。原文正文内容未提供，抗议规模、诉求细节及项目时间安排等具体信息来源未披露。"
+    },
+    {
+      "title": "微软被报道接连削减AI算力订单，最大买家转向更挑剔",
+      "url": "https://news.google.com/rss/articles/CBMinwNBVV95cUxNUU9Kc0dlWTZYRTBqNnlpUm1jb2lVV1ZCTkctUjk5S3lQSWJOTnN6bmZLSVdXNGlBbmdVcGJhcHNPSnk2ak1LTGZTZk5vLTRKdzFKdGV0eE5GYjdUcFRuSHFBTW5ydE4xUFJWNE51MkQtekpVRnAxbHdib0g2QjE0WHJEaHBmNVAtTkZEV3dwOWpIXzQwWS1fajVPU0VRclRjc1luMlB2cDVJYlIyMnVza05ERWFielpuZ0VIWExKM3QzN0ZpZU9vQUdCajFra0twa0w1UVN6TmZ1TThiVmxfZDJ4QUVaTVc1cnpxVWxlY0JvZFhES1VOM1draE9tWk5fOVNkMVA2YkxfZEhYNE11d1d1Zl9Mako3c3EwemxOeWt6Q0k5OGQ5MmVEMlEzLWxSaGxnMERzUUNaZmJCMmZ1RHJuWjFtSmpGRVQ2QWYzWkNybGt1c05XSkk5M1VQalBQbDdROTNWam12bTN1MC0wTjlueDEzYXdzSWl1SUR6NlNNN0tORnBFM2lZZUNBTmUtU3duTVY3SElrSFgwOW1F?oc=5",
+      "source": "香港01",
+      "published_at": "2026-11-07T10:56:00+00:00",
+      "fetched_at": "2026-11-08T06:02:26.224163+00:00",
+      "category": "算力租赁",
+      "tags": [
+        "Microsoft",
+        "AI compute",
+        "GPU demand",
+        "data center capacity",
+        "procurement"
+      ],
+      "score": 7.0,
+      "sections": [
+        {
+          "title": "核心事件",
+          "content": "据香港01于2026年11月7日发布的报道，微软据称接连削减AI算力订单，这一动向表明作为市场最大买家的微软在采购上变得更加挑剔。报道未披露具体被削减的订单规模、涉及供应商或时间安排等细节。"
+        }
+      ],
+      "summary": "据香港01于2026年11月7日发布的报道，微软据称接连削减AI算力订单，这一动向表明作为市场最大买家的微软在采购上变得更加挑剔。报道未披露具体被削减的订单规模、涉及供应商或时间安排等细节。"
+    },
+    {
+      "title": "Alphabet 150亿美元马来西亚投资据报面临AI资本支出质疑",
+      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPaVM4WklSeWxWRHFhRktScnRLUDg1ZlAtMENzeExjdDFXRDBfOWtkSjl3WC15RXNVSjhHREFtcTVGSkl6eTRfdGdwajRJZ1I3MHl3c3JuMXhBMWFGSTdXRlJPejhjY2pidVZwN084UkhGOHBnT3NtV082ZFFXTUpIZXZTdWpPYU11ZlZEd3lXbHpSTlpvU0dTU0NHY1g?oc=5",
+      "source": "FinanceFeeds",
+      "published_at": "2026-11-07T22:00:44+00:00",
+      "fetched_at": "2026-11-08T06:02:26.237947+00:00",
+      "category": "财报与经营",
+      "tags": [
+        "Alphabet",
+        "Google",
+        "Malaysia",
+        "AI capex",
+        "AI infrastructure investment"
+      ],
+      "score": 6.0,
+      "sections": [
+        {
+          "title": "核心事件",
+          "content": "据FinanceFeeds于2026年11月7日发布的报道标题，Alphabet（Google母公司）一项规模为150亿美元的马来西亚投资正面临与AI资本支出相关的质疑。目前仅有该二手聚合来源的标题信息，未披露投资的具体内容、质疑方的身份或相关细节，来源未提供可核实的一手材料。"
+        }
+      ],
+      "summary": "据FinanceFeeds于2026年11月7日发布的报道标题，Alphabet（Google母公司）一项规模为150亿美元的马来西亚投资正面临与AI资本支出相关的质疑。目前仅有该二手聚合来源的标题信息，未披露投资的具体内容、质疑方的身份或相关细节，来源未提供可核实的一手材料。"
+    },
+    {
+      "title": "花旗上调至2028年AI收入预测，云需求加速",
+      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOQmkyZ0VYcHpzQm9KZ0hOWkJLbzNlTnZYdVdQdFpNX18tOVc1anVBUi1JTUNfX2ExV3ZrQWxlZlpINmFXaHFZcHpOZktPV2hNWVdnYm16bVNEMjVYTWt4SUg2bGhlbGlZMlFFcTJqei1aVkJvLU1oaHdxRkdXMy1SR0Y4QktFaksteDJRdzZXZjBrTU9zQVZ1MzFneDE?oc=5",
+      "source": "Yahoo Finance",
+      "published_at": "2026-11-07T11:48:00+00:00",
+      "fetched_at": "2026-11-08T06:02:26.237865+00:00",
+      "category": "财报与经营",
+      "tags": [
+        "Citi",
+        "AI revenue forecast",
+        "cloud demand",
+        "analyst research",
+        "Yahoo Finance"
+      ],
+      "score": 6.0,
+      "sections": [
+        {
+          "title": "核心事件",
+          "content": "据Yahoo Finance报道，花旗（Citi）上调了其至2028年的AI收入预测，理由是云需求加速。报道仅提供标题信息，未披露具体预测数字、涉及公司、币种或统计期间。"
+        }
+      ],
+      "summary": "据Yahoo Finance报道，花旗（Citi）上调了其至2028年的AI收入预测，理由是云需求加速。报道仅提供标题信息，未披露具体预测数字、涉及公司、币种或统计期间。"
+    }
+  ]
+}
