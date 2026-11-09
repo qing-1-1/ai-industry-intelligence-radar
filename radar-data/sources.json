@@ -42,6 +42,36 @@
     "enabled": true
   },
   {
+    "name": "InfoQ 中文",
+    "method": "RSS",
+    "category": "国内技术媒体",
+    "enabled": true
+  },
+  {
+    "name": "NVIDIA CUDA 技术博客",
+    "method": "RSS",
+    "category": "海外 AI 算力技术",
+    "enabled": true
+  },
+  {
+    "name": "中国移动招采（第三方糖果梦聚合）",
+    "method": "RSS",
+    "category": "运营商采购公告·第三方聚合",
+    "enabled": false
+  },
+  {
+    "name": "中国电信招采（第三方糖果梦聚合）",
+    "method": "RSS",
+    "category": "运营商采购公告·第三方聚合",
+    "enabled": true
+  },
+  {
+    "name": "中国联通招采（第三方糖果梦聚合）",
+    "method": "RSS",
+    "category": "运营商采购公告·第三方聚合",
+    "enabled": true
+  },
+  {
     "name": "BerriAI/litellm",
     "method": "GitHub Releases",
     "category": "开源",
@@ -54,73 +84,97 @@
     "enabled": true
   },
   {
-    "name": "AI model router OR LLM gateway",
+    "name": "中国移动 Token 模型 API 服务",
     "method": "Google News 搜索发现",
     "category": "综合",
     "enabled": true
   },
   {
-    "name": "中国电信 TokenHub",
+    "name": "中国电信 TokenHub 模型 推理",
     "method": "Google News 搜索发现",
     "category": "综合",
     "enabled": true
   },
   {
-    "name": "中国移动 Token 大模型",
+    "name": "中国联通 Token 大模型 服务",
     "method": "Google News 搜索发现",
     "category": "综合",
     "enabled": true
   },
   {
-    "name": "中国联通 Token 大模型",
+    "name": "运营商 智算 算力租赁",
     "method": "Google News 搜索发现",
     "category": "综合",
     "enabled": true
   },
   {
-    "name": "GPU 算力租赁",
+    "name": "运营商 AI 智能体 政企 云",
     "method": "Google News 搜索发现",
     "category": "综合",
     "enabled": true
   },
   {
-    "name": "算力采购 招标",
+    "name": "运营商 AI 网关 多模型 路由",
     "method": "Google News 搜索发现",
     "category": "综合",
     "enabled": true
   },
   {
-    "name": "AI infrastructure cloud revenue capital expenditure",
+    "name": "GPU 智算中心 招标 中标",
     "method": "Google News 搜索发现",
     "category": "综合",
     "enabled": true
   },
   {
-    "name": "工信部 人工智能 算力",
+    "name": "工信部 运营商 人工智能 算力 政策",
     "method": "Google News 搜索发现",
     "category": "综合",
     "enabled": true
   },
   {
-    "name": "site:chinatelecom.com.cn 人工智能 算力 Token",
+    "name": "site:chinatelecom.com.cn 星辰 算力 人工智能",
     "method": "Google News 搜索发现",
     "category": "综合",
     "enabled": true
   },
   {
-    "name": "site:chinaunicom.com.cn 人工智能 算力 Token",
+    "name": "site:chinaunicom.com.cn 算力 人工智能",
     "method": "Google News 搜索发现",
     "category": "综合",
     "enabled": true
   },
   {
-    "name": "site:chinamobileltd.com 人工智能 算力 云",
+    "name": "site:chinamobileltd.com AI 算力 网络",
     "method": "Google News 搜索发现",
     "category": "综合",
     "enabled": true
   },
   {
-    "name": "\"AI infrastructure\"",
+    "name": "site:36kr.com 运营商 算力 大模型",
+    "method": "Google News 搜索发现",
+    "category": "综合",
+    "enabled": true
+  },
+  {
+    "name": "site:jiqizhixin.com 运营商 算力 模型",
+    "method": "Google News 搜索发现",
+    "category": "综合",
+    "enabled": true
+  },
+  {
+    "name": "site:c114.com.cn 运营商 算力 人工智能",
+    "method": "Google News 搜索发现",
+    "category": "综合",
+    "enabled": true
+  },
+  {
+    "name": "telecom AI model gateway inference cloud",
+    "method": "Google News 搜索发现",
+    "category": "综合",
+    "enabled": true
+  },
+  {
+    "name": "telecom \"artificial intelligence\"",
     "method": "GDELT 搜索发现",
     "category": "综合",
     "enabled": true
