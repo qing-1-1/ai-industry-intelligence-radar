@@ -29,6 +29,7 @@ from .scrapers.openbb import OpenBBScraper
 from .scrapers.ossinsight import OSSInsightScraper
 from .scrapers.gdelt import GDELTScraper
 from .scrapers.google_news import GoogleNewsScraper
+from .scrapers.hot_boards import HotBoardScraper
 from .ai.client import AIClient, create_ai_client
 from .ai.errors import AIProviderUnavailableError
 from .ai.analyzer import ContentAnalyzer
@@ -528,6 +529,10 @@ class HorizonOrchestrator:
                         updates.update({"language": "zh-CN", "country": "CN", "ceid": "CN:zh-Hans"})
                     gn_scraper = GoogleNewsScraper(gn_config.model_copy(update=updates), client)
                     tasks.append(self._fetch_with_progress(f"Google News: {query}", gn_scraper, since))
+
+            for board in self.config.sources.hot_boards:
+                if board.enabled:
+                    tasks.append(self._fetch_with_progress(board.name, HotBoardScraper(board, client), since))
 
             # Fetch all concurrently
             outcomes = await asyncio.gather(*tasks)

@@ -72,6 +72,12 @@
     "enabled": true
   },
   {
+    "name": "少数派",
+    "method": "RSS",
+    "category": "国内科技媒体",
+    "enabled": true
+  },
+  {
     "name": "BerriAI/litellm",
     "method": "GitHub Releases",
     "category": "开源",
@@ -81,6 +87,30 @@
     "name": "vllm-project/vllm",
     "method": "GitHub Releases",
     "category": "开源",
+    "enabled": true
+  },
+  {
+    "name": "知乎热榜（官方 API）",
+    "method": "热榜发现",
+    "category": "热榜",
+    "enabled": true
+  },
+  {
+    "name": "今日热榜 · 澎湃",
+    "method": "热榜发现",
+    "category": "热榜",
+    "enabled": true
+  },
+  {
+    "name": "今日热榜 · 36氪",
+    "method": "热榜发现",
+    "category": "热榜",
+    "enabled": true
+  },
+  {
+    "name": "今日热榜 · 虎嗅",
+    "method": "热榜发现",
+    "category": "热榜",
     "enabled": true
   },
   {

@@ -29,6 +29,7 @@ def export_radar(config, items, collected, report, directory=Path('docs/radar-da
         sources.append({'name':source.name,'method':'RSS','category':source.category or '综合','enabled':source.enabled})
     for source in config.sources.github:
         sources.append({'name':f'{source.owner}/{source.repo}','method':'GitHub Releases','category':'开源','enabled':source.enabled})
+    sources.extend({'name':s.name,'method':'热榜发现','category':'热榜','enabled':s.enabled} for s in config.sources.hot_boards)
     for method, source in [('Google News', config.sources.google_news), ('GDELT', config.sources.gdelt)]:
         if source:
             queries = getattr(source, 'queries', None) or [source.query]

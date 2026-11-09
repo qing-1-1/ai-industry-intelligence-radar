@@ -180,7 +180,7 @@
           "radar-platform",
           "radar-policy"
         ],
-        "max_items": 8,
+        "max_items": 15,
         "content_extractor": "trafilatura"
       },
       {
@@ -284,6 +284,21 @@
           "服务器",
           "数据中心"
         ]
+      },
+      {
+        "name": "少数派",
+        "url": "https://sspai.com/feed",
+        "enabled": true,
+        "category": "国内科技媒体",
+        "profile": [
+          "radar-token",
+          "radar-compute",
+          "radar-router",
+          "radar-platform",
+          "radar-policy"
+        ],
+        "max_items": 15,
+        "content_extractor": "trafilatura"
       }
     ],
     "google_news": {
@@ -335,7 +350,150 @@
     },
     "telegram": {
       "enabled": false
-    }
+    },
+    "hot_boards": [
+      {
+        "name": "知乎热榜（官方 API）",
+        "kind": "zhihu",
+        "url": "https://developer.zhihu.com/api/v1/content/hot_list",
+        "enabled": true,
+        "fetch_limit": 20,
+        "api_key_env": "ZHIHU_ACCESS_SECRET",
+        "include_keywords": [
+          "运营商",
+          "中国移动",
+          "中国电信",
+          "中国联通",
+          "移动通信",
+          "电信",
+          "联通",
+          "telecom",
+          "carrier",
+          "operator",
+          "算力",
+          "智算",
+          "大模型",
+          "人工智能",
+          "AI",
+          "token",
+          "模型",
+          "GPU",
+          "数据中心"
+        ],
+        "profile": [
+          "radar-token",
+          "radar-compute",
+          "radar-router",
+          "radar-platform",
+          "radar-policy"
+        ]
+      },
+      {
+        "name": "今日热榜 · 澎湃",
+        "kind": "tophub",
+        "url": "https://tophub.today/n/wWmoO5Rd4E",
+        "enabled": true,
+        "fetch_limit": 20,
+        "include_keywords": [
+          "运营商",
+          "中国移动",
+          "中国电信",
+          "中国联通",
+          "移动通信",
+          "电信",
+          "联通",
+          "telecom",
+          "carrier",
+          "operator",
+          "算力",
+          "智算",
+          "大模型",
+          "人工智能",
+          "AI",
+          "token",
+          "模型",
+          "GPU",
+          "数据中心"
+        ],
+        "profile": [
+          "radar-token",
+          "radar-compute",
+          "radar-router",
+          "radar-platform",
+          "radar-policy"
+        ]
+      },
+      {
+        "name": "今日热榜 · 36氪",
+        "kind": "tophub",
+        "url": "https://tophub.today/n/Q1Vd5Ko85R",
+        "enabled": true,
+        "fetch_limit": 20,
+        "include_keywords": [
+          "运营商",
+          "中国移动",
+          "中国电信",
+          "中国联通",
+          "移动通信",
+          "电信",
+          "联通",
+          "telecom",
+          "carrier",
+          "operator",
+          "算力",
+          "智算",
+          "大模型",
+          "人工智能",
+          "AI",
+          "token",
+          "模型",
+          "GPU",
+          "数据中心"
+        ],
+        "profile": [
+          "radar-token",
+          "radar-compute",
+          "radar-router",
+          "radar-platform",
+          "radar-policy"
+        ]
+      },
+      {
+        "name": "今日热榜 · 虎嗅",
+        "kind": "tophub",
+        "url": "https://tophub.today/n/5VaobgvAj1",
+        "enabled": true,
+        "fetch_limit": 15,
+        "include_keywords": [
+          "运营商",
+          "中国移动",
+          "中国电信",
+          "中国联通",
+          "移动通信",
+          "电信",
+          "联通",
+          "telecom",
+          "carrier",
+          "operator",
+          "算力",
+          "智算",
+          "大模型",
+          "人工智能",
+          "AI",
+          "token",
+          "模型",
+          "GPU",
+          "数据中心"
+        ],
+        "profile": [
+          "radar-token",
+          "radar-compute",
+          "radar-router",
+          "radar-platform",
+          "radar-policy"
+        ]
+      }
+    ]
   },
   "collection": {
     "time_window_hours": 25,

@@ -495,10 +495,23 @@ class GoogleNewsConfig(BaseModel):
     profile: ProfileRoute = None
 
 
+class HotBoardConfig(BaseModel):
+    """A hot-list discovery source; undated articles are not admitted."""
+    name: str
+    kind: Literal["tophub", "zhihu"]
+    url: HttpUrl
+    enabled: bool = True
+    fetch_limit: int = Field(default=15, ge=1, le=30)
+    api_key_env: Optional[str] = None
+    include_keywords: List[str] = Field(default_factory=list)
+    profile: ProfileRoute = None
+
+
 class SourcesConfig(BaseModel):
     """All sources configuration."""
 
     github: List[GitHubSourceConfig] = Field(default_factory=list)
+    hot_boards: List[HotBoardConfig] = Field(default_factory=list)
     hackernews: HackerNewsConfig = Field(default_factory=HackerNewsConfig)
     rss: List[RSSSourceConfig] = Field(default_factory=list)
     reddit: RedditConfig = Field(default_factory=RedditConfig)

@@ -52,6 +52,7 @@ jobs:
       - name: Generate briefing
         env:
           SENSENOVA_API_KEY: ${{ secrets.SENSENOVA_API_KEY }}
+          ZHIHU_ACCESS_SECRET: ${{ secrets.ZHIHU_ACCESS_SECRET }}
           GITHUB_TOKEN: ${{ github.token }}
           RADAR_MAX_CANDIDATES: ${{ inputs.max_candidates || '120' }}
         run: |
