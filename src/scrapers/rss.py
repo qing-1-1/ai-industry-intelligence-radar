@@ -102,11 +102,18 @@ class RSSScraper(BaseScraper):
                 if not published_at or published_at < since:
                     continue
 
+                title = entry.get("title", "Untitled")
+                if source.include_keywords and not self._matches_keywords(title, source.include_keywords):
+                    continue
+                if source.max_items is not None and len(result.items) >= source.max_items:
+                    break
+
                 feed_id = str(source.url).split("//")[1].replace("/", "_")
                 entry_id = entry.get("id", entry.get("link", ""))
                 entry_hash = hashlib.sha256(str(entry_id).encode("utf-8")).hexdigest()[:16]
                 content = self._extract_content(entry)
 
+                material_status = "rss_content" if content else "title_only"
                 if source.content_extractor and self._extractors:
                     extractor = self._extractors.get(source.content_extractor)
                     if extractor:
@@ -115,11 +122,12 @@ class RSSScraper(BaseScraper):
                             full = await extractor.extract(url, self.client)
                             if full:
                                 content = full
+                                material_status = "article_extracted"
 
                 result.items.append(ContentItem(
                     id=self._generate_id("rss", feed_id, entry_hash),
                     source_type=SourceType.RSS,
-                    title=entry.get("title", "Untitled"),
+                    title=title,
                     url=entry.get("link", str(source.url)),
                     content=content,
                     author=entry.get("author", source.name),
@@ -127,6 +135,7 @@ class RSSScraper(BaseScraper):
                     profile=source.profile,
                     metadata={
                         "feed_name": source.name,
+                        "material_status": material_status,
                         "category": source.category,
                         "tags": [tag.term for tag in entry.get("tags", [])],
                     },
@@ -142,6 +151,20 @@ class RSSScraper(BaseScraper):
         # A feed with only rejected entries is not a successful empty response.
         result.successful = int(bool(result.items) or not result.failures)
         return result
+
+    @staticmethod
+    def _matches_keywords(title: str, keywords: list[str]) -> bool:
+        title = str(title).casefold()
+        for word in keywords:
+            word = word.strip().casefold()
+            if not word:
+                continue
+            if word.isascii() and word.isalnum():
+                if re.search(r"(?<![a-z0-9])" + re.escape(word) + r"(?![a-z0-9])", title):
+                    return True
+            elif word in title:
+                return True
+        return False
 
     def _parse_date(self, entry: dict) -> datetime:
         """Parse publication date from feed entry.

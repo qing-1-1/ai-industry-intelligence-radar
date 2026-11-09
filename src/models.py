@@ -312,6 +312,8 @@ class RSSSourceConfig(BaseModel):
     enabled: bool = True
     category: Optional[str] = None
     content_extractor: Optional[str] = None
+    max_items: Optional[int] = Field(default=None, gt=0)
+    include_keywords: List[str] = Field(default_factory=list)
     profile: ProfileRoute = None
 
 
@@ -598,6 +600,7 @@ class CollectionConfig(BaseModel):
 
     time_window_hours: int = 24
     candidate_limit: Optional[int] = Field(default=None, gt=0)
+    content_expansion_limit: int = Field(default=0, ge=0, le=100)
 
 
 class DigestConfig(BaseModel):

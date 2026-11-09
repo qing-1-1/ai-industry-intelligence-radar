@@ -1,0 +1,37 @@
+{
+  "id": "radar-platform",
+  "name": "运营商 AI 产品与应用",
+  "display_names": {
+    "zh": "运营商 AI 产品与应用"
+  },
+  "match": "match.md",
+  "analysis": "analysis.md",
+  "content": {
+    "analysis_max_chars": 4000,
+    "enrichment_max_chars": 12000,
+    "sampling": "head-middle-tail"
+  },
+  "enrichment": {
+    "prompt": "enrichment.md",
+    "blocks": [
+      {
+        "id": "summary",
+        "type": "section",
+        "tools": [],
+        "primary": true
+      },
+      {
+        "id": "details",
+        "type": "section",
+        "tools": [],
+        "optional": true
+      },
+      {
+        "id": "context",
+        "type": "section",
+        "tools": [],
+        "optional": true
+      }
+    ]
+  }
+}

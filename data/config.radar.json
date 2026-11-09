@@ -24,12 +24,8 @@
   },
   "processing": {
     "profiles_dir": "profiles",
-    "default_profile": "radar-industry",
+    "default_profile": "radar-platform",
     "profile_settings": {
-      "radar-router": {
-        "threshold": 6.0,
-        "topic_dedup": true
-      },
       "radar-token": {
         "threshold": 6.0,
         "topic_dedup": true
@@ -38,11 +34,15 @@
         "threshold": 6.0,
         "topic_dedup": true
       },
-      "radar-finance": {
+      "radar-router": {
         "threshold": 6.0,
         "topic_dedup": true
       },
-      "radar-industry": {
+      "radar-platform": {
+        "threshold": 6.0,
+        "topic_dedup": true
+      },
+      "radar-policy": {
         "threshold": 6.0,
         "topic_dedup": true
       }
@@ -56,11 +56,11 @@
         "repo": "litellm",
         "enabled": true,
         "profile": [
-          "radar-router",
           "radar-token",
           "radar-compute",
-          "radar-finance",
-          "radar-industry"
+          "radar-router",
+          "radar-platform",
+          "radar-policy"
         ]
       },
       {
@@ -69,11 +69,11 @@
         "repo": "vllm",
         "enabled": true,
         "profile": [
-          "radar-router",
           "radar-token",
           "radar-compute",
-          "radar-finance",
-          "radar-industry"
+          "radar-router",
+          "radar-platform",
+          "radar-policy"
         ]
       }
     ],
@@ -84,12 +84,14 @@
         "enabled": true,
         "category": "AI 基础设施",
         "profile": [
-          "radar-router",
           "radar-token",
           "radar-compute",
-          "radar-finance",
-          "radar-industry"
-        ]
+          "radar-router",
+          "radar-platform",
+          "radar-policy"
+        ],
+        "max_items": 8,
+        "content_extractor": "trafilatura"
       },
       {
         "name": "AWS Machine Learning",
@@ -97,12 +99,14 @@
         "enabled": true,
         "category": "云与推理",
         "profile": [
-          "radar-router",
           "radar-token",
           "radar-compute",
-          "radar-finance",
-          "radar-industry"
-        ]
+          "radar-router",
+          "radar-platform",
+          "radar-policy"
+        ],
+        "max_items": 8,
+        "content_extractor": "trafilatura"
       },
       {
         "name": "Google Cloud AI",
@@ -110,12 +114,14 @@
         "enabled": true,
         "category": "云与 AI",
         "profile": [
-          "radar-router",
           "radar-token",
           "radar-compute",
-          "radar-finance",
-          "radar-industry"
-        ]
+          "radar-router",
+          "radar-platform",
+          "radar-policy"
+        ],
+        "max_items": 8,
+        "content_extractor": "trafilatura"
       },
       {
         "name": "vLLM Blog",
@@ -123,12 +129,14 @@
         "enabled": true,
         "category": "推理",
         "profile": [
-          "radar-router",
           "radar-token",
           "radar-compute",
-          "radar-finance",
-          "radar-industry"
-        ]
+          "radar-router",
+          "radar-platform",
+          "radar-policy"
+        ],
+        "max_items": 8,
+        "content_extractor": "trafilatura"
       },
       {
         "name": "Portkey Blog",
@@ -136,12 +144,14 @@
         "enabled": true,
         "category": "模型网关",
         "profile": [
-          "radar-router",
           "radar-token",
           "radar-compute",
-          "radar-finance",
-          "radar-industry"
-        ]
+          "radar-router",
+          "radar-platform",
+          "radar-policy"
+        ],
+        "max_items": 8,
+        "content_extractor": "trafilatura"
       },
       {
         "name": "量子位",
@@ -149,12 +159,14 @@
         "enabled": true,
         "category": "AI 行业",
         "profile": [
-          "radar-router",
           "radar-token",
           "radar-compute",
-          "radar-finance",
-          "radar-industry"
-        ]
+          "radar-router",
+          "radar-platform",
+          "radar-policy"
+        ],
+        "max_items": 8,
+        "content_extractor": "trafilatura"
       },
       {
         "name": "极客公园",
@@ -162,11 +174,115 @@
         "enabled": true,
         "category": "AI 行业",
         "profile": [
-          "radar-router",
           "radar-token",
           "radar-compute",
-          "radar-finance",
-          "radar-industry"
+          "radar-router",
+          "radar-platform",
+          "radar-policy"
+        ],
+        "max_items": 8,
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "InfoQ 中文",
+        "url": "https://www.infoq.cn/feed",
+        "enabled": true,
+        "category": "国内技术媒体",
+        "profile": [
+          "radar-token",
+          "radar-compute",
+          "radar-router",
+          "radar-platform",
+          "radar-policy"
+        ],
+        "max_items": 8,
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "NVIDIA CUDA 技术博客",
+        "url": "https://developer.nvidia.com/blog/tag/cuda/feed/",
+        "enabled": true,
+        "category": "海外 AI 算力技术",
+        "profile": [
+          "radar-token",
+          "radar-compute",
+          "radar-router",
+          "radar-platform",
+          "radar-policy"
+        ],
+        "max_items": 6,
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "中国移动招采（第三方糖果梦聚合）",
+        "url": "https://tgmeng.com/bidding/cmcc-b2b/rss.xml",
+        "enabled": false,
+        "category": "运营商采购公告·第三方聚合",
+        "profile": "radar-policy",
+        "max_items": 10,
+        "include_keywords": [
+          "算力",
+          "智算",
+          "人工智能",
+          "大模型",
+          "模型",
+          "智能体",
+          "云平台",
+          "GPU",
+          "Token",
+          "推理",
+          "AI",
+          "算网",
+          "服务器",
+          "数据中心"
+        ]
+      },
+      {
+        "name": "中国电信招采（第三方糖果梦聚合）",
+        "url": "https://tgmeng.com/bidding/ctcc-sunshine/rss.xml",
+        "enabled": true,
+        "category": "运营商采购公告·第三方聚合",
+        "profile": "radar-policy",
+        "max_items": 10,
+        "include_keywords": [
+          "算力",
+          "智算",
+          "人工智能",
+          "大模型",
+          "模型",
+          "智能体",
+          "云平台",
+          "GPU",
+          "Token",
+          "推理",
+          "AI",
+          "算网",
+          "服务器",
+          "数据中心"
+        ]
+      },
+      {
+        "name": "中国联通招采（第三方糖果梦聚合）",
+        "url": "https://tgmeng.com/bidding/cucc-cuecp/rss.xml",
+        "enabled": true,
+        "category": "运营商采购公告·第三方聚合",
+        "profile": "radar-policy",
+        "max_items": 10,
+        "include_keywords": [
+          "算力",
+          "智算",
+          "人工智能",
+          "大模型",
+          "模型",
+          "智能体",
+          "云平台",
+          "GPU",
+          "Token",
+          "推理",
+          "AI",
+          "算网",
+          "服务器",
+          "数据中心"
         ]
       }
     ],
@@ -174,37 +290,41 @@
       "enabled": true,
       "query": "AI model router OR LLM gateway",
       "queries": [
-        "AI model router OR LLM gateway",
-        "中国电信 TokenHub",
-        "中国移动 Token 大模型",
-        "中国联通 Token 大模型",
-        "GPU 算力租赁",
-        "算力采购 招标",
-        "AI infrastructure cloud revenue capital expenditure",
-        "工信部 人工智能 算力",
-        "site:chinatelecom.com.cn 人工智能 算力 Token",
-        "site:chinaunicom.com.cn 人工智能 算力 Token",
-        "site:chinamobileltd.com 人工智能 算力 云"
+        "中国移动 Token 模型 API 服务",
+        "中国电信 TokenHub 模型 推理",
+        "中国联通 Token 大模型 服务",
+        "运营商 智算 算力租赁",
+        "运营商 AI 智能体 政企 云",
+        "运营商 AI 网关 多模型 路由",
+        "GPU 智算中心 招标 中标",
+        "工信部 运营商 人工智能 算力 政策",
+        "site:chinatelecom.com.cn 星辰 算力 人工智能",
+        "site:chinaunicom.com.cn 算力 人工智能",
+        "site:chinamobileltd.com AI 算力 网络",
+        "site:36kr.com 运营商 算力 大模型",
+        "site:jiqizhixin.com 运营商 算力 模型",
+        "site:c114.com.cn 运营商 算力 人工智能",
+        "telecom AI model gateway inference cloud"
       ],
       "max_results": 30,
       "profile": [
-        "radar-router",
         "radar-token",
         "radar-compute",
-        "radar-finance",
-        "radar-industry"
+        "radar-router",
+        "radar-platform",
+        "radar-policy"
       ]
     },
     "gdelt": {
       "enabled": true,
-      "query": "\"AI infrastructure\"",
+      "query": "telecom \"artificial intelligence\"",
       "max_records": 30,
       "profile": [
-        "radar-router",
         "radar-token",
         "radar-compute",
-        "radar-finance",
-        "radar-industry"
+        "radar-router",
+        "radar-platform",
+        "radar-policy"
       ]
     },
     "hackernews": {
@@ -219,16 +339,17 @@
   },
   "collection": {
     "time_window_hours": 25,
-    "candidate_limit": 120
+    "candidate_limit": 120,
+    "content_expansion_limit": 12
   },
   "digest": {
     "max_items": 30,
     "profile_order": [
-      "radar-router",
       "radar-token",
       "radar-compute",
-      "radar-finance",
-      "radar-industry"
+      "radar-router",
+      "radar-platform",
+      "radar-policy"
     ],
     "group_by": "profile"
   },

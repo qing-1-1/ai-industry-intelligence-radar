@@ -1,11 +1,16 @@
 {
   "id": "radar-router",
-  "name": "AI Model Router",
+  "name": "模型路由与 AI 网关",
   "display_names": {
-    "zh": "AI Model Router"
+    "zh": "模型路由与 AI 网关"
   },
   "match": "match.md",
   "analysis": "analysis.md",
+  "content": {
+    "analysis_max_chars": 4000,
+    "enrichment_max_chars": 12000,
+    "sampling": "head-middle-tail"
+  },
   "enrichment": {
     "prompt": "enrichment.md",
     "blocks": [

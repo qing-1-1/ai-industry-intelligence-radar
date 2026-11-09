@@ -457,3 +457,16 @@ def test_extractor_still_overrides_longest_feed_content(extracted) -> None:
     assert result.status == "success"
     assert result.items[0].content == (extracted if extracted is not None else _FULL_CONTENT)
     extractor.extract.assert_awaited_once_with("https://example.com/item-1", client)
+
+
+def test_rss_source_filter_and_limit_precede_body_fetch():
+    feed = _FEED.replace('Item 1', '中国联通 AI 算力招标').replace('</channel>', '<item><guid>2</guid><title>中国联通 算力服务器采购</title><link>https://example.com/2</link><pubDate>Fri, 24 Apr 2026 12:00:00 GMT</pubDate></item><item><guid>3</guid><title>中国联通场地租赁</title><link>https://example.com/3</link><pubDate>Fri, 24 Apr 2026 12:00:00 GMT</pubDate></item></channel>')
+    source = RSSSourceConfig(name='采购', url='https://example.com/feed.xml', include_keywords=['算力','AI'], max_items=1, content_extractor='my-ext')
+    extractor = AsyncMock()
+    extractor.extract.return_value = 'article text'
+    result = asyncio.run(RSSScraper([source], _make_feed_client(feed), extractors=_make_registry('my-ext', extractor)).fetch(_SINCE))
+    assert [x.title for x in result.items] == ['中国联通 AI 算力招标']
+    assert result.items[0].metadata['material_status'] == 'article_extracted'
+    assert extractor.extract.await_count == 1
+    assert RSSScraper._matches_keywords('railway expansion', ['AI']) is False
+    assert RSSScraper._matches_keywords('AI server', ['AI']) is True

@@ -313,6 +313,11 @@ class HorizonOrchestrator:
                 self.console.print(f"      {self.icons['detail']} {source_key}: {count}")
             self.console.print("")
 
+            # Fetch accessible original GDELT articles only after selection.
+            if self.config.collection.content_expansion_limit:
+                from .radar_content import expand_selected_articles
+                await expand_selected_articles(important_items, self.config.collection.content_expansion_limit)
+
             # 6. Search related stories + enrich with background knowledge (2nd AI pass)
             await self.enrich_items(important_items)
 

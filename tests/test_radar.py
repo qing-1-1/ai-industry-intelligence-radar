@@ -18,7 +18,7 @@ def test_radar_exports_real_items_and_preserves_archive(tmp_path):
     report = SimpleNamespace(outcomes=[SimpleNamespace(source_name='GDELT', error='timeout')])
     data = export_radar(config, [item], 5, report, tmp_path)
     assert data['collected'] == 5 and data['selected'] == 1
-    assert data['items'][0]['category'] == 'AI Model Router'
+    assert data['items'][0]['category'] == '模型路由与 AI 网关'
     assert data['items'][0]['summary'] == '实际摘要'
     assert data['items'][0]['sections'] == [{'title': '摘要', 'content': '实际摘要'}, {'title': '关键数据', 'content': '实际数字'}]
     assert data['items'][0]['fetched_at'] == moment.isoformat()
@@ -32,7 +32,8 @@ def test_radar_config_has_bounded_candidates_and_distinct_searches():
     assert config.collection.time_window_hours == 25
     assert config.collection.candidate_limit == 120
     assert len(config.sources.google_news.queries) >= 5
-    assert all(not s.content_extractor for s in config.sources.rss)
+    assert any(s.enabled and s.content_extractor == 'trafilatura' for s in config.sources.rss)
+    assert set(config.processing.profile_settings) == {'radar-token', 'radar-compute', 'radar-router', 'radar-platform', 'radar-policy'}
 
 
 def test_same_endpoint_model_fallback(monkeypatch):

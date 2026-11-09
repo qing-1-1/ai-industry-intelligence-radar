@@ -1,11 +1,16 @@
 {
   "id": "radar-compute",
-  "name": "算力租赁",
+  "name": "运营商算力与智算",
   "display_names": {
-    "zh": "算力租赁"
+    "zh": "运营商算力与智算"
   },
   "match": "match.md",
   "analysis": "analysis.md",
+  "content": {
+    "analysis_max_chars": 4000,
+    "enrichment_max_chars": 12000,
+    "sampling": "head-middle-tail"
+  },
   "enrichment": {
     "prompt": "enrichment.md",
     "blocks": [

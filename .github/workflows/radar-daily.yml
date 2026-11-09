@@ -9,6 +9,11 @@ on:
         required: false
         default: "120"
         type: string
+      dry_run:
+        description: Test generation without replacing published archive
+        required: false
+        default: false
+        type: boolean
 concurrency:
   group: radar-pages
   cancel-in-progress: false
@@ -51,8 +56,13 @@ jobs:
           RADAR_MAX_CANDIDATES: ${{ inputs.max_candidates || '120' }}
         run: |
           python scripts/radar_run_config.py
+          touch "$RUNNER_TEMP/radar-run-start"
           uv run horizon --config "$RUNNER_TEMP/radar-config.json" --hours 25
+      - name: Report test output
+        if: ${{ inputs.dry_run }}
+        run: python scripts/radar_test_report.py
       - name: Preserve archive on gh-pages
+        if: ${{ !inputs.dry_run }}
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -61,12 +71,16 @@ jobs:
           publish_branch: gh-pages
           enable_jekyll: true
       - uses: actions/configure-pages@v5
+        if: ${{ !inputs.dry_run }}
       - uses: actions/jekyll-build-pages@v1
+        if: ${{ !inputs.dry_run }}
         with:
           source: ./docs
           destination: ./_site
       - uses: actions/upload-pages-artifact@v3
+        if: ${{ !inputs.dry_run }}
         with:
           path: ./_site
       - id: deployment
+        if: ${{ !inputs.dry_run }}
         uses: actions/deploy-pages@v4

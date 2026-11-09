@@ -1,11 +1,16 @@
 {
   "id": "radar-token",
-  "name": "运营商 Token",
+  "name": "运营商 Token 与模型服务",
   "display_names": {
-    "zh": "运营商 Token"
+    "zh": "运营商 Token 与模型服务"
   },
   "match": "match.md",
   "analysis": "analysis.md",
+  "content": {
+    "analysis_max_chars": 4000,
+    "enrichment_max_chars": 12000,
+    "sampling": "head-middle-tail"
+  },
   "enrichment": {
     "prompt": "enrichment.md",
     "blocks": [

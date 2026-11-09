@@ -4,7 +4,7 @@ from datetime import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-LABELS = {'radar-router': 'AI Model Router', 'radar-token': '运营商 Token', 'radar-compute': '算力租赁', 'radar-finance': '财报与经营', 'radar-industry': '其他 AI 行业新闻'}
+LABELS = {'radar-router': '模型路由与 AI 网关', 'radar-token': '运营商 Token 与模型服务', 'radar-compute': '运营商算力与智算', 'radar-platform': '运营商 AI 产品与应用', 'radar-policy': '政策、采购与招投标', 'radar-finance': '财报与经营', 'radar-industry': '其他 AI 行业新闻'}
 
 def export_radar(config, items, collected, report, directory=Path('docs/radar-data')):
     now = datetime.now(ZoneInfo('Asia/Shanghai'))
@@ -22,6 +22,7 @@ def export_radar(config, items, collected, report, directory=Path('docs/radar-da
             'published_at': item.published_at.isoformat(), 'fetched_at': item.fetched_at.isoformat(),
             'category': LABELS.get(processing.classification.profile, processing.classification.profile),
             'tags': processing.analysis.tags, 'score': processing.analysis.score,
+            'material_status': item.metadata.get('material_status') or ('search_excerpt' if item.source_type.value in ('google_news', 'gdelt') else 'source_content'),
             'sections': sections, 'summary': block.content if block else processing.analysis.summary})
     sources = []
     for source in config.sources.rss:
