@@ -78,6 +78,36 @@
     "enabled": true
   },
   {
+    "name": "OpenAI News",
+    "method": "RSS",
+    "category": "模型与 API",
+    "enabled": true
+  },
+  {
+    "name": "Google DeepMind",
+    "method": "RSS",
+    "category": "模型与算力",
+    "enabled": true
+  },
+  {
+    "name": "Mistral AI",
+    "method": "RSS",
+    "category": "模型与企业部署",
+    "enabled": true
+  },
+  {
+    "name": "Hugging Face Blog",
+    "method": "RSS",
+    "category": "开源推理与部署",
+    "enabled": true
+  },
+  {
+    "name": "The Decoder",
+    "method": "RSS",
+    "category": "海外 AI 行业媒体",
+    "enabled": true
+  },
+  {
     "name": "BerriAI/litellm",
     "method": "GitHub Releases",
     "category": "开源",
