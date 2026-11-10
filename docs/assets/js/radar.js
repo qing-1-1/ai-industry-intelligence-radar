@@ -11,6 +11,10 @@ const viewInfo = {
   archive: ['AI 日报', '按日期浏览，或跨期搜索结构化情报。', '历史简报'],
   sources: ['信息源', '运营商情报的采集渠道与最近采集异常。'],
 };
+const upstreamLinks = {
+  featured: [['查看 AIHOT 精选', 'https://aihot.news/'], ['订阅精选 RSS', 'https://aihot.news/feed.xml']],
+  hot: [['查看 AIHOT 热点榜', 'https://aihot.news/hot']],
+};
 const materialLabels = {
   article_extracted: '已提取原文正文', rss_content: 'RSS 内容', title_only: '仅标题',
   search_excerpt: '搜索摘要', source_content: '来源内容',
@@ -256,6 +260,11 @@ function navigate() {
   $('viewTitle').textContent = title;
   $('viewDescription').textContent = description;
   $('listTitle').textContent = listTitle || '';
+  const links = upstreamLinks[next] || [];
+  $('upstreamLinks').hidden = !links.length;
+  $('upstreamLinks').innerHTML = links.map(([label, url]) =>
+    '<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + label + ' ↗</a>'
+  ).join('');
   $('editionDate').textContent = '';
   $('stories').hidden = next === 'sources';
   $('sourcePanel').hidden = next !== 'sources';
