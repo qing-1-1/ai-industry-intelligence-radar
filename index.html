@@ -1,9 +1,80 @@
 ---
 layout: null
 ---
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="追踪运营商 Token、智算、模型网关、AI 产品与采购政策。"><title>AI 行业情报雷达</title><link rel="stylesheet" href="assets/css/radar.css"></head>
-<body><header><div class="top"><a class="brand" href="./"><span class="mark">◈</span><span>AI 行业情报雷达<small>AI INDUSTRY INTELLIGENCE RADAR</small></span></a><span class="live"><i></i> 每日情报 · 25 小时窗口</span></div><nav id="nav"><button data-category="">首页</button><button data-category="运营商 Token 与模型服务">运营商 Token</button><button data-category="运营商算力与智算">算力与智算</button><button data-category="模型路由与 AI 网关">模型路由</button><button data-category="运营商 AI 产品与应用">AI 产品与应用</button><button data-category="政策、采购与招投标">政策与采购</button><a href="#archive">历史简报</a><a href="#sources">信息源</a></nav></header>
-<main><section class="hero"><div><p class="eyebrow">INTELLIGENCE / DAILY BRIEFING</p><h1>看清 AI 产业的<br><em>每一个重要变化。</em></h1><p>聚焦运营商模型服务、智算与产业落地。<br>让分散的信息，成为团队共享的判断依据。</p></div><div class="hero-side"><span>DAILY RADAR</span><strong>情报，<br>从这里开始。</strong><small>聚合 · 分类 · 洞察</small></div></section>
-<section class="metrics" aria-label="日报统计"><div><span>最新更新时间</span><strong id="updated">—</strong></div><div><span>本次收集</span><strong id="collected">—</strong></div><div><span>入选新闻</span><strong id="selected">—</strong></div><div><span>监测来源 / 查询</span><strong id="sourceCount">—</strong></div></section>
-<section class="content"><div class="section-title"><div><p class="eyebrow">TODAY'S SIGNALS</p><h2>情报速览</h2><p>按重要程度发现值得关注的变化</p></div><span id="resultCount" class="count"></span></div><div class="filters"><label class="search"><span>⌕</span><input id="search" type="search" placeholder="搜索归档中的标题、摘要或标签" aria-label="搜索新闻"></label><select id="category" aria-label="筛选分类"><option value="">全部分类</option></select><select id="source" aria-label="筛选来源"><option value="">全部来源</option></select><select id="sort" aria-label="排序"><option value="score">按重要程度</option><option value="date">按发布时间</option></select><label id="archive">日期 <select id="date" aria-label="选择日报日期"></select></label></div><div id="status" class="status" role="status">正在读取日报…</div><div id="articles" class="articles"></div></section>
-<section class="sources" id="sources"><div class="section-title"><div><p class="eyebrow">SOURCE COVERAGE</p><h2>信息源</h2><p>从运行配置生成；搜索发现不等同于直接监控官方原文。</p></div></div><div id="failures"></div><div id="sourceList" class="source-grid"></div></section></main><footer><span>AI 行业情报雷达 · 基于 <a href="https://github.com/Thysrael/Horizon">Horizon</a> 构建</span><span>信息以原文为准</span></footer><script src="assets/js/radar.js"></script></body></html>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="追踪运营商 Token、智算、模型网关、AI 产品与采购政策。">
+  <title>运营商情报</title>
+  <link rel="icon" href="assets/img/operator-mark.png" type="image/png">
+  <link rel="stylesheet" href="assets/css/radar.css">
+</head>
+<body>
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-feed" viewBox="0 0 24 24"><path d="M5 5h14M5 12h14M5 19h9"/><path d="M2 5h.01M2 12h.01M2 19h.01"/></symbol>
+    <symbol id="i-report" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6m-6 4h6m-6 4h4"/></symbol>
+    <symbol id="i-ai" viewBox="0 0 24 24"><path d="M12 3v4m0 10v4M3 12h4m10 0h4M5.6 5.6l2.8 2.8m7.2 7.2 2.8 2.8m0-12.8-2.8 2.8m-7.2 7.2-2.8 2.8"/><circle cx="12" cy="12" r="2"/></symbol>
+    <symbol id="i-sources" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5m-18 4 9 5 9-5"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="5.5"/><path d="m15 15 5 5"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M8 16 17 7m-7 0h7v7"/></symbol>
+  </svg>
+  <a class="skip" href="#content">跳到内容</a>
+  <div class="shell">
+    <aside class="sidebar">
+      <a class="brand" href="#featured">
+        <img class="mark" src="assets/img/operator-mark.png" width="40" height="40" alt="">
+        <span>运营商情报<small>行业观察</small></span>
+      </a>
+      <nav id="nav" aria-label="主导航">
+        <p class="nav-label">阅读</p>
+        <a href="#featured" data-view="featured" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#i-feed"/></svg>精选</a>
+        <a href="#operator" data-view="operator" id="historyLink"><svg class="icon" aria-hidden="true"><use href="#i-report"/></svg>运营商简报</a>
+        <a href="#ai" data-view="ai"><svg class="icon" aria-hidden="true"><use href="#i-ai"/></svg>AI 简报</a>
+        <a href="#sources" data-view="sources"><svg class="icon" aria-hidden="true"><use href="#i-sources"/></svg>信息源</a>
+      </nav>
+      <div class="credits"><a href="https://github.com/Thysrael/Horizon">基于 Horizon</a> · <a href="https://github.com/KKKKhazix/AIHOT">界面参考 AIHOT</a></div>
+    </aside>
+    <aside class="report-rail" id="reportRail" aria-label="简报归档" hidden>
+      <div id="reportTabs" class="report-tabs" aria-label="简报周期">
+        <button type="button" data-period="daily">日报</button>
+        <button type="button" data-period="weekly">周报</button>
+        <button type="button" data-period="monthly">月报</button>
+      </div>
+      <p class="nav-label">往期简报</p>
+      <div id="editionList"></div>
+    </aside>
+    <main id="content" class="main" tabindex="-1">
+      <header class="page-head">
+        <div>
+          <h1 id="viewTitle">精选</h1>
+          <p id="viewDescription">聚焦运营商 AI 业务和产业动态</p>
+        </div>
+        <div id="editionDate" class="edition-date"></div>
+      </header>
+      <section id="stories">
+        <div class="toolbar">
+          <div id="categoryTabs" class="category-tabs" aria-label="按分类浏览"></div>
+          <div class="filters" id="filters">
+            <label class="search"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><input id="search" type="search" placeholder="搜索标题、摘要或标签" aria-label="搜索新闻"></label>
+            <label id="archiveFilter" hidden>期次 <select id="date" aria-label="选择简报期次"></select></label>
+            <select id="source" aria-label="筛选来源"><option value="">全部来源</option></select>
+            <select id="sort" aria-label="排序"><option value="date">按发布时间</option><option value="score">按重要性</option></select>
+          </div>
+        </div>
+        <div id="featuredHighlights" class="highlights" hidden></div>
+        <div class="list-heading"><h2 id="listTitle">本期情报</h2><span id="resultCount"></span></div>
+        <p id="status" class="status" role="status">正在读取情报…</p>
+        <div id="articles"></div>
+      </section>
+      <section id="sourcePanel" hidden>
+        <p class="source-note">搜索发现和第三方聚合的覆盖取决于各平台收录。每条情报均保留原文入口。</p>
+        <div id="failures"></div>
+        <div id="sourceList" class="source-grid"></div>
+      </section>
+    </main>
+  </div>
+  <script src="assets/js/radar.js"></script>
+</body>
+</html>
