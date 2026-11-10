@@ -16,37 +16,46 @@ layout: null
     <aside class="sidebar">
       <a class="brand" href="#featured">
         <span class="mark" aria-hidden="true">◈</span>
-        <span>AI 行业情报雷达<small>运营商 AI 情报</small></span>
+        <span>运营商情报<small>行业观察</small></span>
       </a>
       <nav id="nav" aria-label="主导航">
         <p class="nav-label">情报</p>
         <a href="#featured" data-view="featured" aria-current="page"><span aria-hidden="true">✦</span>精选</a>
         <a href="#hot" data-view="hot"><span aria-hidden="true">↗</span>热点榜</a>
-        <a href="#archive" data-view="archive" id="historyLink"><span aria-hidden="true">▤</span>AI 日报</a>
+        <a href="#archive" data-view="archive" id="historyLink"><span aria-hidden="true">▤</span>情报简报</a>
         <p class="nav-label">关于</p>
         <a href="#sources" data-view="sources"><span aria-hidden="true">◎</span>信息源</a>
       </nav>
       <div class="credits"><a href="https://github.com/Thysrael/Horizon">基于 Horizon</a> · <a href="https://github.com/KKKKhazix/AIHOT">界面参考 AIHOT</a></div>
     </aside>
+    <aside class="report-rail" id="reportRail" aria-label="简报归档" hidden>
+      <div id="reportTabs" class="report-tabs" aria-label="简报周期">
+        <button type="button" data-period="daily">日报</button>
+        <button type="button" data-period="weekly">周报</button>
+        <button type="button" data-period="monthly">月报</button>
+      </div>
+      <p class="nav-label">往期简报</p>
+      <div id="editionList"></div>
+    </aside>
     <main id="content" class="main" tabindex="-1">
       <header class="page-head">
         <div>
-          <p class="kicker">AI INTELLIGENCE</p>
           <h1 id="viewTitle">精选</h1>
           <p id="viewDescription">聚焦运营商 AI 业务和产业动态</p>
         </div>
         <div id="editionDate" class="edition-date"></div>
       </header>
-      <div id="upstreamLinks" class="upstream-links" hidden></div>
       <section id="stories">
-        <div id="categoryTabs" class="category-tabs" aria-label="按分类浏览"></div>
-        <div id="featuredHighlights" class="highlights" hidden></div>
-        <div class="filters" id="filters">
-          <label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="搜索标题、摘要或标签" aria-label="搜索新闻"></label>
-          <label id="archiveFilter" hidden>日报日期 <select id="date" aria-label="选择日报日期"></select></label>
-          <select id="source" aria-label="筛选来源"><option value="">全部来源</option></select>
-          <select id="sort" aria-label="排序"><option value="score">按重要性</option><option value="date">按发布时间</option></select>
+        <div class="toolbar">
+          <div id="categoryTabs" class="category-tabs" aria-label="按分类浏览"></div>
+          <div class="filters" id="filters">
+            <label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="搜索标题、摘要或标签" aria-label="搜索新闻"></label>
+            <label id="archiveFilter" hidden>期次 <select id="date" aria-label="选择简报期次"></select></label>
+            <select id="source" aria-label="筛选来源"><option value="">全部来源</option></select>
+            <select id="sort" aria-label="排序"><option value="date">按发布时间</option><option value="score">按重要性</option></select>
+          </div>
         </div>
+        <div id="featuredHighlights" class="highlights" hidden></div>
         <div class="list-heading"><h2 id="listTitle">本期情报</h2><span id="resultCount"></span></div>
         <p id="status" class="status" role="status">正在读取情报…</p>
         <div id="articles"></div>

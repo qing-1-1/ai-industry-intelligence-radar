@@ -36,7 +36,7 @@ const fetch = async (url) => ({
 const location = { hash: '' };
 const handlers = {};
 const window = { addEventListener(name, handler) { handlers[name] = handler; } };
-const document = { getElementById: element, querySelectorAll: () => [] };
+const document = { getElementById: element, querySelectorAll: () => [], querySelector: () => null };
 vm.runInNewContext(fs.readFileSync('docs/assets/js/radar.js', 'utf8'), { document, fetch, URL, location, window });
 
 async function run() {
@@ -59,8 +59,22 @@ async function run() {
   location.hash = '#archive';
   await handlers.hashchange();
   assert(articles.innerHTML.includes('本期目录'));
-  assert(articles.innerHTML.includes('较旧情报'));
+  assert(articles.innerHTML.includes('运营商情报日报'));
+  assert(!articles.innerHTML.includes('较旧情报'));
   assert(!element('archiveFilter').hidden);
+  assert(!element('reportRail').hidden);
+  await element('reportTabs').listeners.click({target: {closest: () => ({dataset: {period: 'weekly'}})}});
+  assert(articles.innerHTML.includes('运营商情报周报'));
+  assert(articles.innerHTML.includes('2026-11-02 至 2026-11-08'));
+  assert(articles.innerHTML.includes('汇编自 2 期日报'));
+  assert(!articles.innerHTML.includes('较旧情报'));
+  await element('reportTabs').listeners.click({target: {closest: () => ({dataset: {period: 'monthly'}})}});
+  assert(articles.innerHTML.includes('运营商情报月报'));
+  assert(articles.innerHTML.includes('汇编自 3 期日报'));
+  assert(articles.innerHTML.includes('较旧情报'));
+  await element('reportTabs').listeners.click({target: {closest: () => ({dataset: {period: 'daily'}})}});
+  element('date').value = 'all';
+  await element('date').listeners.change();
   element('search').value = '历史';
   element('search').listeners.input();
   assert(articles.innerHTML.includes('历史算力'));
@@ -79,7 +93,7 @@ async function run() {
   await handlers.hashchange();
   assert(!element('sourcePanel').hidden);
   assert(element('sourceList').innerHTML.includes('RSS'));
-  console.log('精选分类、热点排序、历史搜索及信息源验证通过');
+  console.log('精选、热点榜、日报周报月报、历史搜索及信息源验证通过');
 }
 run().catch((error) => {
   console.error(error);

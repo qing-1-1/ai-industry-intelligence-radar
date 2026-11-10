@@ -98,3 +98,82 @@ summary { font-size: 12px; color: var(--accent); font-weight: 650; }
 @media (max-width: 490px) {
   .page-head { align-items: flex-start; flex-direction: column; gap: 7px; }
 }
+
+/* The feed uses a timestamp gutter. Reports use a separate edition rail. */
+:root { --bg: #f8f8f6; --line: #e0e4e2; --accent: #175e59; --soft: #e7f0ee; }
+.shell { grid-template-columns: 177px minmax(0, 1fr); }
+.shell.is-archive { grid-template-columns: 177px 226px minmax(0, 1fr); }
+.sidebar { gap: 20px; padding: 26px 12px 16px; }
+.brand { font-size: 16px; }
+.mark { color: var(--accent); background: transparent; width: 28px; }
+.main { width: min(100%, 1520px); padding: 25px 28px 56px; }
+.page-head { margin-bottom: 13px; }
+h1 { font-size: 26px; }
+.toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 14px; }
+.toolbar .filters { flex: 1 1 270px; justify-content: flex-end; margin: 0; }
+.toolbar .search { flex: 1 1 150px; max-width: 285px; }
+.category-tabs { gap: 0; border: 1px solid var(--line); background: #eff0ed; border-radius: 20px; padding: 2px; }
+.category-tabs button { border: 0; margin: 0; border-radius: 17px; padding: 6px 10px; }
+.category-tabs button[aria-pressed="true"] { background: var(--paper); }
+.highlights { margin: 0 0 22px; padding: 13px 16px; background: var(--paper); border: 1px solid var(--line); }
+.highlights ol { line-height: 1.7; }
+.highlights li { padding: 3px 0 3px 4px; font-weight: 650; }
+.list-heading h2 { font-size: 18px; }
+.timeline { position: relative; padding-left: 76px; border: 0; background: transparent; }
+.timeline::before { content: ""; position: absolute; inset: 17px auto 0 60px; border-left: 1px solid var(--line); }
+.timeline .story { position: relative; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; margin-bottom: 9px; padding: 13px 16px; }
+.timeline-time { position: absolute; right: calc(100% + 22px); top: 16px; white-space: nowrap; font-size: 11px; font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; }
+.timeline-time::after { content: ""; position: absolute; right: -11px; top: 4px; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+.timeline .story h3 { font-size: 16px; }
+.timeline .summary { margin-bottom: 4px; }
+.report-rail { position: sticky; top: 0; max-height: 100vh; overflow: auto; background: #fafaf8; border-right: 1px solid var(--line); padding: 25px 13px 16px; }
+.report-tabs { display: flex; gap: 2px; padding: 2px; background: #eff0ed; border: 1px solid var(--line); border-radius: 18px; }
+.report-tabs button, .edition-month button, .report-pager button { background: transparent; border: 0; font-size: 13px; }
+.report-tabs button { flex: 1; padding: 6px 2px; border-radius: 15px; }
+.report-tabs button[aria-pressed="true"] { background: var(--paper); color: var(--accent); font-weight: 700; }
+.edition-month { border-top: 1px solid var(--line); margin: 0; padding: 8px 3px; }
+.edition-month summary { color: var(--text); }
+.edition-month small { float: right; color: var(--muted); font-weight: 400; }
+.edition-month button { display: block; width: 100%; padding: 8px; text-align: left; border-radius: 5px; }
+.edition-month button:hover, .edition-month button[aria-current="true"] { color: var(--accent); background: var(--soft); }
+.is-archive .main { width: min(100%, 1150px); }
+.is-archive .story-list { background: transparent; border: 0; }
+.is-archive .list-heading h2:empty { display: none; }
+.report-group { padding: 0 0 25px; }
+.report-group + .report-group { padding-top: 25px; }
+.report-mast { border-block: 2px solid var(--text); padding: 16px 0; text-align: center; }
+.report-mast h2 { margin: 8px 0; font-size: clamp(26px, 4vw, 44px); letter-spacing: -.035em; }
+.report-mast p { margin: 0; color: var(--muted); font-size: 12px; }
+.report-intro { color: var(--muted); font-size: 13px; line-height: 1.7; margin: 15px 0 0; }
+.report-intro strong { color: var(--accent); margin-right: 6px; }
+.report-lead { border-bottom: 1px solid var(--line); padding: 15px 0 11px; }
+.rubric { color: var(--accent); font-weight: 700; font-size: 12px; margin: 0; }
+.report-lead .story { padding: 7px 0; }
+.report-lead .story h3 { font-size: clamp(19px, 3vw, 27px); }
+.report-layout { display: flex; flex-wrap: wrap; align-items: center; gap: 5px 12px; margin: 13px 0; font-size: 12px; }\n.report-layout a { display: inline; padding: 4px 6px; margin: 0; color: var(--accent); }\n.report-layout small { color: var(--muted); }\n.report-section { margin-top: 25px; }
+.report-section > h3 { border-bottom: 1px solid var(--line); padding-bottom: 8px; margin: 0; font-size: 20px; }
+.report-section > h3 span { color: var(--accent); margin-right: 10px; font-variant-numeric: tabular-nums; }
+.report-columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.report-columns .story, .report-columns .story + .story { border-top: 0; border-bottom: 1px solid var(--line); padding: 12px 14px; }
+.report-columns .story:nth-child(even) { border-left: 1px solid var(--line); }
+.report-columns .story:only-child { grid-column: 1 / -1; }
+.report-end { text-align: center; padding: 23px 0 0; color: var(--muted); font-size: 12px; }
+.report-pager { border-top: 1px solid var(--line); padding-top: 8px; display: flex; justify-content: space-between; }
+.report-pager button { padding: 7px 0; color: var(--accent); }
+@media (max-width: 1050px) {
+  .shell.is-archive { grid-template-columns: 155px 170px minmax(0, 1fr); }
+  .report-columns { grid-template-columns: 1fr; }
+  .report-columns .story:nth-child(even) { border-left: 0; }
+}
+@media (max-width: 800px) {
+  .report-rail { position: static; max-height: 195px; border-right: 0; border-bottom: 1px solid var(--line); padding: 10px 16px; }
+  .report-tabs { max-width: 320px; }
+  .main { padding: 17px 14px 44px; }
+  .toolbar .filters { justify-content: flex-start; }
+  .toolbar .search { max-width: none; }
+  .timeline { padding-left: 46px; }
+  .timeline::before { left: 38px; }
+  .timeline-time { right: calc(100% + 11px); font-size: 10px; }
+  .timeline-time::after { right: -8px; width: 6px; height: 6px; }
+  .timeline .story { padding: 10px; }
+}

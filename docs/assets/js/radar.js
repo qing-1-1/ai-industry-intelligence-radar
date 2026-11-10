@@ -8,17 +8,22 @@ const categories = [
 const viewInfo = {
   featured: ['精选', '聚焦运营商 AI 业务和产业动态', '本期情报'],
   hot: ['热点榜', '最近一期发布前 48 小时内的入选情报，按 AI 重要性评分和发布时间排序。', '重要性排行'],
-  archive: ['AI 日报', '按日期浏览，或跨期搜索结构化情报。', '历史简报'],
+  archive: ['情报简报', '从运营商情报归档汇编，按周期与栏目阅读。', ''],
   sources: ['信息源', '运营商情报的采集渠道与最近采集异常。'],
-};
-const upstreamLinks = {
-  featured: [['查看 AIHOT 精选', 'https://aihot.news/'], ['订阅精选 RSS', 'https://aihot.news/feed.xml']],
-  hot: [['查看 AIHOT 热点榜', 'https://aihot.news/hot']],
 };
 const materialLabels = {
   article_extracted: '已提取原文正文', rss_content: 'RSS 内容', title_only: '仅标题',
   search_excerpt: '搜索摘要', source_content: '来源内容',
 };
+const periodNames = { daily: '日报', weekly: '周报', monthly: '月报' };
+const beijingDate = () => dateKey(new Date(Date.now() + 8 * 3600000));
+const categoryLabels = ['Token 与模型', '算力与智算', '路由与网关', 'AI 应用', '政策招采'];
+const dayLabel = new Intl.DateTimeFormat('zh-CN', {
+  timeZone: 'UTC', month: 'long', day: 'numeric', weekday: 'short',
+});
+const clockLabel = new Intl.DateTimeFormat('zh-CN', {
+  timeZone: 'Asia/Shanghai', hour: '2-digit', minute: '2-digit', hourCycle: 'h23',
+});
 const shanghai = new Intl.DateTimeFormat('zh-CN', {
   timeZone: 'Asia/Shanghai', year: 'numeric', month: '2-digit', day: '2-digit',
   hour: '2-digit', minute: '2-digit', hourCycle: 'h23',
@@ -33,6 +38,10 @@ let currentView;
 let activeCategory = '';
 let items = [];
 let loadVersion = 0;
+let period = 'daily';
+let editions = [];
+let loadedDays = [];
+let loadNotice = '';
 
 async function readJson(path) {
   const response = await fetch(path);
@@ -73,20 +82,37 @@ function byDate(a, b) {
   return Date.parse(b.published_at) - Date.parse(a.published_at);
 }
 
+function articleUrlKey(value) {
+  try {
+    const url = new URL(value);
+    url.hash = '';
+    for (const key of [...url.searchParams.keys()]) {
+      if (/^(utm_|gclid$|fbclid$)/i.test(key)) url.searchParams.delete(key);
+    }
+    return url.href;
+  } catch {
+    return value;
+  }
+}
+
 function records(days) {
-  const seen = new Set();
+  const urls = new Set();
+  const titles = new Set();
   return days.flatMap((day) => day.items.map((item, i) => ({
     ...item, archiveDate: day.date, anchor: 'story-' + day.date + '-' + i,
   }))).filter((item) => {
-    const key = item.url || item.title;
-    if (seen.has(key)) return false;
-    seen.add(key);
+    const url = articleUrlKey(item.url);
+    const title = item.title?.normalize('NFKC').replace(/\s+/g, '').toLowerCase();
+    if ((url && urls.has(url)) || (title && titles.has(title))) return false;
+    if (url) urls.add(url);
+    if (title) titles.add(title);
     return true;
   });
 }
 
-function storyLink(item) {
-  return '#' + currentView + '/' + item.anchor;
+function contentLink(anchor) {
+  const base = currentView === 'archive' ? '#archive/' + period + '/' + $('date').value : '#' + currentView;
+  return base + '/' + anchor;
 }
 
 function story(item, rank) {
@@ -100,8 +126,14 @@ function story(item, rank) {
     '<section class="section"><h4>' + escape(section.title || '详情') + '</h4><p>' + escape(section.content) + '</p></section>'
   ).join('');
   const tags = (item.tags || []).map((tag) => '<li>' + escape(tag) + '</li>').join('');
-  const facts = [item.source, formatTime(item.published_at), materialLabels[item.material_status]].filter(Boolean);
-  return '<article class="story" id="' + escape(item.anchor) + '" tabindex="-1">' +
+  const facts = [item.source, currentView === 'featured' ? '' : formatTime(item.published_at),
+    materialLabels[item.material_status]].filter(Boolean);
+  const time = new Date(item.published_at || NaN);
+  const timestamp = currentView === 'featured'
+    ? '<time class="timeline-time" title="' + escape(formatTime(item.published_at)) + '">' +
+      escape(Number.isNaN(+time) ? '—' : clockLabel.format(time)) + '</time>'
+    : '';
+  return '<article class="story" id="' + escape(item.anchor) + '" tabindex="-1">' + timestamp +
     '<div class="meta"><span class="category">' + escape(item.category) + '</span>' +
     facts.map((fact) => '<span>' + escape(fact) + '</span>').join('') +
     (item.score == null ? '' : '<span class="score">重要性 ' + escape(item.score) + '/10</span>') + '</div>' +
@@ -116,21 +148,122 @@ function story(item, rank) {
 
 function linkList(list) {
   return '<ol>' + list.map((item) =>
-    '<li><a href="' + escape(storyLink(item)) + '">' + escape(item.title) + '</a></li>'
+    '<li><a href="' + escape(contentLink(item.anchor)) + '">' + escape(item.title) + '</a></li>'
   ).join('') + '</ol>';
 }
 
-function renderArchive(list) {
-  const editions = new Map();
-  for (const item of list) {
-    if (!editions.has(item.archiveDate)) editions.set(item.archiveDate, []);
-    editions.get(item.archiveDate).push(item);
+function dateKey(date) {
+  return date.toISOString().slice(0, 10);
+}
+
+function periodRange(day, kind) {
+  if (kind === 'daily') return { start: day, end: day };
+  const date = new Date(day + 'T00:00:00Z');
+  if (kind === 'weekly') {
+    date.setUTCDate(date.getUTCDate() - (date.getUTCDay() + 6) % 7);
+    return { start: dateKey(date), end: dateKey(new Date(+date + 6 * DAY_MS)) };
   }
-  return Array.from(editions).sort(([a], [b]) => b.localeCompare(a)).map(([date, entries]) =>
-    '<div class="report-group"><h3>' + escape(date) + ' · ' + entries.length + ' 条</h3>' +
-    '<details class="contents" open><summary>本期目录</summary>' + linkList(entries) + '</details>' +
-    entries.map((item) => story(item)).join('') + '</div>'
+  const year = date.getUTCFullYear();
+  const month = date.getUTCMonth();
+  return { start: day.slice(0, 7) + '-01', end: dateKey(new Date(Date.UTC(year, month + 1, 0))) };
+}
+
+function editionLabel(edition) {
+  if (period === 'daily') return dayLabel.format(new Date(edition.start + 'T00:00:00Z'));
+  if (period === 'monthly') return edition.start.slice(0, 7);
+  return edition.start + ' 至 ' + edition.end.slice(5);
+}
+
+function updateEditions() {
+  const grouped = new Map();
+  for (const day of dates) {
+    const range = periodRange(day, period);
+    if (!grouped.has(range.start)) grouped.set(range.start, { ...range, days: [] });
+    grouped.get(range.start).days.push(day);
+  }
+  editions = [...grouped.values()];
+  $('date').innerHTML = editions.map((edition) =>
+    '<option value="' + edition.start + '">' + escape(editionLabel(edition)) + '</option>'
+  ).join('') + (period === 'daily' ? '<option value="all">全部历史</option>' : '');
+  $('date').value = editions[0]?.start || '';
+  for (const tab of $('reportTabs').querySelectorAll('button')) {
+    tab.setAttribute('aria-pressed', String(tab.dataset.period === period));
+  }
+}
+
+function renderEditionRail() {
+  const groups = new Map();
+  for (const edition of editions) {
+    const month = edition.start.slice(0, 7);
+    if (!groups.has(month)) groups.set(month, []);
+    groups.get(month).push(edition);
+  }
+  $('editionList').innerHTML = [...groups].map(([month, entries], i) =>
+    '<details class="edition-month"' + (i === 0 || entries.some((entry) => entry.start === $('date').value) ? ' open' : '') + '>' +
+    '<summary>' + month + ' <small>' + entries.length + ' 期</small></summary>' +
+    entries.map((edition) => '<button type="button" data-edition="' + edition.start + '"' +
+      (edition.start === $('date').value ? ' aria-current="true"' : '') + '>' +
+      escape(editionLabel(edition)) + '</button>').join('') + '</details>'
   ).join('');
+}
+
+function reportPaper(list, edition, covered) {
+  const [lead, ...rest] = list;
+  const groups = new Map();
+  for (const item of rest) {
+    const name = item.category || '其他情报';
+    if (!groups.has(name)) groups.set(name, []);
+    groups.get(name).push(item);
+  }
+  const order = [...categories.filter((name) => groups.has(name)),
+    ...[...groups.keys()].filter((name) => !categories.includes(name))];
+  const sources = new Set(list.map((item) => item.source).filter(Boolean));
+  const range = edition.start === edition.end ? edition.start : edition.start + ' 至 ' + edition.end;
+  const incomplete = period !== 'daily' && edition.end >= beijingDate();
+  const countByTopic = new Map();
+  for (const item of list) {
+    if (item.category) countByTopic.set(item.category, (countByTopic.get(item.category) || 0) + 1);
+  }
+  const topicSummary = [...countByTopic].sort((a, b) => b[1] - a[1]).slice(0, 3)
+    .map(([name, count]) => name + ' ' + count + ' 条').join('，');
+  const reportKey = 'report-' + edition.start;
+  const layout = order.length
+    ? '<nav class="report-layout" aria-label="本期版面"><strong>本期版面</strong>' + order.map((name, i) =>
+      '<a href="' + escape(contentLink(reportKey + '-section-' + i)) + '">' +
+      escape(name) + ' <small>' + groups.get(name).length + ' 条</small></a>'
+    ).join('') + '</nav>'
+    : '';
+  const body = order.map((name, i) =>
+    '<section class="report-section" id="' + reportKey + '-section-' + i + '" tabindex="-1">' +
+      '<h3><span>' + String(i + 1).padStart(2, '0') + '</span>' + escape(name) + '</h3>' +
+      '<div class="report-columns">' + groups.get(name).map((item) => story(item)).join('') + '</div></section>'
+  ).join('');
+  return '<div class="report-group">' +
+    '<header class="report-mast"><p>' + escape(range) + '</p><h2>运营商情报' + periodNames[period] + '</h2>' +
+    '<p>' + list.length + ' 条情报 · ' + sources.size + ' 个来源' +
+    (period === 'daily' ? '' : ' · 汇编自 ' + covered + ' 期日报') +
+    (incomplete ? ' · 本期仍在更新' : '') + '</p></header>' +
+    (topicSummary ? '<p class="report-intro"><strong>本期导读</strong> ' + escape(topicSummary) + '。</p>' : '') +
+    '<div class="report-lead"><p class="rubric">本期头条</p>' + story(lead) + '</div>' +
+    layout + '<details class="contents"' + (period === 'daily' && list.length <= 8 ? ' open' : '') +
+    '><summary>本期目录</summary>' + linkList(list) + '</details>' + body + '<footer class="report-end">本期完 · 资料来自运营商情报归档</footer></div>';
+}
+
+function renderArchive(list) {
+  const edition = editions.find((entry) => entry.start === $('date').value);
+  if (edition) {
+    const index = editions.indexOf(edition);
+    const adjacent = [editions[index + 1], editions[index - 1]];
+    const pager = adjacent.map((entry, i) => entry
+      ? '<button type="button" data-edition="' + entry.start + '">' +
+        (i === 0 ? '← 上一期 · ' : '下一期 → · ') + escape(editionLabel(entry)) + '</button>'
+      : '<span></span>').join('');
+    return reportPaper(list, edition, loadedDays.length) + '<div class="report-pager">' + pager + '</div>';
+  }
+  return loadedDays.map((day) => {
+    const entries = list.filter((item) => item.archiveDate === day.date);
+    return entries.length ? reportPaper(entries, periodRange(day.date, 'daily'), 1) : '';
+  }).join('');
 }
 
 function render() {
@@ -146,10 +279,14 @@ function render() {
   }).sort(currentView !== 'hot' && sort === 'date' ? byDate : byScore);
 
   $('resultCount').textContent = list.length + ' 条';
-  $('status').textContent = list.length ? '' : '当前条件下没有情报。';
-  $('articles').innerHTML = list.length ? '<div class="story-list">' +
+  $('status').textContent = loadNotice || (list.length ? '' : '当前条件下没有情报。');
+  $('articles').innerHTML = list.length ? '<div class="story-list' +
+    (currentView === 'featured' ? ' timeline' : '') + '">' +
     (currentView === 'archive' ? renderArchive(list) : list.map((item, i) => story(item, currentView === 'hot' ? i + 1 : 0)).join('')) +
     '</div>' : '';
+  if (currentView === 'featured' && loadedDays.length) {
+    $('listTitle').textContent = dayLabel.format(new Date(loadedDays[0].date + 'T00:00:00Z'));
+  }
   const highlights = $('featuredHighlights');
   highlights.hidden = currentView !== 'featured' || Boolean(query || source || activeCategory) || !list.length;
   if (!highlights.hidden) {
@@ -163,7 +300,7 @@ function setFilters() {
   const tabs = ['', ...categories, ...names.filter((name) => !categories.includes(name))];
   $('categoryTabs').innerHTML = tabs.map((name) =>
     '<button type="button" data-category="' + escape(name) + '" aria-pressed="' + (name === activeCategory) + '">' +
-    escape(name || '全部') + '</button>'
+    escape(categoryLabels[categories.indexOf(name)] || name || '全部') + '</button>'
   ).join('');
   const previous = $('source').value;
   const sources = Array.from(new Set(items.map((item) => item.source).filter(Boolean))).sort();
@@ -188,6 +325,7 @@ const DAY_MS = 86400000;
 async function loadView() {
   const version = ++loadVersion;
   const view = currentView;
+  loadNotice = '';
   $('status').textContent = '正在读取情报…';
   $('resultCount').textContent = '';
   $('articles').innerHTML = '';
@@ -209,7 +347,9 @@ async function loadView() {
     }
     let requested = [dates[0]];
     if (view === 'archive') {
-      requested = $('date').value === 'all' ? dates : [$('date').value];
+      const edition = editions.find((entry) => entry.start === $('date').value);
+      requested = edition?.days || dates;
+      renderEditionRail();
     } else if (view === 'hot') {
       requested = dates.filter((date) => Date.parse(dates[0]) - Date.parse(date) <= 2 * DAY_MS);
     }
@@ -217,6 +357,7 @@ async function loadView() {
     if (version !== loadVersion) return;
     const days = results.filter((result) => result.status === 'fulfilled').map((result) => result.value);
     if (!days.length) throw new Error('No readable issues');
+    loadedDays = days;
     const latest = days[0];
     $('editionDate').textContent = view === 'archive' && days.length > 1
       ? days.length + ' 期日报'
@@ -226,12 +367,16 @@ async function loadView() {
       const cutoff = Date.parse(latest.updated_at) - 2 * DAY_MS;
       items = items.filter((item) => item.score != null && Date.parse(item.published_at) >= cutoff);
     }
+    if (view === 'archive' && period !== 'daily') {
+      items = items.sort(byScore).slice(0, period === 'weekly' ? 20 : 30);
+    }
+    if (activeCategory && !categories.includes(activeCategory) && !items.some((item) => item.category === activeCategory)) {
+      activeCategory = '';
+    }
+    const missing = requested.length - days.length;
+    if (missing) loadNotice = '有 ' + missing + ' 期暂时无法读取，结果可能不完整。';
     setFilters();
     render();
-    const missing = requested.length - days.length;
-    if (missing) {
-      $('status').textContent = '有 ' + missing + ' 期暂时无法读取，结果可能不完整。';
-    }
     scrollToArticle();
   } catch {
     if (version === loadVersion) $('status').textContent = '情报读取失败，请刷新页面重试。';
@@ -239,8 +384,8 @@ async function loadView() {
 }
 
 function scrollToArticle() {
-  const anchor = location.hash.split('/')[1];
-  const article = anchor && $(anchor);
+  const anchor = location.hash.split('/').pop();
+  const article = /^(story|report)-/.test(anchor) && $(anchor);
   if (article) {
     article.focus({ preventScroll: true });
     article.scrollIntoView({ block: 'start' });
@@ -251,7 +396,9 @@ function navigate() {
   if (location.hash === '#content') return;
   const candidate = location.hash.slice(1).split('/')[0];
   const next = Object.prototype.hasOwnProperty.call(viewInfo, candidate) ? candidate : 'featured';
-  if (next === currentView) {
+  const [, routePeriod, routeEdition] = location.hash.split('/');
+  const newIssue = next === 'archive' && routeEdition && (period !== routePeriod || $('date').value !== routeEdition);
+  if (next === currentView && !newIssue) {
     scrollToArticle();
     return;
   }
@@ -260,19 +407,31 @@ function navigate() {
   $('viewTitle').textContent = title;
   $('viewDescription').textContent = description;
   $('listTitle').textContent = listTitle || '';
-  const links = upstreamLinks[next] || [];
-  $('upstreamLinks').hidden = !links.length;
-  $('upstreamLinks').innerHTML = links.map(([label, url]) =>
-    '<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + label + ' ↗</a>'
-  ).join('');
   $('editionDate').textContent = '';
   $('stories').hidden = next === 'sources';
   $('sourcePanel').hidden = next !== 'sources';
   $('archiveFilter').hidden = next !== 'archive';
+  $('reportRail').hidden = next !== 'archive';
+  document.querySelector('.shell')?.classList.toggle('is-archive', next === 'archive');
+  if (next === 'archive') {
+    period = 'daily';
+    updateEditions();
+    const parts = location.hash.split('/');
+    if (Object.prototype.hasOwnProperty.call(periodNames, parts[1])) {
+      period = parts[1];
+      updateEditions();
+      if (editions.some((entry) => entry.start === parts[2]) || (period === 'daily' && parts[2] === 'all')) {
+        $('date').value = parts[2];
+      }
+    } else {
+      const anchorDate = /^story-(\d{4}-\d{2}-\d{2})-/.exec(parts[1] || '')?.[1];
+      if (dates.includes(anchorDate)) $('date').value = anchorDate;
+    }
+  }
   $('sort').hidden = next === 'hot';
   $('search').value = '';
   $('source').value = '';
-  $('sort').value = 'score';
+  $('sort').value = next === 'featured' ? 'date' : 'score';
   activeCategory = '';
   items = [];
   setFilters();
@@ -294,6 +453,21 @@ $('categoryTabs').addEventListener('click', (event) => {
 });
 for (const id of ['search', 'source', 'sort']) $(id).addEventListener('input', render);
 $('date').addEventListener('change', loadView);
+$('reportTabs').addEventListener('click', (event) => {
+  const button = event.target.closest('button[data-period]');
+  if (!button || period === button.dataset.period) return;
+  period = button.dataset.period;
+  updateEditions();
+  return loadView();
+});
+function selectEdition(event) {
+  const button = event.target.closest('button[data-edition]');
+  if (!button) return;
+  $('date').value = button.dataset.edition;
+  return loadView();
+}
+$('editionList').addEventListener('click', selectEdition);
+$('articles').addEventListener('click', selectEdition);
 
 async function init() {
   try {
@@ -303,8 +477,6 @@ async function init() {
     $('status').textContent = '日报索引读取失败，请刷新页面重试。';
     return;
   }
-  $('date').innerHTML = '<option value="all">全部历史</option>' +
-    dates.map((date) => '<option>' + date + '</option>').join('');
   window.addEventListener('hashchange', navigate);
   return navigate();
 }
