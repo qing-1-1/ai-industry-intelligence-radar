@@ -223,22 +223,40 @@ function renderEditionRail() {
   ).join('');
 }
 
+const aiSections = [
+  ['模型发布与更新', /大模型|语言模型|模型发布|模型更新|开源模型|\b(?:llm|gpt|claude|gemini|qwen|llama)\b/i],
+  ['算力与基础设施', /算力|智算|推理|基础设施|数据中心|显卡|\b(?:gpu|tpu|inference|sagemaker)\b/i],
+  ['产品与应用', /产品|平台|智能体|应用|agent|bedrock|应用权限/i],
+  ['研究与技术', /研究|论文|评测|基准|算法|\b(?:research|paper|benchmark)\b/i],
+  ['政策与行业', /政策|监管|招标|采购|产业|行业|\b(?:policy|regulation)\b/i],
+];
+
+function reportCategory(item) {
+  if (briefingOf(item) !== 'ai' || !['其他 AI 行业新闻', 'AI 行业新闻', 'AI 资讯'].includes(item.category)) {
+    return item.category || '其他情报';
+  }
+  const text = [item.title, ...(item.tags || [])].join(' ');
+  return aiSections.find(([, pattern]) => pattern.test(text))?.[0] || '其他 AI 动态';
+}
+
 function reportPaper(list, edition, covered) {
   const [lead, ...rest] = list;
   const groups = new Map();
-  for (const item of rest) {
-    const name = item.category || '其他情报';
+  for (const item of list) {
+    const name = reportCategory(item);
     if (!groups.has(name)) groups.set(name, []);
     groups.get(name).push(item);
   }
-  const order = [...categories.filter((name) => groups.has(name)),
-    ...[...groups.keys()].filter((name) => !categories.includes(name))];
+  const sectionOrder = currentView === 'ai' ? aiSections.map(([name]) => name) : categories;
+  const order = [...sectionOrder.filter((name) => groups.has(name)),
+    ...[...groups.keys()].filter((name) => !sectionOrder.includes(name))];
   const sources = new Set(list.map((item) => item.source).filter(Boolean));
   const range = edition.start === edition.end ? edition.start : edition.start + ' 至 ' + edition.end;
   const incomplete = period !== 'daily' && edition.end >= beijingDate();
   const countByTopic = new Map();
   for (const item of list) {
-    if (item.category) countByTopic.set(item.category, (countByTopic.get(item.category) || 0) + 1);
+    const name = reportCategory(item);
+    countByTopic.set(name, (countByTopic.get(name) || 0) + 1);
   }
   const topicSummary = [...countByTopic].sort((a, b) => b[1] - a[1]).slice(0, 3)
     .map(([name, count]) => name + ' ' + count + ' 条').join('，');

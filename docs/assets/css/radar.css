@@ -136,10 +136,10 @@ summary { font-size: 12px; color: var(--accent); font-weight: 650; }
 .report-section { margin-top: 29px; }
 .report-section > h3 { margin: 0; padding-bottom: 9px; border-bottom: 1px solid var(--rule); font-size: 21px; }
 .report-section > h3 span { margin-right: 10px; color: var(--accent); font-variant-numeric: tabular-nums; }
-.report-columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.report-columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: stretch; }
 .report-columns .story { display: flex; flex-direction: column; align-items: flex-start; width: 100%; padding: 16px 25px 19px 0; border-bottom: 1px solid var(--rule); }
 .report-columns .story:nth-child(even) { padding-inline: 25px 0; border-left: 1px solid #cbd6cc; }
-.report-columns .story:only-child { grid-column: 1 / -1; }
+
 .report-columns .story-body { width: 100%; margin-bottom: 9px; }
 .report-columns .story-image img { max-height: 190px; }
 .report-columns .original { margin-top: auto; padding-top: 7px; }
@@ -152,8 +152,6 @@ summary { font-size: 12px; color: var(--accent); font-weight: 650; }
 .source-item small { display: block; margin-top: 4px; color: var(--muted); }
 @media (max-width: 1050px) {
   .shell.is-archive { grid-template-columns: 160px 165px minmax(0, 1fr); }
-  .report-columns { grid-template-columns: 1fr; }
-  .report-columns .story, .report-columns .story:nth-child(even) { padding-inline: 0; border-left: 0; }
   .report-spotlight.has-index { grid-template-columns: minmax(0, 1fr); }
   .has-index .report-lead { padding-right: 0; }
   .report-index { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; padding: 13px 0; border: 0; border-top: 1px solid var(--rule); }
@@ -181,4 +179,6 @@ summary { font-size: 12px; color: var(--accent); font-weight: 650; }
   .story h3 { font-size: 16px; }
   .report-lead .story-body.with-image:has(.story-image:not([hidden])), .report-index { grid-template-columns: minmax(0, 1fr); }
   .report-section { margin-top: 22px; }
+  .report-columns { grid-template-columns: minmax(0, 1fr); }
+  .report-columns .story, .report-columns .story:nth-child(even) { padding-inline: 0; border-left: 0; }
 }
