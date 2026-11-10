@@ -242,7 +242,7 @@ function reportCategory(item) {
 function reportPaper(list, edition, covered) {
   const [lead, ...rest] = list;
   const groups = new Map();
-  for (const item of list) {
+  for (const item of rest) {
     const name = reportCategory(item);
     if (!groups.has(name)) groups.set(name, []);
     groups.get(name).push(item);
