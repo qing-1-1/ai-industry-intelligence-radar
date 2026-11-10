@@ -93,6 +93,9 @@ summary { font-size: 12px; color: var(--accent); font-weight: 650; }
 .edition-month button { display: block; width: 100%; margin-top: 3px; padding: 8px; text-align: left; border-radius: 5px; }
 .edition-month button:hover, .edition-month button[aria-current="true"] { color: var(--accent); background: var(--tint); }
 .is-archive .main { width: min(100%, 1070px); }
+.is-archive .toolbar { align-items: flex-start; }
+.is-archive .filters { flex-basis: 100%; justify-content: flex-start; }
+.is-archive .search { max-width: 300px; }
 .report-group { padding-bottom: 22px; }
 .report-group + .report-group { border-top: 1px solid var(--rule); padding-top: 22px; }
 .report-mast { border-block: 1px solid var(--accent); padding: 17px 0; text-align: center; }
