@@ -26,12 +26,17 @@ const days = {
   '2026-11-04': day('2026-11-04', '历史算力', 'https://example.com/2', 9),
   '2026-11-01': day('2026-11-01', '较旧情报', 'https://example.com/3', 10),
 };
+days['2026-11-04'].items.push({
+  title: 'English AI title', url: 'https://example.com/ai', published_at: '2026-11-04T06:00:00+08:00',
+  category: '其他 AI 行业新闻', score: 8, summary: 'AI 正文',
+});
 days['2026-11-04'].items[0].sections = [{ title: '关键数据', content: '安全 <script> 测试' }];
 days['2026-11-04'].items[0].tags = ['测试标签'];
 const fetch = async (url) => ({
   ok: true,
   json: async () => url.endsWith('index.json') ? { dates: Object.keys(days) } :
-    url.endsWith('sources.json') ? [source] : days[url.match(/(\d{4}-\d{2}-\d{2})\.json/)[1]],
+    url.endsWith('sources.json') ? [source] :
+    url.endsWith('legacy-display.json') ? {'https://example.com/ai': {title: '中文 AI 标题', image_url: 'https://example.com/ai.png'}} : days[url.match(/(\d{4}-\d{2}-\d{2})\.json/)[1]],
 });
 const location = { hash: '' };
 const handlers = {};
@@ -50,13 +55,17 @@ async function run() {
   });
   assert.equal(articles.innerHTML, '');
 
-  location.hash = '#hot';
+  location.hash = '#ai';
   await handlers.hashchange();
-  assert(articles.innerHTML.indexOf('历史算力') < articles.innerHTML.indexOf('昨天的芯片'));
-  assert(!articles.innerHTML.includes('较旧情报'));
-  assert(element('archiveFilter').hidden);
+  assert(articles.innerHTML.includes('AI 日报'));
+  assert(articles.innerHTML.includes('中文 AI 标题'));
+  assert(articles.innerHTML.includes('https://example.com/ai.png'));
+  assert(!articles.innerHTML.includes('昨天的芯片'));
+  await element('reportTabs').listeners.click({target: {closest: () => ({dataset: {period: 'weekly'}})}});
+  assert(articles.innerHTML.includes('AI 周报'));
+  assert(!articles.innerHTML.includes('历史算力'));
 
-  location.hash = '#archive';
+  location.hash = '#operator';
   await handlers.hashchange();
   assert(articles.innerHTML.includes('本期目录'));
   assert(articles.innerHTML.includes('运营商情报日报'));
@@ -93,7 +102,7 @@ async function run() {
   await handlers.hashchange();
   assert(!element('sourcePanel').hidden);
   assert(element('sourceList').innerHTML.includes('RSS'));
-  console.log('精选、热点榜、日报周报月报、历史搜索及信息源验证通过');
+  console.log('精选、双简报、中文标题、配图、三种周期及历史搜索验证通过');
 }
 run().catch((error) => {
   console.error(error);

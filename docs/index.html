@@ -7,24 +7,32 @@ layout: null
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="追踪运营商 Token、智算、模型网关、AI 产品与采购政策。">
-  <title>AI 行业情报雷达</title>
+  <title>运营商情报</title>
+  <link rel="icon" href="assets/img/operator-mark.png" type="image/png">
   <link rel="stylesheet" href="assets/css/radar.css">
 </head>
 <body>
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-feed" viewBox="0 0 24 24"><path d="M5 5h14M5 12h14M5 19h9"/><path d="M2 5h.01M2 12h.01M2 19h.01"/></symbol>
+    <symbol id="i-report" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6m-6 4h6m-6 4h4"/></symbol>
+    <symbol id="i-ai" viewBox="0 0 24 24"><path d="M12 3v4m0 10v4M3 12h4m10 0h4M5.6 5.6l2.8 2.8m7.2 7.2 2.8 2.8m0-12.8-2.8 2.8m-7.2 7.2-2.8 2.8"/><circle cx="12" cy="12" r="2"/></symbol>
+    <symbol id="i-sources" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5m-18 4 9 5 9-5"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="5.5"/><path d="m15 15 5 5"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M8 16 17 7m-7 0h7v7"/></symbol>
+  </svg>
   <a class="skip" href="#content">跳到内容</a>
   <div class="shell">
     <aside class="sidebar">
       <a class="brand" href="#featured">
-        <span class="mark" aria-hidden="true">◈</span>
+        <img class="mark" src="assets/img/operator-mark.png" width="40" height="40" alt="">
         <span>运营商情报<small>行业观察</small></span>
       </a>
       <nav id="nav" aria-label="主导航">
-        <p class="nav-label">情报</p>
-        <a href="#featured" data-view="featured" aria-current="page"><span aria-hidden="true">✦</span>精选</a>
-        <a href="#hot" data-view="hot"><span aria-hidden="true">↗</span>热点榜</a>
-        <a href="#archive" data-view="archive" id="historyLink"><span aria-hidden="true">▤</span>情报简报</a>
-        <p class="nav-label">关于</p>
-        <a href="#sources" data-view="sources"><span aria-hidden="true">◎</span>信息源</a>
+        <p class="nav-label">阅读</p>
+        <a href="#featured" data-view="featured" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#i-feed"/></svg>精选</a>
+        <a href="#operator" data-view="operator" id="historyLink"><svg class="icon" aria-hidden="true"><use href="#i-report"/></svg>运营商简报</a>
+        <a href="#ai" data-view="ai"><svg class="icon" aria-hidden="true"><use href="#i-ai"/></svg>AI 简报</a>
+        <a href="#sources" data-view="sources"><svg class="icon" aria-hidden="true"><use href="#i-sources"/></svg>信息源</a>
       </nav>
       <div class="credits"><a href="https://github.com/Thysrael/Horizon">基于 Horizon</a> · <a href="https://github.com/KKKKhazix/AIHOT">界面参考 AIHOT</a></div>
     </aside>
@@ -49,7 +57,7 @@ layout: null
         <div class="toolbar">
           <div id="categoryTabs" class="category-tabs" aria-label="按分类浏览"></div>
           <div class="filters" id="filters">
-            <label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="搜索标题、摘要或标签" aria-label="搜索新闻"></label>
+            <label class="search"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><input id="search" type="search" placeholder="搜索标题、摘要或标签" aria-label="搜索新闻"></label>
             <label id="archiveFilter" hidden>期次 <select id="date" aria-label="选择简报期次"></select></label>
             <select id="source" aria-label="筛选来源"><option value="">全部来源</option></select>
             <select id="sort" aria-label="排序"><option value="date">按发布时间</option><option value="score">按重要性</option></select>

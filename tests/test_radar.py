@@ -10,7 +10,7 @@ def test_radar_exports_real_items_and_preserves_archive(tmp_path):
     config = Config.model_validate(json.loads(open('data/config.radar.json', encoding='utf-8').read()))
     moment = datetime(2026, 1, 1, tzinfo=timezone.utc)
     item = ContentItem(id='rss:test:1', source_type='rss', title='Original', url='https://example.com/a',
-        published_at=moment, fetched_at=moment, metadata={'feed_name': 'Example'},
+        published_at=moment, fetched_at=moment, metadata={'feed_name': 'Example', 'image_url': 'https://example.com/news.png'},
         processing=ProcessingResult(classification=ClassificationResult(profile='radar-router', method='source_override'),
             analysis=ContentAnalysis(score=8, reason='relevant', summary='fallback', tags=['Gateway']),
             artifacts={'zh': ContentArtifact(language='zh', title='模型网关', blocks=[ContentBlock(id='summary', title='摘要', content='实际摘要', primary=True), ContentBlock(id='details', title='关键数据', content='实际数字')])}))
@@ -20,6 +20,9 @@ def test_radar_exports_real_items_and_preserves_archive(tmp_path):
     assert data['collected'] == 5 and data['selected'] == 1
     assert data['items'][0]['category'] == '模型路由与 AI 网关'
     assert data['items'][0]['summary'] == '实际摘要'
+    assert data['items'][0]['briefing'] == 'operator'
+    assert data['items'][0]['image_url'] == 'https://example.com/news.png'
+    assert data['items'][0]['original_title'] == 'Original'
     assert data['items'][0]['sections'] == [{'title': '摘要', 'content': '实际摘要'}, {'title': '关键数据', 'content': '实际数字'}]
     assert data['items'][0]['fetched_at'] == moment.isoformat()
     assert data['failures'][0]['source'] == 'GDELT'
@@ -33,7 +36,7 @@ def test_radar_config_has_bounded_candidates_and_distinct_searches():
     assert config.collection.candidate_limit == 120
     assert len(config.sources.google_news.queries) >= 5
     assert any(s.enabled and s.content_extractor == 'trafilatura' for s in config.sources.rss)
-    assert set(config.processing.profile_settings) == {'radar-token', 'radar-compute', 'radar-router', 'radar-platform', 'radar-policy'}
+    assert set(config.processing.profile_settings) == {'radar-token', 'radar-compute', 'radar-router', 'radar-platform', 'radar-policy', 'radar-industry'}
 
 
 def test_same_endpoint_model_fallback(monkeypatch):

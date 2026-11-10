@@ -14,6 +14,7 @@ import feedparser
 from .base import BaseScraper, FetchResult
 from ..extractors import ExtractorRegistry
 from ..models import ContentItem, SourceType, RSSSourceConfig
+from ..radar_content import image_url
 
 logger = logging.getLogger(__name__)
 
@@ -113,6 +114,12 @@ class RSSScraper(BaseScraper):
                 entry_hash = hashlib.sha256(str(entry_id).encode("utf-8")).hexdigest()[:16]
                 content = self._extract_content(entry)
 
+                entry_link = entry.get("link", str(source.url))
+                images = [*entry.get("media_thumbnail", []),
+                          *(value for value in [*entry.get("media_content", []), *entry.get("enclosures", [])]
+                            if value.get("medium") == "image" or value.get("type", "").startswith("image/"))]
+                preview = next((resolved for value in images
+                                if (resolved := image_url(value.get("url") or value.get("href"), entry_link))), None)
                 material_status = "rss_content" if content else "title_only"
                 if source.content_extractor and self._extractors:
                     extractor = self._extractors.get(source.content_extractor)
@@ -128,13 +135,14 @@ class RSSScraper(BaseScraper):
                     id=self._generate_id("rss", feed_id, entry_hash),
                     source_type=SourceType.RSS,
                     title=title,
-                    url=entry.get("link", str(source.url)),
+                    url=entry_link,
                     content=content,
                     author=entry.get("author", source.name),
                     published_at=published_at,
                     profile=source.profile,
                     metadata={
                         "feed_name": source.name,
+                        **({"image_url": preview} if preview else {}),
                         "material_status": material_status,
                         "category": source.category,
                         "tags": [tag.term for tag in entry.get("tags", [])],

@@ -204,6 +204,18 @@
     "enabled": true
   },
   {
+    "name": "AI 大模型 发布 推理 开源",
+    "method": "Google News 搜索发现",
+    "category": "综合",
+    "enabled": true
+  },
+  {
+    "name": "AI model release open weights inference",
+    "method": "Google News 搜索发现",
+    "category": "综合",
+    "enabled": true
+  },
+  {
     "name": "telecom \"artificial intelligence\"",
     "method": "GDELT 搜索发现",
     "category": "综合",

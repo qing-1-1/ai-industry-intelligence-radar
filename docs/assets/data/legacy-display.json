@@ -1,0 +1,29 @@
+{
+  "https://www.etnews.com/20261109000264": {
+    "image_url": "https://img.etnews.com/news/article/2026/11/09/news-p.v1.20261109.b7e6a0efa4604cbbad368d04ff42c13f_P1.png",
+    "title": "SK Telecom 联合 NVIDIA 与 Rebellions 构建 GPU、NPU 异构 AI 基础设施"
+  },
+  "https://telecomlead.com/telecom-services/telecom-operators-ai-spending-in-2026-bell-ooredoo-china-mobile-china-telecom-and-singtel-reveal-investments-and-returns-128606": {
+    "image_url": "https://telecomlead.com/wp-content/uploads/2026/11/Telecom-AI-Investment-Comparison-in-2026.jpg",
+    "title": "2026 年运营商 AI 投入与回报：贝尔、Ooredoo、中国移动、中国电信和新加坡电信披露进展"
+  },
+  "https://www.livemint.com/companies/news/microsofts-1-billion-amsterdam-data-centre-project-faces-protests-over-ai-infrastructure-costs-details-inside-11794048139305.html": {
+    "image_url": "https://www.livemint.com/lm-img/img/2026/11/07/1600x900/logo/AI-EUROPE-DATACENTERS-NETHERLANDS-5_1794048504416_uNG7_1794048517294_qg70_2e8cd616-a155-494b-9cbd-f35727c35d04_CLmM.JPG"
+  },
+  "http://www.geekpark.net/news/373639": {
+    "image_url": "https://imgslim.geekpark.net/uploads/image/file/cf/2a/cf2a03536be80f864e5824960ca2fa2e.png"
+  },
+  "http://www.geekpark.net/news/373637": {
+    "image_url": "https://imgslim.geekpark.net/uploads/image/file/82/6a/826a217db73fcbc61aff5757bc036cf4.png"
+  },
+  "https://aws.amazon.com/blogs/machine-learning/sagemaker-inference-now-supports-multi-instance-gpu-to-maximize-gpu-utilization-for-model-endpoints/": {
+    "image_url": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/11/05/ML-22216-featured-image.png"
+  },
+  "https://aws.amazon.com/blogs/machine-learning/govern-ai-agent-access-with-okta-cross-app-access-and-amazon-bedrock-agentcore-part-2/": {
+    "image_url": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/10/29/ML-21547-p2-featured-image.png",
+    "title": "用 Okta 跨应用访问和 Amazon Bedrock AgentCore 管理 AI 智能体权限（第二部分）"
+  },
+  "https://aws.amazon.com/blogs/machine-learning/how-greenlight-financial-built-an-autonomous-soc-solution-on-amazon-bedrock-agentcore/": {
+    "image_url": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/10/29/ML-21973-featured-image.png"
+  }
+}

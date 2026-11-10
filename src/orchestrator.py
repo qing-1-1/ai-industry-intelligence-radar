@@ -324,7 +324,13 @@ class HorizonOrchestrator:
 
             # Export structured, dated records for the static radar.
             if self.config.processing.default_profile.startswith("radar-"):
+                from .radar_content import attach_article_images, localize_radar_titles
                 from .radar_export import export_radar
+
+                await asyncio.gather(
+                    attach_article_images(important_items),
+                    localize_radar_titles(important_items, self.ai_client) if important_items else asyncio.sleep(0),
+                )
                 export_radar(self.config, important_items, len(all_items), self.last_fetch_report)
 
             # 7. Generate and save daily summaries for each configured language

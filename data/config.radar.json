@@ -45,6 +45,10 @@
       "radar-policy": {
         "threshold": 6.0,
         "topic_dedup": true
+      },
+      "radar-industry": {
+        "threshold": 7.0,
+        "topic_dedup": true
       }
     }
   },
@@ -60,7 +64,8 @@
           "radar-compute",
           "radar-router",
           "radar-platform",
-          "radar-policy"
+          "radar-policy",
+          "radar-industry"
         ]
       },
       {
@@ -73,7 +78,8 @@
           "radar-compute",
           "radar-router",
           "radar-platform",
-          "radar-policy"
+          "radar-policy",
+          "radar-industry"
         ]
       }
     ],
@@ -88,7 +94,8 @@
           "radar-compute",
           "radar-router",
           "radar-platform",
-          "radar-policy"
+          "radar-policy",
+          "radar-industry"
         ],
         "max_items": 8,
         "content_extractor": "trafilatura"
@@ -103,7 +110,8 @@
           "radar-compute",
           "radar-router",
           "radar-platform",
-          "radar-policy"
+          "radar-policy",
+          "radar-industry"
         ],
         "max_items": 8,
         "content_extractor": "trafilatura"
@@ -118,7 +126,8 @@
           "radar-compute",
           "radar-router",
           "radar-platform",
-          "radar-policy"
+          "radar-policy",
+          "radar-industry"
         ],
         "max_items": 8,
         "content_extractor": "trafilatura"
@@ -133,7 +142,8 @@
           "radar-compute",
           "radar-router",
           "radar-platform",
-          "radar-policy"
+          "radar-policy",
+          "radar-industry"
         ],
         "max_items": 8,
         "content_extractor": "trafilatura"
@@ -148,7 +158,8 @@
           "radar-compute",
           "radar-router",
           "radar-platform",
-          "radar-policy"
+          "radar-policy",
+          "radar-industry"
         ],
         "max_items": 8,
         "content_extractor": "trafilatura"
@@ -163,7 +174,8 @@
           "radar-compute",
           "radar-router",
           "radar-platform",
-          "radar-policy"
+          "radar-policy",
+          "radar-industry"
         ],
         "max_items": 8,
         "content_extractor": "trafilatura"
@@ -178,7 +190,8 @@
           "radar-compute",
           "radar-router",
           "radar-platform",
-          "radar-policy"
+          "radar-policy",
+          "radar-industry"
         ],
         "max_items": 15,
         "content_extractor": "trafilatura"
@@ -193,7 +206,8 @@
           "radar-compute",
           "radar-router",
           "radar-platform",
-          "radar-policy"
+          "radar-policy",
+          "radar-industry"
         ],
         "max_items": 8,
         "content_extractor": "trafilatura"
@@ -208,7 +222,8 @@
           "radar-compute",
           "radar-router",
           "radar-platform",
-          "radar-policy"
+          "radar-policy",
+          "radar-industry"
         ],
         "max_items": 6,
         "content_extractor": "trafilatura"
@@ -295,7 +310,8 @@
           "radar-compute",
           "radar-router",
           "radar-platform",
-          "radar-policy"
+          "radar-policy",
+          "radar-industry"
         ],
         "max_items": 15,
         "content_extractor": "trafilatura"
@@ -319,7 +335,9 @@
         "site:36kr.com 运营商 算力 大模型",
         "site:jiqizhixin.com 运营商 算力 模型",
         "site:c114.com.cn 运营商 算力 人工智能",
-        "telecom AI model gateway inference cloud"
+        "telecom AI model gateway inference cloud",
+        "AI 大模型 发布 推理 开源",
+        "AI model release open weights inference"
       ],
       "max_results": 30,
       "profile": [
@@ -327,7 +345,8 @@
         "radar-compute",
         "radar-router",
         "radar-platform",
-        "radar-policy"
+        "radar-policy",
+        "radar-industry"
       ]
     },
     "gdelt": {
@@ -339,7 +358,8 @@
         "radar-compute",
         "radar-router",
         "radar-platform",
-        "radar-policy"
+        "radar-policy",
+        "radar-industry"
       ]
     },
     "hackernews": {
@@ -385,7 +405,8 @@
           "radar-compute",
           "radar-router",
           "radar-platform",
-          "radar-policy"
+          "radar-policy",
+          "radar-industry"
         ]
       },
       {
@@ -420,7 +441,8 @@
           "radar-compute",
           "radar-router",
           "radar-platform",
-          "radar-policy"
+          "radar-policy",
+          "radar-industry"
         ]
       },
       {
@@ -455,7 +477,8 @@
           "radar-compute",
           "radar-router",
           "radar-platform",
-          "radar-policy"
+          "radar-policy",
+          "radar-industry"
         ]
       },
       {
@@ -490,7 +513,8 @@
           "radar-compute",
           "radar-router",
           "radar-platform",
-          "radar-policy"
+          "radar-policy",
+          "radar-industry"
         ]
       }
     ]
@@ -507,7 +531,8 @@
       "radar-compute",
       "radar-router",
       "radar-platform",
-      "radar-policy"
+      "radar-policy",
+      "radar-industry"
     ],
     "group_by": "profile"
   },

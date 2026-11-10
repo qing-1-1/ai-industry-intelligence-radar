@@ -30,3 +30,25 @@ def test_expand_failure_keeps_original_excerpt():
     asyncio.run(expand_selected_articles([news], 1, extractor=extractor, client=object()))
     assert news.content == 'short'
     assert news.metadata['material_status'] == 'search_excerpt'
+
+
+def test_chinese_title_fallback_only_translates_unlocalized_titles():
+    from src.radar_content import localize_radar_titles
+
+    foreign = item('gdelt', 'https://example.com/news')
+    chinese = item('rss', 'https://example.com/local')
+    chinese.title = '运营商发布新平台'
+    client = AsyncMock()
+    client.complete.return_value = '{"0": "运营商发布测试平台"}'
+    asyncio.run(localize_radar_titles([foreign, chinese], client))
+    assert foreign.metadata['title_zh'] == '运营商发布测试平台'
+    assert 'title_zh' not in chinese.metadata
+    assert client.complete.await_count == 1
+
+
+def test_article_image_uses_https_source_metadata():
+    from src.radar_content import article_image
+
+    html = '<meta property="og:image" content="/cover.jpg">'
+    assert article_image(html, 'https://example.com/post') == 'https://example.com/cover.jpg'
+    assert article_image(html, 'http://example.com/post') is None

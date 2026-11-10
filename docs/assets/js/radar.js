@@ -7,8 +7,8 @@ const categories = [
 ];
 const viewInfo = {
   featured: ['精选', '聚焦运营商 AI 业务和产业动态', '本期情报'],
-  hot: ['热点榜', '最近一期发布前 48 小时内的入选情报，按 AI 重要性评分和发布时间排序。', '重要性排行'],
-  archive: ['情报简报', '从运营商情报归档汇编，按周期与栏目阅读。', ''],
+  operator: ['运营商简报', '跟踪模型服务、智算、应用落地与政策招采。', ''],
+  ai: ['AI 简报', '关注通用 AI 模型、产品、开源与行业进展。', ''],
   sources: ['信息源', '运营商情报的采集渠道与最近采集异常。'],
 };
 const materialLabels = {
@@ -42,6 +42,10 @@ let period = 'daily';
 let editions = [];
 let loadedDays = [];
 let loadNotice = '';
+let legacyDisplay = {};
+let briefingDates = { operator: [], ai: [] };
+const isBriefing = (view = currentView) => view === 'operator' || view === 'ai';
+const briefingOf = (item) => item.briefing || (item.category === '其他 AI 行业新闻' ? 'ai' : 'operator');
 
 async function readJson(path) {
   const response = await fetch(path);
@@ -98,9 +102,12 @@ function articleUrlKey(value) {
 function records(days) {
   const urls = new Set();
   const titles = new Set();
-  return days.flatMap((day) => day.items.map((item, i) => ({
-    ...item, archiveDate: day.date, anchor: 'story-' + day.date + '-' + i,
-  }))).filter((item) => {
+  return days.flatMap((day) => day.items.flatMap((item, i) => {
+    if (isBriefing() && briefingOf(item) !== currentView) return [];
+    const legacy = legacyDisplay[item.url] || {};
+    return [{ ...item, title: legacy.title || item.title, image_url: item.image_url || legacy.image_url,
+      archiveDate: day.date, anchor: 'story-' + day.date + '-' + i }];
+  })).filter((item) => {
     const url = articleUrlKey(item.url);
     const title = item.title?.normalize('NFKC').replace(/\s+/g, '').toLowerCase();
     if ((url && urls.has(url)) || (title && titles.has(title))) return false;
@@ -111,15 +118,18 @@ function records(days) {
 }
 
 function contentLink(anchor) {
-  const base = currentView === 'archive' ? '#archive/' + period + '/' + $('date').value : '#' + currentView;
+  const base = '#' + currentView + (isBriefing() ? '/' + period + '/' + $('date').value : '');
   return base + '/' + anchor;
 }
 
-function story(item, rank) {
+function story(item) {
   const url = externalUrl(item.url);
+  const preview = isBriefing() && /^https:\/\//i.test(item.image_url || '') ? externalUrl(item.image_url) : '';
+  const figure = preview ? '<figure class="story-image"><img src="' + preview +
+    '" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer"></figure>' : '';
   const sections = item.sections || [];
   const summary = item.summary || sections[0]?.content;
-  const detailSections = currentView === 'archive'
+  const detailSections = isBriefing()
     ? sections
     : sections.filter((section) => section.content !== summary);
   const detail = detailSections.map((section) =>
@@ -137,12 +147,12 @@ function story(item, rank) {
     '<div class="meta"><span class="category">' + escape(item.category) + '</span>' +
     facts.map((fact) => '<span>' + escape(fact) + '</span>').join('') +
     (item.score == null ? '' : '<span class="score">重要性 ' + escape(item.score) + '/10</span>') + '</div>' +
-    '<div class="story-head">' + (rank ? '<span class="rank">' + rank + '</span>' : '') +
-    '<h3>' + escape(item.title) + '</h3></div>' +
-    (summary && (currentView !== 'archive' || !detail) ? '<p class="summary">' + escape(summary) + '</p>' : '') +
-    (currentView === 'archive' ? detail : detail ? '<details><summary>展开情报详情</summary>' + detail + '</details>' : '') +
+    '<h3' + (item.original_title && item.original_title !== item.title
+      ? ' title="' + escape(item.original_title) + '"' : '') + '>' + escape(item.title) + '</h3>' + figure +
+    (summary && (!isBriefing() || !detail) ? '<p class="summary">' + escape(summary) + '</p>' : '') +
+    (isBriefing() ? detail : detail ? '<details><summary>展开情报详情</summary>' + detail + '</details>' : '') +
     (tags ? '<ul class="tags">' + tags + '</ul>' : '') +
-    (url ? '<a class="original" href="' + url + '" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>' : '') +
+    (url ? '<a class="original" href="' + url + '" target="_blank" rel="noopener noreferrer">查看原文 <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></a>' : '') +
     '</article>';
 }
 
@@ -176,7 +186,7 @@ function editionLabel(edition) {
 
 function updateEditions() {
   const grouped = new Map();
-  for (const day of dates) {
+  for (const day of briefingDates[currentView]) {
     const range = periodRange(day, period);
     if (!grouped.has(range.start)) grouped.set(range.start, { ...range, days: [] });
     grouped.get(range.start).days.push(day);
@@ -239,7 +249,7 @@ function reportPaper(list, edition, covered) {
       '<div class="report-columns">' + groups.get(name).map((item) => story(item)).join('') + '</div></section>'
   ).join('');
   return '<div class="report-group">' +
-    '<header class="report-mast"><p>' + escape(range) + '</p><h2>运营商情报' + periodNames[period] + '</h2>' +
+    '<header class="report-mast"><p>' + escape(range) + '</p><h2>' + (currentView === 'ai' ? 'AI ' : '运营商情报') + periodNames[period] + '</h2>' +
     '<p>' + list.length + ' 条情报 · ' + sources.size + ' 个来源' +
     (period === 'daily' ? '' : ' · 汇编自 ' + covered + ' 期日报') +
     (incomplete ? ' · 本期仍在更新' : '') + '</p></header>' +
@@ -276,13 +286,13 @@ function render() {
     const searchable = [item.title, item.summary, item.source, item.category, ...(item.tags || []),
       ...(item.sections || []).flatMap((section) => [section.title, section.content])];
     return !query || searchable.join(' ').toLowerCase().includes(query);
-  }).sort(currentView !== 'hot' && sort === 'date' ? byDate : byScore);
+  }).sort(sort === 'date' ? byDate : byScore);
 
   $('resultCount').textContent = list.length + ' 条';
   $('status').textContent = loadNotice || (list.length ? '' : '当前条件下没有情报。');
   $('articles').innerHTML = list.length ? '<div class="story-list' +
     (currentView === 'featured' ? ' timeline' : '') + '">' +
-    (currentView === 'archive' ? renderArchive(list) : list.map((item, i) => story(item, currentView === 'hot' ? i + 1 : 0)).join('')) +
+    (isBriefing() ? renderArchive(list) : list.map((item) => story(item)).join('')) +
     '</div>' : '';
   if (currentView === 'featured' && loadedDays.length) {
     $('listTitle').textContent = dayLabel.format(new Date(loadedDays[0].date + 'T00:00:00Z'));
@@ -290,14 +300,14 @@ function render() {
   const highlights = $('featuredHighlights');
   highlights.hidden = currentView !== 'featured' || Boolean(query || source || activeCategory) || !list.length;
   if (!highlights.hidden) {
-    highlights.innerHTML = '<header><h2>本期重点</h2><a href="#hot">完整榜单 ↗</a></header>' +
+    highlights.innerHTML = '<header><h2>本期重点</h2><a href="#operator">查看简报</a></header>' +
       linkList([...list].sort(byScore).slice(0, 3));
   }
 }
 
 function setFilters() {
   const names = Array.from(new Set(items.map((item) => item.category).filter(Boolean)));
-  const tabs = ['', ...categories, ...names.filter((name) => !categories.includes(name))];
+  const tabs = ['', ...(currentView === 'ai' ? names : [...categories, ...names.filter((name) => !categories.includes(name))])];
   $('categoryTabs').innerHTML = tabs.map((name) =>
     '<button type="button" data-category="' + escape(name) + '" aria-pressed="' + (name === activeCategory) + '">' +
     escape(categoryLabels[categories.indexOf(name)] || name || '全部') + '</button>'
@@ -346,12 +356,14 @@ async function loadView() {
       return;
     }
     let requested = [dates[0]];
-    if (view === 'archive') {
+    if (isBriefing(view)) {
       const edition = editions.find((entry) => entry.start === $('date').value);
-      requested = edition?.days || dates;
+      requested = edition?.days || briefingDates[view];
       renderEditionRail();
-    } else if (view === 'hot') {
-      requested = dates.filter((date) => Date.parse(dates[0]) - Date.parse(date) <= 2 * DAY_MS);
+      if (!requested.length) {
+        $('status').textContent = '这个简报还没有已发布的情报。';
+        return;
+      }
     }
     const results = await Promise.allSettled(requested.map(getDay));
     if (version !== loadVersion) return;
@@ -359,15 +371,11 @@ async function loadView() {
     if (!days.length) throw new Error('No readable issues');
     loadedDays = days;
     const latest = days[0];
-    $('editionDate').textContent = view === 'archive' && days.length > 1
+    $('editionDate').textContent = isBriefing(view) && days.length > 1
       ? days.length + ' 期日报'
       : '发布于 ' + formatTime(latest.updated_at);
     items = records(days);
-    if (view === 'hot') {
-      const cutoff = Date.parse(latest.updated_at) - 2 * DAY_MS;
-      items = items.filter((item) => item.score != null && Date.parse(item.published_at) >= cutoff);
-    }
-    if (view === 'archive' && period !== 'daily') {
+    if (isBriefing(view) && period !== 'daily') {
       items = items.sort(byScore).slice(0, period === 'weekly' ? 20 : 30);
     }
     if (activeCategory && !categories.includes(activeCategory) && !items.some((item) => item.category === activeCategory)) {
@@ -395,9 +403,9 @@ function scrollToArticle() {
 function navigate() {
   if (location.hash === '#content') return;
   const candidate = location.hash.slice(1).split('/')[0];
-  const next = Object.prototype.hasOwnProperty.call(viewInfo, candidate) ? candidate : 'featured';
+  const next = candidate === 'archive' ? 'operator' : Object.prototype.hasOwnProperty.call(viewInfo, candidate) ? candidate : 'featured';
   const [, routePeriod, routeEdition] = location.hash.split('/');
-  const newIssue = next === 'archive' && routeEdition && (period !== routePeriod || $('date').value !== routeEdition);
+  const newIssue = isBriefing(next) && routeEdition && (period !== routePeriod || $('date').value !== routeEdition);
   if (next === currentView && !newIssue) {
     scrollToArticle();
     return;
@@ -410,12 +418,11 @@ function navigate() {
   $('editionDate').textContent = '';
   $('stories').hidden = next === 'sources';
   $('sourcePanel').hidden = next !== 'sources';
-  $('archiveFilter').hidden = next !== 'archive';
-  $('reportRail').hidden = next !== 'archive';
-  document.querySelector('.shell')?.classList.toggle('is-archive', next === 'archive');
-  if (next === 'archive') {
+  $('archiveFilter').hidden = !isBriefing(next);
+  $('reportRail').hidden = !isBriefing(next);
+  document.querySelector('.shell')?.classList.toggle('is-archive', isBriefing(next));
+  if (isBriefing(next)) {
     period = 'daily';
-    updateEditions();
     const parts = location.hash.split('/');
     if (Object.prototype.hasOwnProperty.call(periodNames, parts[1])) {
       period = parts[1];
@@ -425,10 +432,10 @@ function navigate() {
       }
     } else {
       const anchorDate = /^story-(\d{4}-\d{2}-\d{2})-/.exec(parts[1] || '')?.[1];
-      if (dates.includes(anchorDate)) $('date').value = anchorDate;
+      updateEditions();
+      if (briefingDates[next].includes(anchorDate)) $('date').value = anchorDate;
     }
   }
-  $('sort').hidden = next === 'hot';
   $('search').value = '';
   $('source').value = '';
   $('sort').value = next === 'featured' ? 'date' : 'score';
@@ -468,14 +475,31 @@ function selectEdition(event) {
 }
 $('editionList').addEventListener('click', selectEdition);
 $('articles').addEventListener('click', selectEdition);
+$('articles').addEventListener('error', (event) => {
+  const figure = event.target.closest?.('.story-image');
+  if (figure) figure.hidden = true;
+}, true);
 
 async function init() {
+  let index;
   try {
-    const index = await readJson('radar-data/index.json');
+    index = await readJson('radar-data/index.json');
     dates = [...new Set(index.dates)].filter((date) => /^\d{4}-\d{2}-\d{2}$/.test(date)).sort().reverse();
   } catch {
     $('status').textContent = '日报索引读取失败，请刷新页面重试。';
     return;
+  }
+  const missingIndex = !index.briefings;
+  const [supplements, loaded] = await Promise.all([
+    readJson('assets/data/legacy-display.json').catch(() => ({})),
+    missingIndex ? Promise.allSettled(dates.map(getDay)) : [],
+  ]);
+  legacyDisplay = supplements;
+  for (const view of ['operator', 'ai']) {
+    briefingDates[view] = missingIndex
+      ? loaded.filter((entry) => entry.status === 'fulfilled' &&
+          entry.value.items.some((item) => briefingOf(item) === view)).map((entry) => entry.value.date)
+      : dates.filter((date) => index.briefings[view]?.includes(date));
   }
   window.addEventListener('hashchange', navigate);
   return navigate();

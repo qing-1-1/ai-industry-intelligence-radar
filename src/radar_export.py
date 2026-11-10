@@ -17,7 +17,10 @@ def export_radar(config, items, collected, report, directory=Path('docs/radar-da
         artifact = processing.artifacts.get('zh')
         block = next((b for b in artifact.blocks if b.primary or b.id == 'summary'), None) if artifact else None
         sections = [{'title': b.title, 'content': b.content} for b in artifact.blocks if b.content.strip()] if artifact else []
-        records.append({'title': artifact.title if artifact else item.title, 'url': str(item.url),
+        profile = processing.classification.profile
+        records.append({'title': item.metadata.get('title_zh') or (artifact.title if artifact else item.title),
+            'original_title': item.title, 'image_url': item.metadata.get('image_url'), 'url': str(item.url),
+            'briefing': 'ai' if profile == 'radar-industry' else 'operator',
             'source': item.metadata.get('feed_name') or item.metadata.get('source_name') or item.metadata.get('repo') or item.author or item.source_type.value,
             'published_at': item.published_at.isoformat(), 'fetched_at': item.fetched_at.isoformat(),
             'category': LABELS.get(processing.classification.profile, processing.classification.profile),
@@ -37,6 +40,16 @@ def export_radar(config, items, collected, report, directory=Path('docs/radar-da
     failures = [{'source':o.source_name,'error':o.error} for o in (report.outcomes if report else []) if o.error]
     data={'date':now.date().isoformat(),'updated_at':now.isoformat(),'collected':collected,'selected':len(records),'sources':sources,'failures':failures,'items':records}
     (directory / f'{data["date"]}.json').write_text(json.dumps(data,ensure_ascii=False,indent=2),encoding='utf-8')
-    dates=sorted((p.stem for p in directory.glob('????-??-??.json')),reverse=True)
-    (directory/'index.json').write_text(json.dumps({'dates':dates},ensure_ascii=False),encoding='utf-8')
+    paths = sorted(directory.glob('????-??-??.json'), reverse=True)
+    briefings = {'operator': [], 'ai': []}
+    for path in paths:
+        try:
+            day = data if path.stem == data['date'] else json.loads(path.read_text(encoding='utf-8'))
+        except (OSError, json.JSONDecodeError):
+            continue
+        sections = {item.get('briefing') or ('ai' if item.get('category') == LABELS['radar-industry'] else 'operator')
+                    for item in day.get('items', [])}
+        for name in briefings.keys() & sections:
+            briefings[name].append(path.stem)
+    (directory/'index.json').write_text(json.dumps({'dates': [path.stem for path in paths], 'briefings': briefings}, ensure_ascii=False), encoding='utf-8')
     return data
