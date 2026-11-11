@@ -137,10 +137,23 @@ summary { font-size: 12px; color: var(--accent); font-weight: 650; }
 .report-section > h3 { margin: 0; padding-bottom: 9px; border-bottom: 1px solid var(--rule); font-size: 21px; }
 .report-section > h3 span { margin-right: 10px; color: var(--accent); font-variant-numeric: tabular-nums; }
 .report-columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: stretch; }
-.report-columns .story { display: flex; flex-direction: column; align-items: flex-start; width: 100%; padding: 16px 25px 19px 0; border-bottom: 1px solid var(--rule); }
+.report-columns .story { height: 278px; overflow: hidden; display: flex; flex-direction: column; align-items: flex-start; width: 100%; padding: 16px 25px 19px 0; border-bottom: 1px solid var(--rule); }
 .report-columns .story:nth-child(even) { padding-inline: 25px 0; border-left: 1px solid #cbd6cc; }
 
-.report-columns .story-body { width: 100%; margin-bottom: 9px; }
+.report-columns .story h3 { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+.report-columns .meta { max-height: 3.2em; overflow: hidden; }
+.report-columns .story-body { width: 100%; min-height: 0; max-height: 7em; overflow: hidden; margin-bottom: 7px; }
+.report-columns .story-copy { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden; }
+.report-columns .section { margin-top: 0; }
+.report-columns .section h4, .report-columns .tags, .report-columns .story-image { display: none; }
+.open-story { border: 0; padding: 3px 0; background: transparent; color: var(--accent); font-size: 12px; text-align: left; }
+.open-story:hover { text-decoration: underline; }
+.story-dialog { width: min(720px, calc(100% - 32px)); max-height: min(80vh, 850px); padding: 22px; border: 1px solid var(--rule); border-radius: 10px; background: var(--paper); color: var(--ink); }
+.story-dialog::backdrop { background: rgba(20, 31, 24, .48); }
+.dialog-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--rule); font-size: 13px; font-weight: 700; }
+.dialog-bar button { padding: 5px 9px; border: 1px solid var(--rule); border-radius: 6px; background: transparent; font-size: 12px; }
+#dialogStory h3 { margin: 8px 0 12px; font-size: 20px; line-height: 1.5; }
+#dialogStory .story-image img { max-height: 360px; }
 .report-columns .story-image img { max-height: 190px; }
 .report-columns .original { margin-top: auto; padding-top: 7px; }
 .report-end { padding-top: 19px; text-align: center; }

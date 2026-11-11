@@ -158,6 +158,7 @@ function story(item, lead = false) {
     '<div class="story-body' + (lead && figure ? ' with-image' : '') + '">' +
     '<div class="story-copy">' + copy + '</div>' + figure + '</div>' +
     (tags ? '<ul class="tags">' + tags + '</ul>' : '') +
+    (isBriefing() && !lead ? '<button type="button" class="open-story" data-open-story="' + escape(item.anchor) + '">查看完整内容</button>' : '') +
     (lead ? '<footer class="lead-byline">' + meta + original + '</footer>' : original) +
     '</article>';
 }
@@ -509,6 +510,16 @@ function selectEdition(event) {
 }
 $('editionList').addEventListener('click', selectEdition);
 $('articles').addEventListener('click', selectEdition);
+$('articles').addEventListener('click', (event) => {
+  const trigger = event.target.closest('button[data-open-story]');
+  if (!trigger) return;
+  const article = $(trigger.dataset.openStory);
+  if (!article) return;
+  $('dialogStory').innerHTML = article.innerHTML;
+  $('dialogStory').querySelector('.open-story')?.remove();
+  $('storyDialog').showModal();
+});
+$('closeStory').addEventListener('click', () => $('storyDialog').close());
 $('articles').addEventListener('error', (event) => {
   const figure = event.target.closest?.('.story-image');
   if (figure) figure.hidden = true;
