@@ -1,11 +1,12 @@
-"""Prepare a bounded runtime configuration without changing tracked settings."""
+"""Prepare a runtime configuration with an optional candidate cap."""
 import json
 import os
 from pathlib import Path
 
-limit = int(os.environ.get("RADAR_MAX_CANDIDATES", "120"))
-if not 1 <= limit <= 120:
-    raise ValueError("RADAR_MAX_CANDIDATES must be between 1 and 120")
+raw_limit = os.environ.get("RADAR_MAX_CANDIDATES", "").strip()
+limit = int(raw_limit) if raw_limit else None
+if limit is not None and limit < 1:
+    raise ValueError("RADAR_MAX_CANDIDATES must be a positive integer or empty")
 config = json.loads(Path("data/config.radar.json").read_text(encoding="utf-8"))
 config["collection"]["candidate_limit"] = limit
 Path(os.environ["RUNNER_TEMP"], "radar-config.json").write_text(

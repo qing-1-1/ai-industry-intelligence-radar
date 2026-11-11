@@ -31,7 +31,7 @@ class HotBoardScraper(BaseScraper):
             if not secret:
                 raise ValueError('Zhihu access secret is not configured')
             headers.update({'Authorization': f'Bearer {secret}', 'X-Request-Timestamp': str(int(datetime.now(timezone.utc).timestamp()))})
-            params['Limit'] = self.board.fetch_limit
+            params['Limit'] = self.board.fetch_limit or 30
         response = await self.client.get(str(self.board.url), params=params, headers=headers, follow_redirects=False)
         response.raise_for_status()
         if self.board.kind == 'zhihu':

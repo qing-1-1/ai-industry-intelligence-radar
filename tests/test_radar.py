@@ -30,10 +30,13 @@ def test_radar_exports_real_items_and_preserves_archive(tmp_path):
     assert (tmp_path / '2025-12-31.json').exists()
 
 
-def test_radar_config_has_bounded_candidates_and_distinct_searches():
+def test_radar_config_has_unlimited_candidates_and_distinct_searches():
     config = Config.model_validate(json.loads(open('data/config.radar.json', encoding='utf-8').read()))
     assert config.collection.time_window_hours == 25
-    assert config.collection.candidate_limit == 120
+    assert config.collection.candidate_limit is None
+    assert config.digest.max_items is None
+    assert all(s.max_items is None for s in config.sources.rss)
+    assert config.sources.google_news.max_results is None
     assert len(config.sources.google_news.queries) >= 5
     assert any(s.enabled and s.content_extractor == 'trafilatura' for s in config.sources.rss)
     assert set(config.processing.profile_settings) == {'radar-token', 'radar-compute', 'radar-router', 'radar-platform', 'radar-policy', 'radar-industry'}

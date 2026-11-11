@@ -7,6 +7,7 @@ const categories = [
 ];
 const viewInfo = {
   featured: ['精选', '聚焦运营商 AI 业务和产业动态', '本期情报'],
+  ai_news: ['AI 行业动态', '关注通用 AI 模型、产品、开源与行业进展。', '本期 AI 动态'],
   operator: ['运营商简报', '跟踪模型服务、智算、应用落地与政策招采。', ''],
   ai: ['AI 简报', '关注通用 AI 模型、产品、开源与行业进展。', ''],
   sources: ['信息源', '运营商情报的采集渠道与最近采集异常。'],
@@ -103,7 +104,8 @@ function records(days) {
   const urls = new Set();
   const titles = new Set();
   return days.flatMap((day) => day.items.flatMap((item, i) => {
-    if (isBriefing() && briefingOf(item) !== currentView) return [];
+    const section = currentView === 'featured' ? 'operator' : currentView === 'ai_news' ? 'ai' : currentView;
+    if (['operator', 'ai'].includes(section) && briefingOf(item) !== section) return [];
     const legacy = legacyDisplay[item.url] || {};
     return [{ ...item, title: legacy.title || item.title, image_url: item.image_url || legacy.image_url,
       archiveDate: day.date, anchor: 'story-' + day.date + '-' + i }];
@@ -342,7 +344,7 @@ function render() {
 
 function setFilters() {
   const names = Array.from(new Set(items.map((item) => item.category).filter(Boolean)));
-  const tabs = ['', ...(currentView === 'ai' ? names : [...categories, ...names.filter((name) => !categories.includes(name))])];
+  const tabs = ['', ...((currentView === 'ai' || currentView === 'ai_news') ? names : [...categories, ...names.filter((name) => !categories.includes(name))])];
   $('categoryTabs').innerHTML = tabs.map((name) =>
     '<button type="button" data-category="' + escape(name) + '" aria-pressed="' + (name === activeCategory) + '">' +
     escape(categoryLabels[categories.indexOf(name)] || name || '全部') + '</button>'
@@ -410,9 +412,6 @@ async function loadView() {
       ? days.length + ' 期日报'
       : '发布于 ' + formatTime(latest.updated_at);
     items = records(days);
-    if (isBriefing(view) && period !== 'daily') {
-      items = items.sort(byScore).slice(0, period === 'weekly' ? 20 : 30);
-    }
     if (activeCategory && !categories.includes(activeCategory) && !items.some((item) => item.category === activeCategory)) {
       activeCategory = '';
     }

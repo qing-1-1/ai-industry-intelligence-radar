@@ -183,6 +183,16 @@ def test_max_results_cap() -> None:
     assert len(items) == 2
 
 
+def test_unlimited_results_retains_all_returned_entries() -> None:
+    items_xml = "".join(
+        _item(f"Item {i} - Pub", f"https://example.com/{i}") for i in range(35)
+    )
+    scraper = GoogleNewsScraper(
+        GoogleNewsConfig(enabled=True, query="ai", max_results=None), _mock_client(_feed(items_xml)),
+    )
+    assert len(asyncio.run(scraper.fetch(_now() - timedelta(days=365))).items) == 35
+
+
 def test_precise_since_filter_runs_before_max_results_cap() -> None:
     items_xml = (
         _item("Old", "https://example.com/old", pub="Sat, 27 Jun 2026 11:59:59 GMT")

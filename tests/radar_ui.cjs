@@ -26,6 +26,7 @@ const days = {
   '2026-11-04': day('2026-11-04', '历史算力', 'https://example.com/2', 9),
   '2026-11-01': day('2026-11-01', '较旧情报', 'https://example.com/3', 10),
 };
+days['2026-11-05'].items.push({ title: '今日 AI 新闻', url: 'https://example.com/today-ai', published_at: '2026-11-05T06:00:00+08:00', category: '其他 AI 行业新闻', score: 8, summary: 'AI 动态' });
 days['2026-11-04'].items.push({
   title: 'English AI title', url: 'https://example.com/ai', published_at: '2026-11-04T06:00:00+08:00',
   category: '其他 AI 行业新闻', score: 8, summary: 'AI 正文',
@@ -49,15 +50,24 @@ async function run() {
   const articles = element('articles');
   assert(articles.innerHTML.includes('昨天的芯片'));
   assert(!articles.innerHTML.includes('历史算力'));
+  assert(!articles.innerHTML.includes('今日 AI 新闻'));
   assert(element('categoryTabs').innerHTML.includes('运营商 Token 与模型服务'));
   element('categoryTabs').listeners.click({
     target: { closest: () => ({ dataset: { category: '运营商算力与智算' } }) },
   });
   assert.equal(articles.innerHTML, '');
 
+  location.hash = '#ai_news';
+  await handlers.hashchange();
+  assert(articles.innerHTML.includes('今日 AI 新闻'));
+  assert(!articles.innerHTML.includes('昨天的芯片'));
+
   location.hash = '#ai';
   await handlers.hashchange();
   assert(articles.innerHTML.includes('AI 日报'));
+  assert(articles.innerHTML.includes('今日 AI 新闻'));
+  element('date').value = '2026-11-04';
+  await element('date').listeners.change();
   assert(articles.innerHTML.includes('中文 AI 标题'));
   assert(articles.innerHTML.includes('https://example.com/ai.png'));
   assert(!articles.innerHTML.includes('昨天的芯片'));

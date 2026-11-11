@@ -5,9 +5,9 @@ on:
   workflow_dispatch:
     inputs:
       max_candidates:
-        description: Maximum AI candidates for this run (1–120)
+        description: Optional AI candidate limit (empty = all)
         required: false
-        default: "120"
+        default: ""
         type: string
       dry_run:
         description: Test generation without replacing published archive
@@ -54,7 +54,7 @@ jobs:
           SENSENOVA_API_KEY: ${{ secrets.SENSENOVA_API_KEY }}
           ZHIHU_ACCESS_SECRET: ${{ secrets.ZHIHU_ACCESS_SECRET }}
           GITHUB_TOKEN: ${{ github.token }}
-          RADAR_MAX_CANDIDATES: ${{ inputs.max_candidates || '120' }}
+          RADAR_MAX_CANDIDATES: ${{ inputs.max_candidates }}
         run: |
           python scripts/radar_run_config.py
           touch "$RUNNER_TEMP/radar-run-start"

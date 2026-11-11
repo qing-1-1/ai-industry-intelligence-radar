@@ -102,7 +102,7 @@ class GoogleNewsScraper(BaseScraper):
 
         items: List[ContentItem] = []
         for entry in feed.entries:
-            if len(items) >= self.gn_config.max_results:
+            if self.gn_config.max_results is not None and len(items) >= self.gn_config.max_results:
                 break
             item = self._entry_to_item(entry)
             if item is not None and item.published_at >= self._ensure_utc(since):

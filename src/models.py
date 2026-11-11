@@ -490,7 +490,7 @@ class GoogleNewsConfig(BaseModel):
     language: str = "en"  # hl
     country: str = "US"  # gl
     ceid: Optional[str] = None  # when None scraper derives it as "{country}:{language}"
-    max_results: int = 100  # cap ~100
+    max_results: Optional[int] = Field(default=100, gt=0)  # None uses all entries returned by the feed
     category: Optional[str] = None
     profile: ProfileRoute = None
 
@@ -501,7 +501,7 @@ class HotBoardConfig(BaseModel):
     kind: Literal["tophub", "zhihu"]
     url: HttpUrl
     enabled: bool = True
-    fetch_limit: int = Field(default=15, ge=1, le=30)
+    fetch_limit: Optional[int] = Field(default=15, ge=1, le=30)
     api_key_env: Optional[str] = None
     include_keywords: List[str] = Field(default_factory=list)
     profile: ProfileRoute = None

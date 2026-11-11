@@ -97,7 +97,6 @@
           "radar-policy",
           "radar-industry"
         ],
-        "max_items": 8,
         "content_extractor": "trafilatura"
       },
       {
@@ -113,7 +112,6 @@
           "radar-policy",
           "radar-industry"
         ],
-        "max_items": 8,
         "content_extractor": "trafilatura"
       },
       {
@@ -129,7 +127,6 @@
           "radar-policy",
           "radar-industry"
         ],
-        "max_items": 8,
         "content_extractor": "trafilatura"
       },
       {
@@ -145,7 +142,6 @@
           "radar-policy",
           "radar-industry"
         ],
-        "max_items": 8,
         "content_extractor": "trafilatura"
       },
       {
@@ -161,7 +157,6 @@
           "radar-policy",
           "radar-industry"
         ],
-        "max_items": 8,
         "content_extractor": "trafilatura"
       },
       {
@@ -177,7 +172,6 @@
           "radar-policy",
           "radar-industry"
         ],
-        "max_items": 8,
         "content_extractor": "trafilatura"
       },
       {
@@ -193,7 +187,6 @@
           "radar-policy",
           "radar-industry"
         ],
-        "max_items": 15,
         "content_extractor": "trafilatura"
       },
       {
@@ -209,7 +202,6 @@
           "radar-policy",
           "radar-industry"
         ],
-        "max_items": 8,
         "content_extractor": "trafilatura"
       },
       {
@@ -225,7 +217,6 @@
           "radar-policy",
           "radar-industry"
         ],
-        "max_items": 6,
         "content_extractor": "trafilatura"
       },
       {
@@ -234,7 +225,6 @@
         "enabled": false,
         "category": "运营商采购公告·第三方聚合",
         "profile": "radar-policy",
-        "max_items": 10,
         "include_keywords": [
           "算力",
           "智算",
@@ -258,7 +248,6 @@
         "enabled": true,
         "category": "运营商采购公告·第三方聚合",
         "profile": "radar-policy",
-        "max_items": 10,
         "include_keywords": [
           "算力",
           "智算",
@@ -282,7 +271,6 @@
         "enabled": true,
         "category": "运营商采购公告·第三方聚合",
         "profile": "radar-policy",
-        "max_items": 10,
         "include_keywords": [
           "算力",
           "智算",
@@ -313,7 +301,35 @@
           "radar-policy",
           "radar-industry"
         ],
-        "max_items": 15,
+        "content_extractor": "trafilatura"
+      },
+      {
+        "name": "中国电信股份有限公司最新更新（官方 RSS）",
+        "url": "https://www.chinatelecom-h.com/tc/global/rss/latestupdate.xml",
+        "enabled": true,
+        "category": "运营商官方动态",
+        "profile": [
+          "radar-token",
+          "radar-compute",
+          "radar-router",
+          "radar-platform",
+          "radar-policy",
+          "radar-industry"
+        ]
+      },
+      {
+        "name": "C114 通信网滚动新闻（RSSHub）",
+        "url": "https://rsshub.app/c114/roll",
+        "enabled": false,
+        "category": "通信行业新闻·第三方转换",
+        "profile": [
+          "radar-token",
+          "radar-compute",
+          "radar-router",
+          "radar-platform",
+          "radar-policy",
+          "radar-industry"
+        ],
         "content_extractor": "trafilatura"
       }
     ],
@@ -330,7 +346,7 @@
         "GPU 智算中心 招标 中标",
         "工信部 运营商 人工智能 算力 政策",
         "site:chinatelecom.com.cn 星辰 算力 人工智能",
-        "site:chinaunicom.com.cn 算力 人工智能",
+        "site:chinaunicom.com 算力 人工智能",
         "site:chinamobileltd.com AI 算力 网络",
         "site:36kr.com 运营商 算力 大模型",
         "site:jiqizhixin.com 运营商 算力 模型",
@@ -339,7 +355,7 @@
         "AI 大模型 发布 推理 开源",
         "AI model release open weights inference"
       ],
-      "max_results": 30,
+      "max_results": null,
       "profile": [
         "radar-token",
         "radar-compute",
@@ -352,7 +368,7 @@
     "gdelt": {
       "enabled": true,
       "query": "telecom \"artificial intelligence\"",
-      "max_records": 30,
+      "max_records": 250,
       "profile": [
         "radar-token",
         "radar-compute",
@@ -377,7 +393,7 @@
         "kind": "zhihu",
         "url": "https://developer.zhihu.com/api/v1/content/hot_list",
         "enabled": true,
-        "fetch_limit": 20,
+        "fetch_limit": 30,
         "api_key_env": "ZHIHU_ACCESS_SECRET",
         "include_keywords": [
           "运营商",
@@ -414,7 +430,7 @@
         "kind": "tophub",
         "url": "https://tophub.today/n/wWmoO5Rd4E",
         "enabled": true,
-        "fetch_limit": 20,
+        "fetch_limit": null,
         "include_keywords": [
           "运营商",
           "中国移动",
@@ -450,7 +466,7 @@
         "kind": "tophub",
         "url": "https://tophub.today/n/Q1Vd5Ko85R",
         "enabled": true,
-        "fetch_limit": 20,
+        "fetch_limit": null,
         "include_keywords": [
           "运营商",
           "中国移动",
@@ -486,7 +502,7 @@
         "kind": "tophub",
         "url": "https://tophub.today/n/5VaobgvAj1",
         "enabled": true,
-        "fetch_limit": 15,
+        "fetch_limit": null,
         "include_keywords": [
           "运营商",
           "中国移动",
@@ -521,11 +537,10 @@
   },
   "collection": {
     "time_window_hours": 25,
-    "candidate_limit": 120,
+    "candidate_limit": null,
     "content_expansion_limit": 12
   },
   "digest": {
-    "max_items": 30,
     "profile_order": [
       "radar-token",
       "radar-compute",

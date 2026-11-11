@@ -58,3 +58,20 @@ def test_zhihu_official_api_request_and_recent_item(monkeypatch):
     result=asyncio.run(run())
     assert result.status=='success' and len(result.items)==1
     assert result.items[0].metadata['material_status']=='search_excerpt'
+
+
+def test_tophub_no_limit_reads_all_returned_rows(monkeypatch):
+    now = datetime.now(timezone.utc)
+    rows = ''.join(f'<tr><td><a itemid="{n}" href="https://www.thepaper.cn/{n}">中国移动 {n}</a></td></tr>' for n in range(35))
+    def respond(req):
+        if req.url.host == 'tophub.today':
+            return httpx.Response(200, text='<table><tbody>' + rows + '</tbody></table>')
+        return httpx.Response(200, text=f'<meta property="article:published_time" content="{now.isoformat()}">')
+    class Extractor:
+        async def extract(self, url, client): return None
+    monkeypatch.setattr('src.scrapers.hot_boards.ExtractorRegistry', lambda _: type('R', (), {'get': lambda self, name: Extractor()})())
+    async def run():
+        async with httpx.AsyncClient(transport=httpx.MockTransport(respond)) as client:
+            board = HotBoardConfig(name='澎湃', kind='tophub', url='https://tophub.today/n/x', fetch_limit=None)
+            return await HotBoardScraper(board, client).fetch(now-timedelta(hours=25))
+    assert len(asyncio.run(run()).items) == 35
