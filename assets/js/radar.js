@@ -122,7 +122,7 @@ function contentLink(anchor) {
   return base + '/' + anchor;
 }
 
-function story(item) {
+function story(item, lead = false) {
   const url = externalUrl(item.url);
   const preview = isBriefing() && /^https:\/\//i.test(item.image_url || '') ? externalUrl(item.image_url) : '';
   const figure = preview ? '<figure class="story-image"><img src="' + preview +
@@ -143,16 +143,23 @@ function story(item) {
     ? '<time class="timeline-time" title="' + escape(formatTime(item.published_at)) + '">' +
       escape(Number.isNaN(+time) ? '—' : clockLabel.format(time)) + '</time>'
     : '';
-  return '<article class="story" id="' + escape(item.anchor) + '" tabindex="-1">' + timestamp +
-    '<div class="meta"><span class="category">' + escape(item.category) + '</span>' +
+  const meta = '<div class="meta"><span class="category">' + escape(item.category) + '</span>' +
     facts.map((fact) => '<span>' + escape(fact) + '</span>').join('') +
-    (item.score == null ? '' : '<span class="score">重要性 ' + escape(item.score) + '/10</span>') + '</div>' +
+    (item.score == null ? '' : '<span class="score">重要性 ' + escape(item.score) + '/10</span>') + '</div>';
+  const copy = (summary && (!isBriefing() || !detail) ? '<p class="summary">' + escape(summary) + '</p>' : '') +
+    (isBriefing() ? detail : detail ? '<details><summary>展开情报详情</summary>' + detail + '</details>' : '');
+  const original = url ? '<a class="original" href="' + url +
+    '" target="_blank" rel="noopener noreferrer">查看原文 <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></a>' : '';
+
+  return '<article class="story" id="' + escape(item.anchor) + '" tabindex="-1">' + timestamp +
+    (lead ? '' : meta) +
     '<h3' + (item.original_title && item.original_title !== item.title
-      ? ' title="' + escape(item.original_title) + '"' : '') + '>' + escape(item.title) + '</h3>' + figure +
-    (summary && (!isBriefing() || !detail) ? '<p class="summary">' + escape(summary) + '</p>' : '') +
-    (isBriefing() ? detail : detail ? '<details><summary>展开情报详情</summary>' + detail + '</details>' : '') +
+      ? ' title="' + escape(item.original_title) + '"' : '') + '>' + escape(item.title) + '</h3>' +
+    '<div class="story-body' + (lead && figure ? ' with-image' : '') + '">' +
+    '<div class="story-copy">' + copy + '</div>' + figure + '</div>' +
     (tags ? '<ul class="tags">' + tags + '</ul>' : '') +
-    (url ? '<a class="original" href="' + url + '" target="_blank" rel="noopener noreferrer">查看原文 <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></a>' : '') +
+    (isBriefing() && !lead ? '<button type="button" class="open-story" data-open-story="' + escape(item.anchor) + '">查看完整内容</button>' : '') +
+    (lead ? '<footer class="lead-byline">' + meta + original + '</footer>' : original) +
     '</article>';
 }
 
@@ -217,31 +224,56 @@ function renderEditionRail() {
   ).join('');
 }
 
+const aiSections = [
+  ['模型发布与更新', /大模型|语言模型|模型发布|模型更新|开源模型|\b(?:llm|gpt|claude|gemini|qwen|llama)\b/i],
+  ['算力与基础设施', /算力|智算|推理|基础设施|数据中心|显卡|\b(?:gpu|tpu|inference|sagemaker)\b/i],
+  ['产品与应用', /产品|平台|智能体|应用|agent|bedrock|应用权限/i],
+  ['研究与技术', /研究|论文|评测|基准|算法|\b(?:research|paper|benchmark)\b/i],
+  ['政策与行业', /政策|监管|招标|采购|产业|行业|\b(?:policy|regulation)\b/i],
+];
+
+function reportCategory(item) {
+  if (briefingOf(item) !== 'ai' || !['其他 AI 行业新闻', 'AI 行业新闻', 'AI 资讯'].includes(item.category)) {
+    return item.category || '其他情报';
+  }
+  const text = [item.title, ...(item.tags || [])].join(' ');
+  return aiSections.find(([, pattern]) => pattern.test(text))?.[0] || '其他 AI 动态';
+}
+
 function reportPaper(list, edition, covered) {
   const [lead, ...rest] = list;
   const groups = new Map();
   for (const item of rest) {
-    const name = item.category || '其他情报';
+    const name = reportCategory(item);
     if (!groups.has(name)) groups.set(name, []);
     groups.get(name).push(item);
   }
-  const order = [...categories.filter((name) => groups.has(name)),
-    ...[...groups.keys()].filter((name) => !categories.includes(name))];
+  const sectionOrder = currentView === 'ai' ? aiSections.map(([name]) => name) : categories;
+  const order = [...sectionOrder.filter((name) => groups.has(name)),
+    ...[...groups.keys()].filter((name) => !sectionOrder.includes(name))];
   const sources = new Set(list.map((item) => item.source).filter(Boolean));
   const range = edition.start === edition.end ? edition.start : edition.start + ' 至 ' + edition.end;
   const incomplete = period !== 'daily' && edition.end >= beijingDate();
   const countByTopic = new Map();
   for (const item of list) {
-    if (item.category) countByTopic.set(item.category, (countByTopic.get(item.category) || 0) + 1);
+    const name = reportCategory(item);
+    countByTopic.set(name, (countByTopic.get(name) || 0) + 1);
   }
   const topicSummary = [...countByTopic].sort((a, b) => b[1] - a[1]).slice(0, 3)
     .map(([name, count]) => name + ' ' + count + ' 条').join('，');
   const reportKey = 'report-' + edition.start;
   const layout = order.length
-    ? '<nav class="report-layout" aria-label="本期版面"><strong>本期版面</strong>' + order.map((name, i) =>
-      '<a href="' + escape(contentLink(reportKey + '-section-' + i)) + '">' +
-      escape(name) + ' <small>' + groups.get(name).length + ' 条</small></a>'
-    ).join('') + '</nav>'
+    ? '<nav class="report-layout" aria-label="本期版面"><h3 class="rubric">本期版面</h3><ol>' +
+      order.map((name, i) => '<li><a href="' + escape(contentLink(reportKey + '-section-' + i)) + '">' +
+        '<span class="report-number">' + String(i + 1).padStart(2, '0') + '</span><span>' + escape(name) +
+        '</span><small>' + groups.get(name).length + ' 条</small></a></li>').join('') + '</ol></nav>'
+    : '';
+  const picks = rest.length
+    ? '<section class="report-picks"><h3 class="rubric">本期看点</h3><ol>' +
+      rest.slice(0, 3).map((item, i) => '<li><a href="' + escape(contentLink(item.anchor)) + '">' +
+        '<span class="report-number">' + (i + 1) + '</span><span>' + escape(item.title) +
+        (item.source ? '<small>' + escape(item.source) + '</small>' : '') + '</span></a></li>').join('') +
+      '</ol></section>'
     : '';
   const body = order.map((name, i) =>
     '<section class="report-section" id="' + reportKey + '-section-' + i + '" tabindex="-1">' +
@@ -250,12 +282,15 @@ function reportPaper(list, edition, covered) {
   ).join('');
   return '<div class="report-group">' +
     '<header class="report-mast"><p>' + escape(range) + '</p><h2>' + (currentView === 'ai' ? 'AI ' : '运营商情报') + periodNames[period] + '</h2>' +
-    '<p>' + list.length + ' 条情报 · ' + sources.size + ' 个来源' +
-    (period === 'daily' ? '' : ' · 汇编自 ' + covered + ' 期日报') +
-    (incomplete ? ' · 本期仍在更新' : '') + '</p></header>' +
+    '</header><div class="report-stats"><span><b>' + list.length + '</b> 条情报</span>' +
+    '<span><b>' + sources.size + '</b> 个来源</span>' +
+    (period === 'daily' ? '' : '<span>汇编自 ' + covered + ' 期日报</span>') +
+    (incomplete ? '<span>本期仍在更新</span>' : '') + '</div>' +
+    '<div class="report-spotlight' + (picks || layout ? ' has-index' : '') + '">' +
+    '<div class="report-lead"><p class="rubric">本期头条</p>' + story(lead, true) +
     (topicSummary ? '<p class="report-intro"><strong>本期导读</strong> ' + escape(topicSummary) + '。</p>' : '') +
-    '<div class="report-lead"><p class="rubric">本期头条</p>' + story(lead) + '</div>' +
-    layout + '<details class="contents"' + (period === 'daily' && list.length <= 8 ? ' open' : '') +
+    '</div>' + (picks || layout ? '<aside class="report-index">' + picks + layout + '</aside>' : '') + '</div>' +
+    '<details class="contents"' + (period === 'daily' && list.length <= 8 ? ' open' : '') +
     '><summary>本期目录</summary>' + linkList(list) + '</details>' + body + '<footer class="report-end">本期完 · 资料来自运营商情报归档</footer></div>';
 }
 
@@ -475,6 +510,16 @@ function selectEdition(event) {
 }
 $('editionList').addEventListener('click', selectEdition);
 $('articles').addEventListener('click', selectEdition);
+$('articles').addEventListener('click', (event) => {
+  const trigger = event.target.closest('button[data-open-story]');
+  if (!trigger) return;
+  const article = $(trigger.dataset.openStory);
+  if (!article) return;
+  $('dialogStory').innerHTML = article.innerHTML;
+  $('dialogStory').querySelector('.open-story')?.remove();
+  $('storyDialog').showModal();
+});
+$('closeStory').addEventListener('click', () => $('storyDialog').close());
 $('articles').addEventListener('error', (event) => {
   const figure = event.target.closest?.('.story-image');
   if (figure) figure.hidden = true;
