@@ -49,8 +49,13 @@ async function run() {
   await new Promise((resolve) => setImmediate(resolve));
   const articles = element('articles');
   assert(articles.innerHTML.includes('昨天的芯片'));
-  assert(!articles.innerHTML.includes('历史算力'));
+  assert(articles.innerHTML.includes('历史算力'));
+  assert(articles.innerHTML.includes('data-day="2026-11-05" open'));
+  assert(articles.innerHTML.includes('data-day="2026-11-04">'));
   assert(!articles.innerHTML.includes('今日 AI 新闻'));
+  articles.listeners.toggle({target: {matches: () => true, dataset: {day: '2026-11-05'}, open: false}});
+  element('search').listeners.input();
+  assert(articles.innerHTML.includes('data-day="2026-11-05">'));
   assert(element('categoryTabs').innerHTML.includes('运营商 Token 与模型服务'));
   element('categoryTabs').listeners.click({
     target: { closest: () => ({ dataset: { category: '运营商算力与智算' } }) },
@@ -60,6 +65,8 @@ async function run() {
   location.hash = '#ai_news';
   await handlers.hashchange();
   assert(articles.innerHTML.includes('今日 AI 新闻'));
+  assert(articles.innerHTML.includes('timeline-time'));
+  assert(articles.innerHTML.includes('data-day="2026-11-04">'));
   assert(!articles.innerHTML.includes('昨天的芯片'));
 
   location.hash = '#ai';
