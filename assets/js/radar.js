@@ -6,7 +6,8 @@ const categories = [
   '运营商 AI 产品与应用', '政策、采购与招投标',
 ];
 const viewInfo = {
-  featured: ['精选', '聚焦运营商 AI 业务和产业动态', '本期情报'],
+  featured: ['运营商动态', '聚焦运营商 AI 业务和产业动态', '本期情报'],
+  ai_news: ['AI 行业动态', '关注通用 AI 模型、产品、开源与行业进展。', '本期 AI 动态'],
   operator: ['运营商简报', '跟踪模型服务、智算、应用落地与政策招采。', ''],
   ai: ['AI 简报', '关注通用 AI 模型、产品、开源与行业进展。', ''],
   sources: ['信息源', '运营商情报的采集渠道与最近采集异常。'],
@@ -45,6 +46,8 @@ let loadNotice = '';
 let legacyDisplay = {};
 let briefingDates = { operator: [], ai: [] };
 const isBriefing = (view = currentView) => view === 'operator' || view === 'ai';
+const isTimeline = (view = currentView) => view === 'featured' || view === 'ai_news';
+const expandedDays = { featured: new Map(), ai_news: new Map() };
 const briefingOf = (item) => item.briefing || (item.category === '其他 AI 行业新闻' ? 'ai' : 'operator');
 
 async function readJson(path) {
@@ -103,7 +106,8 @@ function records(days) {
   const urls = new Set();
   const titles = new Set();
   return days.flatMap((day) => day.items.flatMap((item, i) => {
-    if (isBriefing() && briefingOf(item) !== currentView) return [];
+    const section = currentView === 'featured' ? 'operator' : currentView === 'ai_news' ? 'ai' : currentView;
+    if (['operator', 'ai'].includes(section) && briefingOf(item) !== section) return [];
     const legacy = legacyDisplay[item.url] || {};
     return [{ ...item, title: legacy.title || item.title, image_url: item.image_url || legacy.image_url,
       archiveDate: day.date, anchor: 'story-' + day.date + '-' + i }];
@@ -136,10 +140,10 @@ function story(item, lead = false) {
     '<section class="section"><h4>' + escape(section.title || '详情') + '</h4><p>' + escape(section.content) + '</p></section>'
   ).join('');
   const tags = (item.tags || []).map((tag) => '<li>' + escape(tag) + '</li>').join('');
-  const facts = [item.source, currentView === 'featured' ? '' : formatTime(item.published_at),
+  const facts = [item.source, isTimeline() ? '' : formatTime(item.published_at),
     materialLabels[item.material_status]].filter(Boolean);
   const time = new Date(item.published_at || NaN);
-  const timestamp = currentView === 'featured'
+  const timestamp = isTimeline()
     ? '<time class="timeline-time" title="' + escape(formatTime(item.published_at)) + '">' +
       escape(Number.isNaN(+time) ? '—' : clockLabel.format(time)) + '</time>'
     : '';
@@ -311,6 +315,32 @@ function renderArchive(list) {
   }).join('');
 }
 
+function publicationDay(item) {
+  const time = Date.parse(item.published_at);
+  return Number.isNaN(time) ? item.archiveDate : dateKey(new Date(time + 8 * 3600000));
+}
+
+function renderTimeline(list) {
+  const groups = new Map();
+  for (const item of list) {
+    const day = publicationDay(item);
+    if (!groups.has(day)) groups.set(day, []);
+    groups.get(day).push(item);
+  }
+  return [...groups.keys()].sort().reverse().map((day, index) => {
+    const entries = groups.get(day);
+    const date = new Date(day + 'T00:00:00Z');
+    const dateText = new Intl.DateTimeFormat('zh-CN', {timeZone: 'UTC', month: 'long', day: 'numeric'}).format(date);
+    const weekday = new Intl.DateTimeFormat('zh-CN', {timeZone: 'UTC', weekday: 'long'}).format(date);
+    const open = expandedDays[currentView].get(day) ?? (index === 0);
+    return '<details class="timeline-day" data-day="' + escape(day) + '"' + (open ? ' open' : '') + '>' +
+      '<summary class="timeline-day-heading"><span class="timeline-day-date">' + escape(dateText) + '</span>' +
+      '<span class="timeline-day-arrow" aria-hidden="true"></span><span class="timeline-day-meta">' +
+      escape(weekday) + ' · ' + entries.length + ' 条</span></summary>' +
+      '<div class="story-list timeline">' + entries.map((item) => story(item)).join('') + '</div></details>';
+  }).join('');
+}
+
 function render() {
   const query = $('search').value.trim().toLowerCase();
   const source = $('source').value;
@@ -325,24 +355,20 @@ function render() {
 
   $('resultCount').textContent = list.length + ' 条';
   $('status').textContent = loadNotice || (list.length ? '' : '当前条件下没有情报。');
-  $('articles').innerHTML = list.length ? '<div class="story-list' +
-    (currentView === 'featured' ? ' timeline' : '') + '">' +
-    (isBriefing() ? renderArchive(list) : list.map((item) => story(item)).join('')) +
-    '</div>' : '';
-  if (currentView === 'featured' && loadedDays.length) {
-    $('listTitle').textContent = dayLabel.format(new Date(loadedDays[0].date + 'T00:00:00Z'));
-  }
+  $('articles').innerHTML = !list.length ? '' : isTimeline() ? renderTimeline(list) :
+    '<div class="story-list">' + renderArchive(list) + '</div>';
+  if (isTimeline()) $('listTitle').textContent = '';
   const highlights = $('featuredHighlights');
   highlights.hidden = currentView !== 'featured' || Boolean(query || source || activeCategory) || !list.length;
   if (!highlights.hidden) {
     highlights.innerHTML = '<header><h2>本期重点</h2><a href="#operator">查看简报</a></header>' +
-      linkList([...list].sort(byScore).slice(0, 3));
+      linkList(list.filter((item) => publicationDay(item) === [...list].map(publicationDay).sort().at(-1)).sort(byScore).slice(0, 3));
   }
 }
 
 function setFilters() {
   const names = Array.from(new Set(items.map((item) => item.category).filter(Boolean)));
-  const tabs = ['', ...(currentView === 'ai' ? names : [...categories, ...names.filter((name) => !categories.includes(name))])];
+  const tabs = ['', ...((currentView === 'ai' || currentView === 'ai_news') ? names : [...categories, ...names.filter((name) => !categories.includes(name))])];
   $('categoryTabs').innerHTML = tabs.map((name) =>
     '<button type="button" data-category="' + escape(name) + '" aria-pressed="' + (name === activeCategory) + '">' +
     escape(categoryLabels[categories.indexOf(name)] || name || '全部') + '</button>'
@@ -390,7 +416,7 @@ async function loadView() {
       $('status').textContent = '暂时没有已发布的日报。';
       return;
     }
-    let requested = [dates[0]];
+    let requested = isTimeline(view) ? briefingDates[view === 'featured' ? 'operator' : 'ai'] : [dates[0]];
     if (isBriefing(view)) {
       const edition = editions.find((entry) => entry.start === $('date').value);
       requested = edition?.days || briefingDates[view];
@@ -403,6 +429,7 @@ async function loadView() {
     const results = await Promise.allSettled(requested.map(getDay));
     if (version !== loadVersion) return;
     const days = results.filter((result) => result.status === 'fulfilled').map((result) => result.value);
+    if (!requested.length) { $('status').textContent = '暂时没有已发布的情报。'; return; }
     if (!days.length) throw new Error('No readable issues');
     loadedDays = days;
     const latest = days[0];
@@ -410,9 +437,6 @@ async function loadView() {
       ? days.length + ' 期日报'
       : '发布于 ' + formatTime(latest.updated_at);
     items = records(days);
-    if (isBriefing(view) && period !== 'daily') {
-      items = items.sort(byScore).slice(0, period === 'weekly' ? 20 : 30);
-    }
     if (activeCategory && !categories.includes(activeCategory) && !items.some((item) => item.category === activeCategory)) {
       activeCategory = '';
     }
@@ -430,6 +454,8 @@ function scrollToArticle() {
   const anchor = location.hash.split('/').pop();
   const article = /^(story|report)-/.test(anchor) && $(anchor);
   if (article) {
+    const group = article.closest('details.timeline-day');
+    if (group) group.open = true;
     article.focus({ preventScroll: true });
     article.scrollIntoView({ block: 'start' });
   }
@@ -473,7 +499,7 @@ function navigate() {
   }
   $('search').value = '';
   $('source').value = '';
-  $('sort').value = next === 'featured' ? 'date' : 'score';
+  $('sort').value = isTimeline(next) ? 'date' : 'score';
   activeCategory = '';
   items = [];
   setFilters();
@@ -510,6 +536,10 @@ function selectEdition(event) {
 }
 $('editionList').addEventListener('click', selectEdition);
 $('articles').addEventListener('click', selectEdition);
+$('articles').addEventListener('toggle', (event) => {
+  const group = event.target;
+  if (isTimeline() && group.matches('details.timeline-day')) expandedDays[currentView].set(group.dataset.day, group.open);
+}, true);
 $('articles').addEventListener('click', (event) => {
   const trigger = event.target.closest('button[data-open-story]');
   if (!trigger) return;

@@ -78,6 +78,18 @@
     "enabled": true
   },
   {
+    "name": "中国电信股份有限公司最新更新（官方 RSS）",
+    "method": "RSS",
+    "category": "运营商官方动态",
+    "enabled": true
+  },
+  {
+    "name": "C114 通信网滚动新闻（RSSHub）",
+    "method": "RSS",
+    "category": "通信行业新闻·第三方转换",
+    "enabled": false
+  },
+  {
     "name": "BerriAI/litellm",
     "method": "GitHub Releases",
     "category": "开源",
@@ -168,7 +180,7 @@
     "enabled": true
   },
   {
-    "name": "site:chinaunicom.com.cn 算力 人工智能",
+    "name": "site:chinaunicom.com 算力 人工智能",
     "method": "Google News 搜索发现",
     "category": "综合",
     "enabled": true

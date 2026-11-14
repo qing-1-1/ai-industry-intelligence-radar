@@ -78,6 +78,14 @@ summary { font-size: 12px; color: var(--accent); font-weight: 650; }
 .tags li { padding: 3px 6px; border-radius: 4px; color: var(--muted); background: var(--tint); font-size: 11px; overflow-wrap: anywhere; }
 .original { display: inline-flex; align-items: center; gap: 2px; margin-top: 8px; }
 .original .icon { width: 13px; height: 13px; }
+.timeline-day { margin: 22px 0 0; }
+.timeline-day-heading { display: flex; align-items: baseline; gap: 15px; padding: 2px 0 12px; color: var(--ink); cursor: pointer; list-style: none; }
+.timeline-day-heading::-webkit-details-marker { display: none; }
+.timeline-day-date { font-size: 20px; font-weight: 700; letter-spacing: -.02em; }
+.timeline-day-arrow { width: 7px; height: 7px; align-self: center; border-right: 1.5px solid var(--muted); border-bottom: 1.5px solid var(--muted); transform: rotate(-45deg); transition: transform .15s ease; }
+.timeline-day[open] > .timeline-day-heading .timeline-day-arrow { transform: rotate(45deg); }
+.timeline-day-meta { color: var(--muted); font-size: 12px; font-weight: 400; }
+.timeline-day-heading:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
 .timeline { position: relative; padding-left: 68px; }
 .timeline::before { content: ""; position: absolute; inset: 17px auto 0 54px; border-left: 1px solid var(--rule); }
 .timeline .story { position: relative; margin-bottom: 8px; border: 1px solid var(--rule); border-radius: var(--radius); background: var(--paper); }
@@ -137,15 +145,17 @@ summary { font-size: 12px; color: var(--accent); font-weight: 650; }
 .report-section > h3 { margin: 0; padding-bottom: 9px; border-bottom: 1px solid var(--rule); font-size: 21px; }
 .report-section > h3 span { margin-right: 10px; color: var(--accent); font-variant-numeric: tabular-nums; }
 .report-columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: stretch; }
-.report-columns .story { height: 278px; overflow: hidden; display: flex; flex-direction: column; align-items: flex-start; width: 100%; padding: 16px 25px 19px 0; border-bottom: 1px solid var(--rule); }
+.report-columns .story { display: flex; flex-direction: column; align-items: flex-start; width: 100%; padding: 16px 25px 19px 0; border-bottom: 1px solid var(--rule); }
 .report-columns .story:nth-child(even) { padding-inline: 25px 0; border-left: 1px solid #cbd6cc; }
 
 .report-columns .story h3 { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
 .report-columns .meta { max-height: 3.2em; overflow: hidden; }
-.report-columns .story-body { width: 100%; min-height: 0; max-height: 7em; overflow: hidden; margin-bottom: 7px; }
-.report-columns .story-copy { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden; }
+.report-columns .story-body { display: flex; align-items: flex-start; gap: 10px; width: 100%; min-height: 0; max-height: 7em; overflow: hidden; margin-bottom: 7px; }
+.report-columns .story-copy { flex: 1; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden; }
 .report-columns .section { margin-top: 0; }
-.report-columns .section h4, .report-columns .tags, .report-columns .story-image { display: none; }
+.report-columns .section h4, .report-columns .tags { display: none; }
+.report-columns .story-image { flex: 0 0 64px; width: 64px; margin: 0; }
+.report-columns .story-image img { width: 64px; height: 64px; object-fit: cover; }
 .open-story { border: 0; padding: 3px 0; background: transparent; color: var(--accent); font-size: 12px; text-align: left; }
 .open-story:hover { text-decoration: underline; }
 .story-dialog { width: min(720px, calc(100% - 32px)); max-height: min(80vh, 850px); padding: 22px; border: 1px solid var(--rule); border-radius: 10px; background: var(--paper); color: var(--ink); }
@@ -184,6 +194,9 @@ summary { font-size: 12px; color: var(--accent); font-weight: 650; }
   .page-head { align-items: flex-start; flex-direction: column; gap: 6px; margin-bottom: 12px; }
   .toolbar .filters { justify-content: flex-start; }
   .search { max-width: none; }
+  .timeline-day { margin-top: 17px; }
+  .timeline-day-heading { gap: 11px; padding-bottom: 10px; }
+  .timeline-day-date { font-size: 18px; }
   .timeline { padding-left: 41px; }
   .timeline::before { left: 34px; }
   .timeline-time { right: calc(100% + 12px); font-size: 9px; }
