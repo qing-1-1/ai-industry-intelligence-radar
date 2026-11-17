@@ -26,6 +26,7 @@ const days = {
   '2026-11-04': day('2026-11-04', '历史算力', 'https://example.com/2', 9),
   '2026-11-01': day('2026-11-01', '较旧情报', 'https://example.com/3', 10),
 };
+days['2026-11-01'].items.push({ title: '历史网关新闻', url: 'https://example.com/router', published_at: '2026-11-01T06:00:00+08:00', category: '模型路由与 AI 网关', briefing: 'operator', score: 8, summary: '模型网关' });
 days['2026-11-05'].items.push({ title: '今日 AI 新闻', url: 'https://example.com/today-ai', published_at: '2026-11-05T06:00:00+08:00', category: '其他 AI 行业新闻', score: 8, summary: 'AI 动态' });
 days['2026-11-04'].items.push({
   title: 'English AI title', url: 'https://example.com/ai', published_at: '2026-11-04T06:00:00+08:00',
@@ -35,7 +36,7 @@ days['2026-11-04'].items[0].sections = [{ title: '关键数据', content: '安�
 days['2026-11-04'].items[0].tags = ['测试标签'];
 const fetch = async (url) => ({
   ok: true,
-  json: async () => url.endsWith('index.json') ? { dates: Object.keys(days) } :
+  json: async () => url.endsWith('index.json') ? { dates: Object.keys(days), briefings: { operator: Object.keys(days), ai: ['2026-11-05', '2026-11-04'] } } :
     url.endsWith('sources.json') ? [source] :
     url.endsWith('legacy-display.json') ? {'https://example.com/ai': {title: '中文 AI 标题', image_url: 'https://example.com/ai.png'}} : days[url.match(/(\d{4}-\d{2}-\d{2})\.json/)[1]],
 });
@@ -53,6 +54,8 @@ async function run() {
   assert(articles.innerHTML.includes('data-day="2026-11-05" open'));
   assert(articles.innerHTML.includes('data-day="2026-11-04">'));
   assert(!articles.innerHTML.includes('今日 AI 新闻'));
+  assert(!articles.innerHTML.includes('历史网关新闻'));
+  assert(!element('categoryTabs').innerHTML.includes('路由与网关'));
   articles.listeners.toggle({target: {matches: () => true, dataset: {day: '2026-11-05'}, open: false}});
   element('search').listeners.input();
   assert(articles.innerHTML.includes('data-day="2026-11-05">'));
@@ -66,6 +69,7 @@ async function run() {
   await handlers.hashchange();
   assert(articles.innerHTML.includes('今日 AI 新闻'));
   assert(articles.innerHTML.includes('timeline-time'));
+  assert(articles.innerHTML.includes('历史网关新闻'));
   assert(articles.innerHTML.includes('data-day="2026-11-04">'));
   assert(!articles.innerHTML.includes('昨天的芯片'));
 
@@ -81,6 +85,10 @@ async function run() {
   await element('reportTabs').listeners.click({target: {closest: () => ({dataset: {period: 'weekly'}})}});
   assert(articles.innerHTML.includes('AI 周报'));
   assert(!articles.innerHTML.includes('历史算力'));
+
+  element('date').value = '2026-11-01';
+  await element('date').listeners.change();
+  assert(articles.innerHTML.includes('历史网关新闻'));
 
   location.hash = '#operator';
   await handlers.hashchange();

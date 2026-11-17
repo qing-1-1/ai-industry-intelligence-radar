@@ -2,7 +2,7 @@
 
 const $ = (id) => document.getElementById(id);
 const categories = [
-  '运营商 Token 与模型服务', '运营商算力与智算', '模型路由与 AI 网关',
+  '运营商 Token 与模型服务', '运营商算力与智算',
   '运营商 AI 产品与应用', '政策、采购与招投标',
 ];
 const viewInfo = {
@@ -18,7 +18,7 @@ const materialLabels = {
 };
 const periodNames = { daily: '日报', weekly: '周报', monthly: '月报' };
 const beijingDate = () => dateKey(new Date(Date.now() + 8 * 3600000));
-const categoryLabels = ['Token 与模型', '算力与智算', '路由与网关', 'AI 应用', '政策招采'];
+const categoryLabels = ['Token 与模型', '算力与智算', 'AI 应用', '政策招采'];
 const dayLabel = new Intl.DateTimeFormat('zh-CN', {
   timeZone: 'UTC', month: 'long', day: 'numeric', weekday: 'short',
 });
@@ -48,7 +48,8 @@ let briefingDates = { operator: [], ai: [] };
 const isBriefing = (view = currentView) => view === 'operator' || view === 'ai';
 const isTimeline = (view = currentView) => view === 'featured' || view === 'ai_news';
 const expandedDays = { featured: new Map(), ai_news: new Map() };
-const briefingOf = (item) => item.briefing || (item.category === '其他 AI 行业新闻' ? 'ai' : 'operator');
+const briefingOf = (item) => ['其他 AI 行业新闻', '模型路由与 AI 网关'].includes(item.category)
+  ? 'ai' : (item.briefing || 'operator');
 
 async function readJson(path) {
   const response = await fetch(path);
@@ -564,17 +565,15 @@ async function init() {
     $('status').textContent = '日报索引读取失败，请刷新页面重试。';
     return;
   }
-  const missingIndex = !index.briefings;
+  // Reclassify old archives too: their saved index predates changes to section rules.
   const [supplements, loaded] = await Promise.all([
     readJson('assets/data/legacy-display.json').catch(() => ({})),
-    missingIndex ? Promise.allSettled(dates.map(getDay)) : [],
+    Promise.allSettled(dates.map(getDay)),
   ]);
   legacyDisplay = supplements;
   for (const view of ['operator', 'ai']) {
-    briefingDates[view] = missingIndex
-      ? loaded.filter((entry) => entry.status === 'fulfilled' &&
-          entry.value.items.some((item) => briefingOf(item) === view)).map((entry) => entry.value.date)
-      : dates.filter((date) => index.briefings[view]?.includes(date));
+    briefingDates[view] = loaded.filter((entry) => entry.status === 'fulfilled' &&
+      entry.value.items.some((item) => briefingOf(item) === view)).map((entry) => entry.value.date);
   }
   window.addEventListener('hashchange', navigate);
   return navigate();

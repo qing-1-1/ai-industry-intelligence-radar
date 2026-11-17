@@ -20,7 +20,7 @@ def export_radar(config, items, collected, report, directory=Path('docs/radar-da
         profile = processing.classification.profile
         records.append({'title': item.metadata.get('title_zh') or (artifact.title if artifact else item.title),
             'original_title': item.title, 'image_url': item.metadata.get('image_url'), 'url': str(item.url),
-            'briefing': 'ai' if profile == 'radar-industry' else 'operator',
+            'briefing': 'ai' if profile in {'radar-industry', 'radar-router'} else 'operator',
             'source': item.metadata.get('feed_name') or item.metadata.get('source_name') or item.metadata.get('repo') or item.author or item.source_type.value,
             'published_at': item.published_at.isoformat(), 'fetched_at': item.fetched_at.isoformat(),
             'category': LABELS.get(processing.classification.profile, processing.classification.profile),
@@ -47,8 +47,8 @@ def export_radar(config, items, collected, report, directory=Path('docs/radar-da
             day = data if path.stem == data['date'] else json.loads(path.read_text(encoding='utf-8'))
         except (OSError, json.JSONDecodeError):
             continue
-        sections = {item.get('briefing') or ('ai' if item.get('category') == LABELS['radar-industry'] else 'operator')
-                    for item in day.get('items', [])}
+        sections = {'ai' if item.get('category') in (LABELS['radar-industry'], LABELS['radar-router'])
+                    else (item.get('briefing') or 'operator') for item in day.get('items', [])}
         for name in briefings.keys() & sections:
             briefings[name].append(path.stem)
     (directory/'index.json').write_text(json.dumps({'dates': [path.stem for path in paths], 'briefings': briefings}, ensure_ascii=False), encoding='utf-8')

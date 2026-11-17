@@ -14,19 +14,22 @@ def test_radar_exports_real_items_and_preserves_archive(tmp_path):
         processing=ProcessingResult(classification=ClassificationResult(profile='radar-router', method='source_override'),
             analysis=ContentAnalysis(score=8, reason='relevant', summary='fallback', tags=['Gateway']),
             artifacts={'zh': ContentArtifact(language='zh', title='模型网关', blocks=[ContentBlock(id='summary', title='摘要', content='实际摘要', primary=True), ContentBlock(id='details', title='关键数据', content='实际数字')])}))
-    (tmp_path / '2025-12-31.json').write_text('{}', encoding='utf-8')
+    (tmp_path / '2025-12-31.json').write_text(json.dumps({'items': [{'category': '模型路由与 AI 网关', 'briefing': 'operator'}]}, ensure_ascii=False), encoding='utf-8')
     report = SimpleNamespace(outcomes=[SimpleNamespace(source_name='GDELT', error='timeout')])
     data = export_radar(config, [item], 5, report, tmp_path)
     assert data['collected'] == 5 and data['selected'] == 1
     assert data['items'][0]['category'] == '模型路由与 AI 网关'
     assert data['items'][0]['summary'] == '实际摘要'
-    assert data['items'][0]['briefing'] == 'operator'
+    assert data['items'][0]['briefing'] == 'ai'
     assert data['items'][0]['image_url'] == 'https://example.com/news.png'
     assert data['items'][0]['original_title'] == 'Original'
     assert data['items'][0]['sections'] == [{'title': '摘要', 'content': '实际摘要'}, {'title': '关键数据', 'content': '实际数字'}]
     assert data['items'][0]['fetched_at'] == moment.isoformat()
     assert data['failures'][0]['source'] == 'GDELT'
-    assert '2025-12-31' in json.loads((tmp_path / 'index.json').read_text(encoding='utf-8'))['dates']
+    index = json.loads((tmp_path / 'index.json').read_text(encoding='utf-8'))
+    assert '2025-12-31' in index['dates']
+    assert '2025-12-31' in index['briefings']['ai']
+    assert '2025-12-31' not in index['briefings']['operator']
     assert (tmp_path / '2025-12-31.json').exists()
 
 
