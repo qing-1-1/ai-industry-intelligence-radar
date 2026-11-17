@@ -533,7 +533,19 @@
           "radar-industry"
         ]
       }
-    ]
+    ],
+    "muse": {
+      "enabled": true,
+      "path": "data/muse/news.json",
+      "profile": [
+        "radar-token",
+        "radar-compute",
+        "radar-router",
+        "radar-platform",
+        "radar-policy",
+        "radar-industry"
+      ]
+    }
   },
   "collection": {
     "time_window_hours": 25,

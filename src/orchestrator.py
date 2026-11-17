@@ -30,6 +30,7 @@ from .scrapers.ossinsight import OSSInsightScraper
 from .scrapers.gdelt import GDELTScraper
 from .scrapers.google_news import GoogleNewsScraper
 from .scrapers.hot_boards import HotBoardScraper
+from .scrapers.muse import MuseScraper
 from .ai.client import AIClient, create_ai_client
 from .ai.errors import AIProviderUnavailableError
 from .ai.analyzer import ContentAnalyzer
@@ -539,6 +540,9 @@ class HorizonOrchestrator:
             for board in self.config.sources.hot_boards:
                 if board.enabled:
                     tasks.append(self._fetch_with_progress(board.name, HotBoardScraper(board, client), since))
+
+            if self.config.sources.muse and self.config.sources.muse.enabled:
+                tasks.append(self._fetch_with_progress("Muse 运营商新闻", MuseScraper(self.config.sources.muse, client), since))
 
             # Fetch all concurrently
             outcomes = await asyncio.gather(*tasks)

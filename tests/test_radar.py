@@ -98,3 +98,20 @@ def test_model_fallback_reaches_later_candidates(monkeypatch):
     config = Config.model_validate(json.loads(open('data/config.radar.json', encoding='utf-8').read()))
     assert asyncio.run(module.create_ai_client(config.ai).complete('system', 'user')) == 'ok'
     assert calls == ['sensenova-6.8-flash', 'deepseek-flash', 'deepseek-v4-flash', 'glm-5.3', 'glm-5.2', 'kimi-k3']
+
+
+def test_repeated_same_day_export_preserves_existing_and_replaces_duplicates(tmp_path):
+    from zoneinfo import ZoneInfo
+    from pathlib import Path
+    today = datetime.now(ZoneInfo("Asia/Shanghai")).date().isoformat()
+    old = [{"title": "历史内容", "url": "https://example.com/old", "briefing": "operator"},
+           {"title": "旧标题", "url": "https://example.com/a?utm_source=x", "briefing": "operator"}]
+    (tmp_path / (today + ".json")).write_text(json.dumps({"items": old}, ensure_ascii=False), encoding="utf-8")
+    now = datetime.now(timezone.utc)
+    item = ContentItem(id="rss:test:new", source_type="rss", title="新标题", url="https://example.com/a", published_at=now,
+        processing=ProcessingResult(classification=ClassificationResult(profile="radar-token", method="source_override"),
+            analysis=ContentAnalysis(score=8, reason="相关", summary="摘要")))
+    config = Config.model_validate_json(Path("data/config.radar.json").read_text(encoding="utf-8"))
+    data = export_radar(config, [item], 1, None, tmp_path)
+    assert [r["title"] for r in data["items"]] == ["新标题", "历史内容"]
+    assert data["selected"] == 2

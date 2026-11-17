@@ -1,5 +1,8 @@
 name: Radar daily
 on:
+  push:
+    branches: [main]
+    paths: ['data/muse/news.json']
   schedule:
     - cron: '17 0 * * *' # 08:17 Asia/Shanghai; avoids peak on the hour
   workflow_dispatch:

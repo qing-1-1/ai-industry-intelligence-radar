@@ -507,11 +507,19 @@ class HotBoardConfig(BaseModel):
     profile: ProfileRoute = None
 
 
+class MuseSourceConfig(BaseModel):
+    """News supplied as structured data by an external agent."""
+    enabled: bool = False
+    path: str = "data/muse/news.json"
+    profile: ProfileRoute = None
+
+
 class SourcesConfig(BaseModel):
     """All sources configuration."""
 
     github: List[GitHubSourceConfig] = Field(default_factory=list)
     hot_boards: List[HotBoardConfig] = Field(default_factory=list)
+    muse: Optional[MuseSourceConfig] = None
     hackernews: HackerNewsConfig = Field(default_factory=HackerNewsConfig)
     rss: List[RSSSourceConfig] = Field(default_factory=list)
     reddit: RedditConfig = Field(default_factory=RedditConfig)
