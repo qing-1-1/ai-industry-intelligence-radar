@@ -102,6 +102,12 @@
     "enabled": true
   },
   {
+    "name": "Muse 运营商新闻",
+    "method": "外部智能体导入",
+    "category": "运营商动态",
+    "enabled": true
+  },
+  {
     "name": "知乎热榜（官方 API）",
     "method": "热榜发现",
     "category": "热榜",
