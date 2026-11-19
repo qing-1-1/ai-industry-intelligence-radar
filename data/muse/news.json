@@ -1,12 +1,39 @@
 {
   "items": [
     {
-      "image_url": "https://hbappstc.hebrb.cn/assets/20261116/1794784310870_6afa3c363f35af4af1d5d250.jpeg",
-      "published_at": "2026-11-16T07:57:00+08:00",
-      "source": "河北日报客户端",
-      "summary": "中国电信智慧云基地张北园区二期工程冲刺交付：3.9万平方米数据中心楼今年年底完成一半区域交付、达到服务器上架标准，剩余区域明年2月底交付；二期整体交付后3000多个标准机柜将为北京互联网企业的人工智能、数据应用等算力需求提供支撑。园区全部建成后IT容量将达218兆瓦，绿电占比超80%，数据中心PUE预计低于1.2。",
-      "title": "冲刺四季度一线见闻丨倒排工期，建设算力“超级大脑”",
-      "url": "https://heb.hebccw.cn/system/2026/11/16/102243553.shtml"
+      "published_at": "2026-11-16T17:51:00+08:00",
+      "source": "运营商财经网",
+      "summary": "联通数智申报的《基于自主规划智能体的中国联通AI原生客服重构实践》在2026 OSCAR开源产业大会上获中国信通院2026 OSCAR“人工智能+软件”尖峰实践——智能化软件产品奖。联通数智“自主规划智能体”以大模型自主规划替代人工硬编码流程，通过统一调度中枢实现复杂诉求一站式闭环，并以“文档即技能”模式让客服运营人员用自然语言业务说明文档即可上线新服务；上线后回复准确率稳定在96%以上，较原系统提升14个百分点，上线周期从数周缩短至1天，已支撑中国联通AI原生客服在全国31省落地应用。",
+      "title": "入选OSCAR尖峰实践！联通数智自主规划智能体创出“智能客服”新解法",
+      "url": "https://finance.sina.com.cn/tech/roll/2026-11-16/doc-iniyxpwz2382379.shtml"
+    },
+    {
+      "published_at": "2026-11-17T23:29:31+08:00",
+      "source": "新浪财经",
+      "summary": "工业和信息化部复函同意北京、河北、上海、江苏、浙江、安徽、湖北、广东8个省（市）开展6G创新发展部省协同试点工作，试点实施期限原则上为3年。复函明确，试点省市在实施6G相关项目过程中，涉及6G商业应用的企业须依规取得电信业务经营许可，未获许可前不得开展商业化应用场景探索；试点将围绕新型终端、关键器件、操作系统、卫星互联网等产业，面向沉浸式通信、工业制造、具身智能、低空经济、智慧海洋等场景探索6G应用。",
+      "title": "河北等8省（市）入选！工信部公布6G创新发展部省协同试点名单",
+      "url": "https://finance.sina.cn/2026-11-17/detail-inizaitx2074517.d.html"
+    },
+    {
+      "published_at": "2026-11-18T14:30:00+08:00",
+      "source": "驱动中国",
+      "summary": "全国首个基于华为昇腾950DT芯片的词元出海算力集群11月13日在广东汕头启用，汕头市人民政府门户网站11月16日公布。集群由中国电信汕头分公司、广东天亿马和华为联合建设：中国电信提供网络通信资源和机房基础设施，华为提供算力设备，天亿马负责投资建设与市场化运营；依托中国电信汕头国际海缆登陆站提供跨境网络连接，在本地完成AI模型推理和词元生成后经国际海缆向东南亚等海外市场交付智能服务。昇腾950DT采用第三代达芬奇架构，配备144GB显存，单卡FP8算力达1P。当地词元出海业务日均调用量已从今年4月的约1亿增长至1000亿。",
+      "title": "全国首个昇腾950DT词元出海算力集群启用",
+      "url": "https://app.qudong.com/article/530010.html"
+    },
+    {
+      "published_at": "2026-11-18T14:36:00+08:00",
+      "source": "Blockchain.News",
+      "summary": "中国电信旗下星辰AGI实验室发布星辰Xing4系列大模型技术报告，11月17日发表于arXiv（2611.22115）。该系列延续TeleChat路线，旗舰285B-A17B模型与开源29B-A4B模型全程在8192张昇腾910C芯片上、使用昇思MindSpore HyperParallel框架训练，不依赖GPU与CUDA；结合多头潜在注意力、DeepSeek稀疏注意力、IndexShare与DSpark推测解码，支持256K至1M上下文，并引入TeleGym智能体统一执行平台用于推理与智能体后训练。",
+      "title": "Xing 4: Advancing Large Language Models on Domestic Ascend Chips",
+      "url": "https://blockchain.news/news/xing-4-advancing-large-language-models-ascend-chips"
+    },
+    {
+      "published_at": "2026-11-18T17:05:27+08:00",
+      "source": "The Register",
+      "summary": "中国电信与中兴通讯联合部署Super Agent Crew自进化无线网络运维智能体系统，已在陕西和上海现网运行，服务超过500万用户。系统以中兴网络大模型为底座，由网络优化、故障处理、能效管理等多个专业智能体协同工作，操作人员用自然语言下达目标后由智能体自动执行，全部自主操作须经人工批准且全程可追溯；陕西侧重网络优化与节能，上海侧重差异化业务保障，包括上海迪士尼等高流量场景。",
+      "title": "China Telecom and ZTE Deploy Super Agent Crew, a Self-Evolving AI System for Wireless Network Operations",
+      "url": "https://www.theregister.com/networks/2026/11/18/partner-content/5310694"
     }
   ]
 }
