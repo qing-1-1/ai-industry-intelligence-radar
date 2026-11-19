@@ -37,7 +37,9 @@ class MuseScraper(BaseScraper):
                 moment = datetime.fromisoformat(published.strip().replace("Z", "+00:00"))
                 if moment.tzinfo is None or not re.search(r"T\d{2}:\d{2}", published):
                     raise ValueError("published_at must include time and timezone")
-                if moment < since or moment > datetime.now(timezone.utc):
+                # Muse submits a curated file; process every valid entry regardless
+                # of the rolling time window used by other live sources.
+                if moment > datetime.now(timezone.utc):
                     continue
                 summary = row.get("summary", "")
                 if not isinstance(summary, str):
