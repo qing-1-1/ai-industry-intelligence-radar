@@ -1,0 +1,677 @@
+{
+  "date": "2026-11-23",
+  "updated_at": "2026-11-23T15:50:06.270111+08:00",
+  "collected": 28,
+  "selected": 12,
+  "sources": [
+    {
+      "name": "NVIDIA Blog",
+      "method": "RSS",
+      "category": "AI 基础设施",
+      "enabled": true
+    },
+    {
+      "name": "AWS Machine Learning",
+      "method": "RSS",
+      "category": "云与推理",
+      "enabled": true
+    },
+    {
+      "name": "Google Cloud AI",
+      "method": "RSS",
+      "category": "云与 AI",
+      "enabled": true
+    },
+    {
+      "name": "vLLM Blog",
+      "method": "RSS",
+      "category": "推理",
+      "enabled": true
+    },
+    {
+      "name": "Portkey Blog",
+      "method": "RSS",
+      "category": "模型网关",
+      "enabled": true
+    },
+    {
+      "name": "量子位",
+      "method": "RSS",
+      "category": "AI 行业",
+      "enabled": true
+    },
+    {
+      "name": "极客公园",
+      "method": "RSS",
+      "category": "AI 行业",
+      "enabled": true
+    },
+    {
+      "name": "InfoQ 中文",
+      "method": "RSS",
+      "category": "国内技术媒体",
+      "enabled": true
+    },
+    {
+      "name": "NVIDIA CUDA 技术博客",
+      "method": "RSS",
+      "category": "海外 AI 算力技术",
+      "enabled": true
+    },
+    {
+      "name": "中国移动招采（第三方糖果梦聚合）",
+      "method": "RSS",
+      "category": "运营商采购公告·第三方聚合",
+      "enabled": false
+    },
+    {
+      "name": "中国电信招采（第三方糖果梦聚合）",
+      "method": "RSS",
+      "category": "运营商采购公告·第三方聚合",
+      "enabled": true
+    },
+    {
+      "name": "中国联通招采（第三方糖果梦聚合）",
+      "method": "RSS",
+      "category": "运营商采购公告·第三方聚合",
+      "enabled": true
+    },
+    {
+      "name": "少数派",
+      "method": "RSS",
+      "category": "国内科技媒体",
+      "enabled": true
+    },
+    {
+      "name": "中国电信股份有限公司最新更新（官方 RSS）",
+      "method": "RSS",
+      "category": "运营商官方动态",
+      "enabled": true
+    },
+    {
+      "name": "C114 通信网滚动新闻（RSSHub）",
+      "method": "RSS",
+      "category": "通信行业新闻·第三方转换",
+      "enabled": false
+    },
+    {
+      "name": "BerriAI/litellm",
+      "method": "GitHub Releases",
+      "category": "开源",
+      "enabled": true
+    },
+    {
+      "name": "vllm-project/vllm",
+      "method": "GitHub Releases",
+      "category": "开源",
+      "enabled": true
+    },
+    {
+      "name": "知乎热榜（官方 API）",
+      "method": "热榜发现",
+      "category": "热榜",
+      "enabled": true
+    },
+    {
+      "name": "今日热榜 · 澎湃",
+      "method": "热榜发现",
+      "category": "热榜",
+      "enabled": true
+    },
+    {
+      "name": "今日热榜 · 36氪",
+      "method": "热榜发现",
+      "category": "热榜",
+      "enabled": true
+    },
+    {
+      "name": "今日热榜 · 虎嗅",
+      "method": "热榜发现",
+      "category": "热榜",
+      "enabled": true
+    },
+    {
+      "name": "中国移动 Token 模型 API 服务",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "中国电信 TokenHub 模型 推理",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "中国联通 Token 大模型 服务",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "运营商 智算 算力租赁",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "运营商 AI 智能体 政企 云",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "运营商 AI 网关 多模型 路由",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "GPU 智算中心 招标 中标",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "工信部 运营商 人工智能 算力 政策",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "site:chinatelecom.com.cn 星辰 算力 人工智能",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "site:chinaunicom.com 算力 人工智能",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "site:chinamobileltd.com AI 算力 网络",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "site:36kr.com 运营商 算力 大模型",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "site:jiqizhixin.com 运营商 算力 模型",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "site:c114.com.cn 运营商 算力 人工智能",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "telecom AI model gateway inference cloud",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "AI 大模型 发布 推理 开源",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "AI model release open weights inference",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "telecom \"artificial intelligence\"",
+      "method": "GDELT 搜索发现",
+      "category": "综合",
+      "enabled": true
+    }
+  ],
+  "failures": [
+    {
+      "source": "RSS Feeds",
+      "error": "中国电信招采（第三方糖果梦聚合）: HTTPStatusError: Client error '404 Not Found' for url 'https://tgmeng.com/bidding/ctcc-sunshine/rss.xml'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404; 中国联通招采（第三方糖果梦聚合）: HTTPStatusError: Client error '404 Not Found' for url 'https://tgmeng.com/bidding/cucc-cuecp/rss.xml'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+    },
+    {
+      "source": "GDELT",
+      "error": "articles: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://api.gdeltproject.org/api/v2/doc/doc?query=telecom+%22artificial+intelligence%22&mode=ArtList&format=json&maxrecords=250&sort=datedesc&startdatetime=20261122064039&enddatetime=20261123074039'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429"
+    },
+    {
+      "source": "Google News: 中国移动 Token 模型 API 服务",
+      "error": "search: HTTPStatusError: Server error '503 Service Unavailable' for url 'https://news.google.com/rss/search?q=%E4%B8%AD%E5%9B%BD%E7%A7%BB%E5%8A%A8+Token+%E6%A8%A1%E5%9E%8B+API+%E6%9C%8D%E5%8A%A1+when%3A26h&hl=zh-CN&gl=CN&ceid=CN%3Azh-Hans'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503"
+    },
+    {
+      "source": "Google News: 中国电信 TokenHub 模型 推理",
+      "error": "search: HTTPStatusError: Server error '503 Service Unavailable' for url 'https://news.google.com/rss/search?q=%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1+TokenHub+%E6%A8%A1%E5%9E%8B+%E6%8E%A8%E7%90%86+when%3A26h&hl=zh-CN&gl=CN&ceid=CN%3Azh-Hans'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503"
+    },
+    {
+      "source": "Google News: 中国联通 Token 大模型 服务",
+      "error": "search: HTTPStatusError: Server error '503 Service Unavailable' for url 'https://news.google.com/rss/search?q=%E4%B8%AD%E5%9B%BD%E8%81%94%E9%80%9A+Token+%E5%A4%A7%E6%A8%A1%E5%9E%8B+%E6%9C%8D%E5%8A%A1+when%3A26h&hl=zh-CN&gl=CN&ceid=CN%3Azh-Hans'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503"
+    },
+    {
+      "source": "Google News: 运营商 智算 算力租赁",
+      "error": "search: HTTPStatusError: Server error '503 Service Unavailable' for url 'https://news.google.com/rss/search?q=%E8%BF%90%E8%90%A5%E5%95%86+%E6%99%BA%E7%AE%97+%E7%AE%97%E5%8A%9B%E7%A7%9F%E8%B5%81+when%3A26h&hl=zh-CN&gl=CN&ceid=CN%3Azh-Hans'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503"
+    },
+    {
+      "source": "Google News: 运营商 AI 智能体 政企 云",
+      "error": "search: HTTPStatusError: Server error '503 Service Unavailable' for url 'https://news.google.com/rss/search?q=%E8%BF%90%E8%90%A5%E5%95%86+AI+%E6%99%BA%E8%83%BD%E4%BD%93+%E6%94%BF%E4%BC%81+%E4%BA%91+when%3A26h&hl=zh-CN&gl=CN&ceid=CN%3Azh-Hans'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503"
+    },
+    {
+      "source": "Google News: 运营商 AI 网关 多模型 路由",
+      "error": "search: HTTPStatusError: Server error '503 Service Unavailable' for url 'https://news.google.com/rss/search?q=%E8%BF%90%E8%90%A5%E5%95%86+AI+%E7%BD%91%E5%85%B3+%E5%A4%9A%E6%A8%A1%E5%9E%8B+%E8%B7%AF%E7%94%B1+when%3A26h&hl=zh-CN&gl=CN&ceid=CN%3Azh-Hans'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503"
+    },
+    {
+      "source": "Google News: GPU 智算中心 招标 中标",
+      "error": "search: HTTPStatusError: Server error '503 Service Unavailable' for url 'https://news.google.com/rss/search?q=GPU+%E6%99%BA%E7%AE%97%E4%B8%AD%E5%BF%83+%E6%8B%9B%E6%A0%87+%E4%B8%AD%E6%A0%87+when%3A26h&hl=zh-CN&gl=CN&ceid=CN%3Azh-Hans'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503"
+    },
+    {
+      "source": "Google News: 工信部 运营商 人工智能 算力 政策",
+      "error": "search: HTTPStatusError: Server error '503 Service Unavailable' for url 'https://news.google.com/rss/search?q=%E5%B7%A5%E4%BF%A1%E9%83%A8+%E8%BF%90%E8%90%A5%E5%95%86+%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD+%E7%AE%97%E5%8A%9B+%E6%94%BF%E7%AD%96+when%3A26h&hl=zh-CN&gl=CN&ceid=CN%3Azh-Hans'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503"
+    },
+    {
+      "source": "Google News: site:chinatelecom.com.cn 星辰 算力 人工智能",
+      "error": "search: HTTPStatusError: Server error '503 Service Unavailable' for url 'https://news.google.com/rss/search?q=site%3Achinatelecom.com.cn+%E6%98%9F%E8%BE%B0+%E7%AE%97%E5%8A%9B+%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD+when%3A26h&hl=zh-CN&gl=CN&ceid=CN%3Azh-Hans'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503"
+    },
+    {
+      "source": "Google News: site:chinaunicom.com 算力 人工智能",
+      "error": "search: HTTPStatusError: Server error '503 Service Unavailable' for url 'https://news.google.com/rss/search?q=site%3Achinaunicom.com+%E7%AE%97%E5%8A%9B+%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD+when%3A26h&hl=zh-CN&gl=CN&ceid=CN%3Azh-Hans'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503"
+    },
+    {
+      "source": "Google News: site:chinamobileltd.com AI 算力 网络",
+      "error": "search: HTTPStatusError: Server error '503 Service Unavailable' for url 'https://news.google.com/rss/search?q=site%3Achinamobileltd.com+AI+%E7%AE%97%E5%8A%9B+%E7%BD%91%E7%BB%9C+when%3A26h&hl=zh-CN&gl=CN&ceid=CN%3Azh-Hans'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503"
+    },
+    {
+      "source": "Google News: site:36kr.com 运营商 算力 大模型",
+      "error": "search: HTTPStatusError: Server error '503 Service Unavailable' for url 'https://news.google.com/rss/search?q=site%3A36kr.com+%E8%BF%90%E8%90%A5%E5%95%86+%E7%AE%97%E5%8A%9B+%E5%A4%A7%E6%A8%A1%E5%9E%8B+when%3A26h&hl=zh-CN&gl=CN&ceid=CN%3Azh-Hans'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503"
+    },
+    {
+      "source": "Google News: site:jiqizhixin.com 运营商 算力 模型",
+      "error": "search: HTTPStatusError: Server error '503 Service Unavailable' for url 'https://news.google.com/rss/search?q=site%3Ajiqizhixin.com+%E8%BF%90%E8%90%A5%E5%95%86+%E7%AE%97%E5%8A%9B+%E6%A8%A1%E5%9E%8B+when%3A26h&hl=zh-CN&gl=CN&ceid=CN%3Azh-Hans'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503"
+    },
+    {
+      "source": "Google News: site:c114.com.cn 运营商 算力 人工智能",
+      "error": "search: HTTPStatusError: Server error '503 Service Unavailable' for url 'https://news.google.com/rss/search?q=site%3Ac114.com.cn+%E8%BF%90%E8%90%A5%E5%95%86+%E7%AE%97%E5%8A%9B+%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD+when%3A26h&hl=zh-CN&gl=CN&ceid=CN%3Azh-Hans'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503"
+    },
+    {
+      "source": "Google News: telecom AI model gateway inference cloud",
+      "error": "search: HTTPStatusError: Server error '503 Service Unavailable' for url 'https://news.google.com/rss/search?q=telecom+AI+model+gateway+inference+cloud+when%3A26h&hl=en&gl=US&ceid=US%3Aen'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503"
+    },
+    {
+      "source": "Google News: AI 大模型 发布 推理 开源",
+      "error": "search: HTTPStatusError: Server error '503 Service Unavailable' for url 'https://news.google.com/rss/search?q=AI+%E5%A4%A7%E6%A8%A1%E5%9E%8B+%E5%8F%91%E5%B8%83+%E6%8E%A8%E7%90%86+%E5%BC%80%E6%BA%90+when%3A26h&hl=zh-CN&gl=CN&ceid=CN%3Azh-Hans'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503"
+    },
+    {
+      "source": "Google News: AI model release open weights inference",
+      "error": "search: HTTPStatusError: Server error '503 Service Unavailable' for url 'https://news.google.com/rss/search?q=AI+model+release+open+weights+inference+when%3A26h&hl=en&gl=US&ceid=US%3Aen'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503"
+    },
+    {
+      "source": "知乎热榜（官方 API）",
+      "error": "知乎热榜（官方 API）: ValueError: Zhihu access secret is not configured"
+    }
+  ],
+  "items": [
+    {
+      "title": "派早报：Anthropic 研究员宣称用 Claude 证明黎曼猜想",
+      "original_title": "派早报：Anthropic 研究员宣称用 Claude 证明黎曼猜想",
+      "image_url": "https://rssfile.sspai.com/11/23/2026/article/343e7a31-e463-ef79-4ffd-95dbda3d4273.png?imageMogr2/auto-orient/ignore-error/1",
+      "url": "https://sspai.com/post/119418",
+      "briefing": "ai",
+      "source": "少数派",
+      "published_at": "2026-11-22T23:34:27+00:00",
+      "fetched_at": "2026-11-23T07:41:36.171358+00:00",
+      "category": "其他 AI 行业新闻",
+      "tags": [
+        "Anthropic",
+        "Claude",
+        "OpenAI",
+        "GPT-6.2",
+        "Riemann Hypothesis",
+        "Lean theorem prover",
+        "anti-distillation"
+      ],
+      "score": 9.0,
+      "material_status": "article_extracted",
+      "sections": [],
+      "summary": "An Anthropic researcher claims a Claude-assisted proof of the Riemann Hypothesis formalized in Lean (under independent verification), while OpenAI discloses anti-distillation measures for GPT-6.2 Astra and Sol."
+    },
+    {
+      "title": "全国首个升腾950DT词元出海算力集群在汕头启用",
+      "original_title": "全国首个昇腾950DT词元出海算力集群启用",
+      "image_url": null,
+      "url": "https://app.qudong.com/article/530010.html",
+      "briefing": "operator",
+      "source": "驱动中国",
+      "published_at": "2026-11-18T14:30:00+08:00",
+      "fetched_at": "2026-11-23T07:40:39.536846+00:00",
+      "category": "运营商算力与智算",
+      "tags": [
+        "中国电信",
+        "华为昇腾950DT",
+        "算力集群",
+        "词元出海",
+        "国际海缆"
+      ],
+      "score": 9.0,
+      "material_status": "search_excerpt",
+      "sections": [
+        {
+          "title": "算力动态",
+          "content": "全国首个基于华为升腾950DT芯片的词元出海算力集群于11月13日在广东汕头启用，汕头市人民政府门户网站11月16日公布该消息。集群由中国电信汕头分公司、广东天亿马和华为联合建设，依托中国电信汕头国际海缆登陆站提供跨境网络连接，在本地完成AI模型推理和词元生成后，经国际海缆向东南亚等海外市场交付智能服务。"
+        },
+        {
+          "title": "资源与技术",
+          "content": "三方分工明确：中国电信提供网络通信资源和机房基础设施，华为提供算力设备，天亿马负责投资建设与市场化运营。升腾950DT采用第三代达芬奇架构，配备144GB显存，单卡FP8算力达1P。当地词元出海业务日均调用量已从今年4月的约1亿增长至1000亿。"
+        }
+      ],
+      "summary": "全国首个基于华为升腾950DT芯片的词元出海算力集群于11月13日在广东汕头启用，汕头市人民政府门户网站11月16日公布该消息。集群由中国电信汕头分公司、广东天亿马和华为联合建设，依托中国电信汕头国际海缆登陆站提供跨境网络连接，在本地完成AI模型推理和词元生成后，经国际海缆向东南亚等海外市场交付智能服务。"
+    },
+    {
+      "title": "中国电信与中兴通讯部署Super Agent Crew自进化无线网络运维智能体系统",
+      "original_title": "China Telecom and ZTE Deploy Super Agent Crew, a Self-Evolving AI System for Wireless Network Operations",
+      "image_url": "https://www.theregister.com/view-resources/dachser2/public/theregister/favicons/apple-touch-icon.png",
+      "url": "https://www.theregister.com/networks/2026/11/18/partner-content/5310694",
+      "briefing": "operator",
+      "source": "The Register",
+      "published_at": "2026-11-18T17:05:27+08:00",
+      "fetched_at": "2026-11-23T07:40:39.536901+00:00",
+      "category": "运营商 AI 产品与应用",
+      "tags": [
+        "China Telecom",
+        "ZTE",
+        "AI agents",
+        "wireless network operations",
+        "network large model"
+      ],
+      "score": 9.0,
+      "material_status": "search_excerpt",
+      "sections": [
+        {
+          "title": "产品动态",
+          "content": "中国电信与中兴通讯联合部署了Super Agent Crew自进化无线网络运维智能体系统，已在陕西和上海现网运行，服务超过500万用户。系统以中兴网络大模型为底座，由网络优化、故障处理、能效管理等多个专业智能体协同工作。"
+        },
+        {
+          "title": "能力与场景",
+          "content": "操作人员用自然语言下达目标后，由智能体自动执行；全部自主操作须经人工批准，且全程可追溯。在区域应用上，陕西侧重网络优化与节能，上海侧重差异化业务保障，包括上海迪士尼等高流量场景。"
+        }
+      ],
+      "summary": "中国电信与中兴通讯联合部署了Super Agent Crew自进化无线网络运维智能体系统，已在陕西和上海现网运行，服务超过500万用户。系统以中兴网络大模型为底座，由网络优化、故障处理、能效管理等多个专业智能体协同工作。"
+    },
+    {
+      "title": "极客早知道：OpenAI 首席科学家提议为 AI 开发设限，警告最早 2027 年加速进化",
+      "original_title": "OpenAI 首席科学家：AI 最早明年加速进化；B 站开始清理「大肥鱼」泛滥；瘫痪患者用脑机打 GTA6｜极客早知道",
+      "image_url": "https://imgslim.geekpark.net/uploads/image/file/21/cc/21cc21e85af72171062ad551ffb8c0f6.png",
+      "url": "http://www.geekpark.net/news/374304",
+      "briefing": "ai",
+      "source": "极客公园",
+      "published_at": "2026-11-23T01:22:36+00:00",
+      "fetched_at": "2026-11-23T07:41:15.700299+00:00",
+      "category": "其他 AI 行业新闻",
+      "tags": [
+        "OpenAI",
+        "Jakub Pachocki",
+        "Sam Altman",
+        "AI 安全治理",
+        "困惑度评测"
+      ],
+      "score": 8.0,
+      "material_status": "article_extracted",
+      "sections": [
+        {
+          "title": "核心事件",
+          "content": "当地时间 11 月 22 日，OpenAI 首席科学家雅库布·帕霍茨基（Jakub Pachocki）发文，提议 AI 企业建立行业统一标准，对先进 AI 模型的开发设置共同限制，在研究人员具备更可靠的模型行为理解和监控能力之前不突破约定的发展门槛。他警告 AI 最早可能在 2027 年推动预训练技术出现一轮快速进展，而模型对齐与行为监控的进展可能无法同步跟上。OpenAI CEO 萨姆·奥尔特曼公开支持该提议，称这是 OpenAI 一段时间以来发表的最重要内容之一，并希望行业能就共同限制达成一致。"
+        },
+        {
+          "title": "关键数据与提议内容",
+          "content": "帕霍茨基认为传统能力评测基准会随技术进步迅速过时，建议以困惑度（Perplexity，数值越低预测能力越强）作为衡量预训练进展的跨企业参考指标。他公布的 OpenAI 内部评测数据显示：GPT-3.5 对数困惑度约 0.99，GPT-4 约 0.91；低于 0.8 时模型在网络安全和数学领域出现新能力；约 0.76 时开始在部分开放数学问题上取得突破性成果。他预计对数困惑度进入 0.68 至 0.7 区间时模型可能出现更多变革性能力，但无法确定具体是什么。按其设想，各企业应共同建立模型评测、透明度和安全红队测试标准，在模型首次投入使用前完成评估，并承诺在达到明确安全监控里程碑（如开发出比现有思维链监控工具更先进的监测机制）之前不突破限制。"
+        },
+        {
+          "title": "同期其他科技动态",
+          "content": "同一期《极客早知道》还汇总了多条行业消息：马斯克预警 AI 行业明年可能面临严重资金短缺，若算力成本支付到设备稳定创收的时间累计推迟数月，仅营运资金就可能需要额外投入数千亿美元；Neuralink 于 21 日展示一名四肢瘫痪患者通过脑机接口游玩《GTA 6》，可完成驾驶、射击、漂移等操作；B 站就「AI 大肥鱼」等智能体账号泛滥发布治理意见征询问卷；MiniMax 称其最新内部模型在密码学前沿方案分析中刷新国际挑战赛纪录，并说明不影响 AES、RSA、SHA-256 等现行主流标准；全球电子协会警告 PCB 短缺或持续至 2027 年上半年；另有华为 Mate 80 系列销量、特斯拉 FSD v15、苹果 2027 年上半年新品计划等消息。"
+        }
+      ],
+      "summary": "当地时间 11 月 22 日，OpenAI 首席科学家雅库布·帕霍茨基（Jakub Pachocki）发文，提议 AI 企业建立行业统一标准，对先进 AI 模型的开发设置共同限制，在研究人员具备更可靠的模型行为理解和监控能力之前不突破约定的发展门槛。他警告 AI 最早可能在 2027 年推动预训练技术出现一轮快速进展，而模型对齐与行为监控的进展可能无法同步跟上。OpenAI CEO 萨姆·奥尔特曼公开支持该提议，称这是 OpenAI 一段时间以来发表的最重要内容之一，并希望行业能就共同限制达成一致。"
+    },
+    {
+      "title": "亚马逊云科技推出 TorchNeuron：PyTorch 模型可直接在 Trainium 芯片上运行",
+      "original_title": "亚马逊云科技推出 TorchNeuron，可以直接在 AWS Trainium 上运行 PyTorch 模型，无需任何修改",
+      "image_url": "https://static001.infoq.cn/resource/image/a0/0d/a0b70de959696be3ebc674582469d70d.png",
+      "url": "https://www.infoq.cn/article/XhtWUmaolJECUhPX2jzY?utm_source=rss&utm_medium=article",
+      "briefing": "ai",
+      "source": "InfoQ 中文",
+      "published_at": "2026-11-22T10:00:00+00:00",
+      "fetched_at": "2026-11-23T07:41:30.506827+00:00",
+      "category": "其他 AI 行业新闻",
+      "tags": [
+        "AWS",
+        "Amazon Annapurna Labs",
+        "Trainium",
+        "PyTorch",
+        "TorchNeuron",
+        "AI infrastructure"
+      ],
+      "score": 8.0,
+      "material_status": "article_extracted",
+      "sections": [
+        {
+          "title": "核心事件",
+          "content": "在 2026 年 PyTorch 北美大会上，亚马逊云科技（AWS）发布了 TorchNeuron，一个原生 PyTorch 后端。开发者只需进行一次配置更改，即可在几乎无需修改代码的情况下，在 AWS Trainium AI 芯片上运行现有的 PyTorch 代码，无需重写和重新验证模型。该后端由 Amazon Annapurna Labs 开发，Colin Brace 领导开发团队。"
+        },
+        {
+          "title": "产品变化",
+          "content": "TorchNeuron 的关键改动：通过 torch.accelerator 利用 PyTorch 自动设备检测时，只需将 .to('cuda') 替换为 .to('neuron')。后端原生支持分布式训练和 PyTorch 并行 API，包括 DDP、FSDP2、DTensor，并通过 torch_neuronx.Stream 和 torch_neuronx.Event 为 Torch 流和事件提供原生支持。开发者还可使用 Neuron 内核接口（NKI）开发、优化和执行自定义运算符，在模型代码中直接调用对性能至关重要的 NKI 内核，替代标准 PyTorch 操作（ATen 操作），获得比自适应即时执行（Adaptive Eager）和 torch.compile 更精细的性能控制。除减少工程工作量外，TorchNeuron 还允许企业在训练和推理工作负载之间共享硬件容量，并在非高峰时段将资源从推理任务重新分配到训练任务。"
+        },
+        {
+          "title": "背景与验证范围",
+          "content": "据亚马逊云科技介绍，目前 85% 的人工智能研究人员和开发者使用 PyTorch 编写代码，而此前扩展到新芯片往往意味着需要重写并重新验证耗时数月才臻于完美的代码。为确保流畅的开发体验，TorchNeuron 开发团队对 10 万个最受欢迎的模型和 800 多种机器学习架构进行了验证。该后端已被多家机构采用，包括将技术用于语音 AI 推理的 Cartesia，以及探索其在药物靶点识别和药物发现领域应用的利伯脑发育研究所。TorchNeuron 的发布紧随谷歌推出 TorchTPU 之后——后者是谷歌为其 TPU 硬件开发的原生 PyTorch 后端。针对 AWS 在 LinkedIn 上的公告，Liner Notes Consulting 首席执行官 Yasuo Maeda 和用户 Pratham pratham 均指出，真正的考验在于生产环境中的性能、总拥有成本、每 token 成本以及可重复性。"
+        }
+      ],
+      "summary": "在 2026 年 PyTorch 北美大会上，亚马逊云科技（AWS）发布了 TorchNeuron，一个原生 PyTorch 后端。开发者只需进行一次配置更改，即可在几乎无需修改代码的情况下，在 AWS Trainium AI 芯片上运行现有的 PyTorch 代码，无需重写和重新验证模型。该后端由 Amazon Annapurna Labs 开发，Colin Brace 领导开发团队。"
+    },
+    {
+      "title": "联通数智自主规划智能体获OSCAR尖峰实践奖，支撑中国联通AI原生客服全国31省落地",
+      "original_title": "入选OSCAR尖峰实践！联通数智自主规划智能体创出“智能客服”新解法",
+      "image_url": "https://n.sinaimg.cn/spider20261116/429/w550h679/20261116/f047-7f6f4e570050f7c04a863d71c851a6fb.png",
+      "url": "https://finance.sina.com.cn/tech/roll/2026-11-16/doc-iniyxpwz2382379.shtml",
+      "briefing": "operator",
+      "source": "运营商财经网",
+      "published_at": "2026-11-16T17:51:00+08:00",
+      "fetched_at": "2026-11-23T07:40:39.536760+00:00",
+      "category": "运营商 AI 产品与应用",
+      "tags": [
+        "中国联通",
+        "联通数智",
+        "AI客服",
+        "自主规划智能体",
+        "OSCAR尖峰实践"
+      ],
+      "score": 8.0,
+      "material_status": "search_excerpt",
+      "sections": [
+        {
+          "title": "产品动态",
+          "content": "联通数智申报的《基于自主规划智能体的中国联通AI原生客服重构实践》在2026 OSCAR开源产业大会上获中国信通院2026 OSCAR“人工智能+软件”尖峰实践——智能化软件产品奖。该“自主规划智能体”已支撑中国联通AI原生客服在全国31省落地应用。"
+        },
+        {
+          "title": "能力与场景",
+          "content": "据来源介绍，联通数智“自主规划智能体”以大模型自主规划替代人工硬编码流程，通过统一调度中枢实现复杂诉求一站式闭环；并采用“文档即技能”模式，让客服运营人员用自然语言业务说明文档即可上线新服务。上线后回复准确率稳定在96%以上，较原系统提升14个百分点，新服务上线周期从数周缩短至1天。"
+        },
+        {
+          "title": "落地与合作",
+          "content": "来源明确该实践已支撑中国联通AI原生客服在全国31省落地应用，并获中国信通院2026 OSCAR“人工智能+软件”尖峰实践——智能化软件产品奖。来源未提供更多落地细节或合作方信息。"
+        }
+      ],
+      "summary": "联通数智申报的《基于自主规划智能体的中国联通AI原生客服重构实践》在2026 OSCAR开源产业大会上获中国信通院2026 OSCAR“人工智能+软件”尖峰实践——智能化软件产品奖。该“自主规划智能体”已支撑中国联通AI原生客服在全国31省落地应用。"
+    },
+    {
+      "title": "中国电信星辰Xing4大模型技术报告：全程基于升腾910C训练",
+      "original_title": "Xing 4: Advancing Large Language Models on Domestic Ascend Chips",
+      "image_url": "https://image.blockchain.news:443/features/9BED484F63152ECD2721498B93AEE806A0F7F6C0430821D708627253D13A3405.jpg",
+      "url": "https://blockchain.news/news/xing-4-advancing-large-language-models-ascend-chips",
+      "briefing": "operator",
+      "source": "Blockchain.News",
+      "published_at": "2026-11-18T14:36:00+08:00",
+      "fetched_at": "2026-11-23T07:40:39.536874+00:00",
+      "category": "运营商 AI 产品与应用",
+      "tags": [
+        "China Telecom",
+        "Xing 4 / TeleChat",
+        "Ascend 910C",
+        "MindSpore",
+        "LLM"
+      ],
+      "score": 8.0,
+      "material_status": "search_excerpt",
+      "sections": [
+        {
+          "title": "产品动态",
+          "content": "中国电信旗下星辰AGI实验室发布星辰Xing4系列大模型技术报告，报告于11月17日发表于arXiv（编号2611.22115）。该系列延续TeleChat路线，包含旗舰285B-A17B模型与开源29B-A4B模型，两款模型全程在8192张升腾910C芯片上、使用升思MindSpore HyperParallel框架完成训练，不依赖GPU与CUDA。"
+        },
+        {
+          "title": "能力与场景",
+          "content": "技术报告披露的关键能力包括：模型架构结合多头潜在注意力（MLA）与DeepSeek稀疏注意力，并采用IndexShare与DSpark推测解码技术；上下文窗口支持256K至1M。实验室同时引入TeleGym智能体统一执行平台，用于推理与智能体后训练。"
+        },
+        {
+          "title": "落地与合作",
+          "content": "来源未提供更多细节，Xing4系列在运营商政企场景的具体部署计划、商用时间表及合作方信息尚未披露。"
+        }
+      ],
+      "summary": "中国电信旗下星辰AGI实验室发布星辰Xing4系列大模型技术报告，报告于11月17日发表于arXiv（编号2611.22115）。该系列延续TeleChat路线，包含旗舰285B-A17B模型与开源29B-A4B模型，两款模型全程在8192张升腾910C芯片上、使用升思MindSpore HyperParallel框架完成训练，不依赖GPU与CUDA。"
+    },
+    {
+      "title": "安谋科技发布“星辰100e” AIoT 原型平台，AI推理性能最高提升 340 倍",
+      "original_title": "安谋科技发布“星辰100e” AIoT 原型平台，AI推理性能最高提升 340 倍",
+      "image_url": "https://static001.infoq.cn/resource/image/4c/6f/4ced410bae3db9966060e99f088e4d6f.png",
+      "url": "https://www.infoq.cn/article/pdjVKiH3ONYjePlUDufv?utm_source=rss&utm_medium=article",
+      "briefing": "ai",
+      "source": "InfoQ 中文",
+      "published_at": "2026-11-23T14:22:11+00:00",
+      "fetched_at": "2026-11-23T07:41:19.711967+00:00",
+      "category": "其他 AI 行业新闻",
+      "tags": [
+        "Arm",
+        "安谋科技 (Arm China)",
+        "Cortex-M42",
+        "Ethos-U55 NPU",
+        "edge AI / AIoT"
+      ],
+      "score": 7.0,
+      "material_status": "article_extracted",
+      "sections": [],
+      "summary": "Arm China announced the '星辰 100e' AIoT prototype platform built on the new Cortex-M42 CPU and Ethos-U55 NPU, claiming up to 340x AI inference performance gains for low-power edge devices."
+    },
+    {
+      "title": "亚马逊云科技推出Well-Architected Agent预览版",
+      "original_title": "亚马逊云科技推出Well-Architected Agent预览版",
+      "image_url": "https://static001.infoq.cn/resource/image/bf/e7/bf9988254f5424d9a4ede1062d267fe7.jpg",
+      "url": "https://www.infoq.cn/article/LQuPgS5lcFDMEKhZSP5d?utm_source=rss&utm_medium=article",
+      "briefing": "ai",
+      "source": "InfoQ 中文",
+      "published_at": "2026-11-23T14:16:59+00:00",
+      "fetched_at": "2026-11-23T07:41:20.716128+00:00",
+      "category": "其他 AI 行业新闻",
+      "tags": [
+        "AWS",
+        "Amazon Web Services",
+        "Well-Architected Agent",
+        "cloud architecture",
+        "AI agent"
+      ],
+      "score": 7.0,
+      "material_status": "article_extracted",
+      "sections": [],
+      "summary": "AWS launched a preview of Well-Architected Agent, an AI agent that scans cloud accounts, maps resources and business goals, and delivers prioritized architecture recommendations with remediation and pre-deployment IaC review."
+    },
+    {
+      "title": "姚顺雨团队回应一切：下一代混元将大幅扩参，RSI 仍处早期，最难解决的是“想太多”",
+      "original_title": "姚顺雨团队回应一切：下一代混元将大幅扩参，RSI 仍处早期，最难解决的是“想太多”",
+      "image_url": "https://static001.infoq.cn/resource/image/f2/99/f2d868ee26525b987f9e6597b4848d99.png",
+      "url": "https://www.infoq.cn/article/b4QKbFZaXvbK9hzcBhZV?utm_source=rss&utm_medium=article",
+      "briefing": "ai",
+      "source": "InfoQ 中文",
+      "published_at": "2026-11-23T14:10:06+00:00",
+      "fetched_at": "2026-11-23T07:41:21.990241+00:00",
+      "category": "其他 AI 行业新闻",
+      "tags": [
+        "腾讯",
+        "混元大模型",
+        "Hy4",
+        "姚顺雨",
+        "RSI",
+        "Scaling Law"
+      ],
+      "score": 7.0,
+      "material_status": "article_extracted",
+      "sections": [],
+      "summary": "腾讯混元负责人姚顺雨在Reddit AMA中确认下一代模型将显著扩参、RSI能力仍处早期，并指出后训练最难解决的问题是模型'过度思考'。"
+    },
+    {
+      "title": "Anthropic 创纪录 IPO 未能扭转 AI 市场悲观情绪，Claude 上市当天突发性能降级！靠失业焦虑撑起的万亿估值，该踩刹车了",
+      "original_title": "Anthropic 创纪录 IPO 未能扭转 AI 市场悲观情绪，Claude 上市当天突发性能降级！靠失业焦虑撑起的万亿估值，该踩刹车了",
+      "image_url": null,
+      "url": "https://www.infoq.cn/article/OPbZhT0OHL4IbZz8exvA?utm_source=rss&utm_medium=article",
+      "briefing": "ai",
+      "source": "InfoQ 中文",
+      "published_at": "2026-11-23T09:20:56+00:00",
+      "fetched_at": "2026-11-23T07:41:27.276100+00:00",
+      "category": "其他 AI 行业新闻",
+      "tags": [
+        "Anthropic",
+        "Claude",
+        "IPO",
+        "纳斯达克",
+        "AI板块"
+      ],
+      "score": 7.0,
+      "material_status": "article_extracted",
+      "sections": [],
+      "summary": "Anthropic 于 2026 年 11 月 19 日以 83 美元发行价登陆纳斯达克，首日开盘涨 34.3% 至 111.50 美元，但次日下跌约 9%，同期 AI 板块大幅回调，上市当天 Claude 出现性能降级。"
+    },
+    {
+      "title": "工信部批准8省市开展6G创新发展部省协同试点，期限原则上3年",
+      "original_title": "河北等8省（市）入选！工信部公布6G创新发展部省协同试点名单",
+      "image_url": null,
+      "url": "https://finance.sina.cn/2026-11-17/detail-inizaitx2074517.d.html",
+      "briefing": "operator",
+      "source": "新浪财经",
+      "published_at": "2026-11-17T23:29:31+08:00",
+      "fetched_at": "2026-11-23T07:40:39.536813+00:00",
+      "category": "政策、采购与招投标",
+      "tags": [
+        "6G",
+        "工信部",
+        "电信基础设施政策",
+        "部省协同试点",
+        "具身智能"
+      ],
+      "score": 7.0,
+      "material_status": "search_excerpt",
+      "sections": [
+        {
+          "title": "事件概览",
+          "content": "工业和信息化部复函同意北京、河北、上海、江苏、浙江、安徽、湖北、广东8个省（市）开展6G创新发展部省协同试点工作，试点实施期限原则上为3年。复函对试点省市在6G相关项目中的电信业务许可要求及重点产业、应用场景方向作出明确。"
+        },
+        {
+          "title": "采购或政策要点",
+          "content": "复函明确，试点省市在实施6G相关项目过程中，涉及6G商业应用的企业须依规取得电信业务经营许可，未获许可前不得开展商业化应用场景探索。试点将围绕新型终端、关键器件、操作系统、卫星互联网等产业，面向沉浸式通信、工业制造、具身智能、低空经济、智慧海洋等场景探索6G应用。"
+        },
+        {
+          "title": "时间与进展",
+          "content": "试点实施期限原则上为3年。来源未提供各试点省市的具体实施方案、启动时间表或后续评估安排等更多细节。"
+        }
+      ],
+      "summary": "工业和信息化部复函同意北京、河北、上海、江苏、浙江、安徽、湖北、广东8个省（市）开展6G创新发展部省协同试点工作，试点实施期限原则上为3年。复函对试点省市在6G相关项目中的电信业务许可要求及重点产业、应用场景方向作出明确。"
+    }
+  ]
+}
