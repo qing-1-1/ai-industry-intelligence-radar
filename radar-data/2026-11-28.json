@@ -1,0 +1,935 @@
+{
+  "date": "2026-11-28",
+  "updated_at": "2026-11-28T07:49:10.167716+08:00",
+  "collected": 120,
+  "selected": 23,
+  "sources": [
+    {
+      "name": "NVIDIA Blog",
+      "method": "RSS",
+      "category": "AI 基础设施",
+      "enabled": true
+    },
+    {
+      "name": "AWS Machine Learning",
+      "method": "RSS",
+      "category": "云与推理",
+      "enabled": true
+    },
+    {
+      "name": "Google Cloud AI",
+      "method": "RSS",
+      "category": "云与 AI",
+      "enabled": true
+    },
+    {
+      "name": "vLLM Blog",
+      "method": "RSS",
+      "category": "推理",
+      "enabled": true
+    },
+    {
+      "name": "Portkey Blog",
+      "method": "RSS",
+      "category": "模型网关",
+      "enabled": true
+    },
+    {
+      "name": "量子位",
+      "method": "RSS",
+      "category": "AI 行业",
+      "enabled": true
+    },
+    {
+      "name": "极客公园",
+      "method": "RSS",
+      "category": "AI 行业",
+      "enabled": true
+    },
+    {
+      "name": "InfoQ 中文",
+      "method": "RSS",
+      "category": "国内技术媒体",
+      "enabled": true
+    },
+    {
+      "name": "NVIDIA CUDA 技术博客",
+      "method": "RSS",
+      "category": "海外 AI 算力技术",
+      "enabled": true
+    },
+    {
+      "name": "中国移动招采（第三方糖果梦聚合）",
+      "method": "RSS",
+      "category": "运营商采购公告·第三方聚合",
+      "enabled": false
+    },
+    {
+      "name": "中国电信招采（第三方糖果梦聚合）",
+      "method": "RSS",
+      "category": "运营商采购公告·第三方聚合",
+      "enabled": true
+    },
+    {
+      "name": "中国联通招采（第三方糖果梦聚合）",
+      "method": "RSS",
+      "category": "运营商采购公告·第三方聚合",
+      "enabled": true
+    },
+    {
+      "name": "少数派",
+      "method": "RSS",
+      "category": "国内科技媒体",
+      "enabled": true
+    },
+    {
+      "name": "中国电信股份有限公司最新更新（官方 RSS）",
+      "method": "RSS",
+      "category": "运营商官方动态",
+      "enabled": true
+    },
+    {
+      "name": "C114 通信网滚动新闻（RSSHub）",
+      "method": "RSS",
+      "category": "通信行业新闻·第三方转换",
+      "enabled": false
+    },
+    {
+      "name": "BerriAI/litellm",
+      "method": "GitHub Releases",
+      "category": "开源",
+      "enabled": true
+    },
+    {
+      "name": "vllm-project/vllm",
+      "method": "GitHub Releases",
+      "category": "开源",
+      "enabled": true
+    },
+    {
+      "name": "知乎热榜（官方 API）",
+      "method": "热榜发现",
+      "category": "热榜",
+      "enabled": true
+    },
+    {
+      "name": "今日热榜 · 澎湃",
+      "method": "热榜发现",
+      "category": "热榜",
+      "enabled": true
+    },
+    {
+      "name": "今日热榜 · 36氪",
+      "method": "热榜发现",
+      "category": "热榜",
+      "enabled": true
+    },
+    {
+      "name": "今日热榜 · 虎嗅",
+      "method": "热榜发现",
+      "category": "热榜",
+      "enabled": true
+    },
+    {
+      "name": "中国移动 Token 模型 API 服务",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "中国电信 TokenHub 模型 推理",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "中国联通 Token 大模型 服务",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "运营商 智算 算力租赁",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "运营商 AI 智能体 政企 云",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "运营商 AI 网关 多模型 路由",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "GPU 智算中心 招标 中标",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "工信部 运营商 人工智能 算力 政策",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "site:chinatelecom.com.cn 星辰 算力 人工智能",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "site:chinaunicom.com 算力 人工智能",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "site:chinamobileltd.com AI 算力 网络",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "site:36kr.com 运营商 算力 大模型",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "site:jiqizhixin.com 运营商 算力 模型",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "site:c114.com.cn 运营商 算力 人工智能",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "telecom AI model gateway inference cloud",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "AI 大模型 发布 推理 开源",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "AI model release open weights inference",
+      "method": "Google News 搜索发现",
+      "category": "综合",
+      "enabled": true
+    },
+    {
+      "name": "telecom \"artificial intelligence\"",
+      "method": "GDELT 搜索发现",
+      "category": "综合",
+      "enabled": true
+    }
+  ],
+  "failures": [
+    {
+      "source": "RSS Feeds",
+      "error": "极客公园: ConnectError: [Errno -2] Name or service not known; 中国电信招采（第三方糖果梦聚合）: HTTPStatusError: Client error '404 Not Found' for url 'https://tgmeng.com/bidding/ctcc-sunshine/rss.xml'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404; 中国联通招采（第三方糖果梦聚合）: HTTPStatusError: Client error '404 Not Found' for url 'https://tgmeng.com/bidding/cucc-cuecp/rss.xml'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+    },
+    {
+      "source": "GDELT",
+      "error": "articles: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://api.gdeltproject.org/api/v2/doc/doc?query=telecom+%22artificial+intelligence%22&mode=ArtList&format=json&maxrecords=250&sort=datedesc&startdatetime=20261126223237&enddatetime=20261127233237'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429"
+    },
+    {
+      "source": "知乎热榜（官方 API）",
+      "error": "知乎热榜（官方 API）: ValueError: Zhihu access secret is not configured"
+    }
+  ],
+  "items": [
+    {
+      "title": "刚刚，首个带跨任务空间记忆的原生基模开源！机器人端侧就能跑",
+      "original_title": "刚刚，首个带跨任务空间记忆的原生基模开源！机器人端侧就能跑",
+      "image_url": null,
+      "url": "https://www.qbitai.com/2026/11/513227.html",
+      "briefing": "ai",
+      "source": "量子位",
+      "published_at": "2026-11-27T07:01:20+00:00",
+      "fetched_at": "2026-11-27T23:32:44.205469+00:00",
+      "category": "其他 AI 行业新闻",
+      "tags": [
+        "蚂蚁集团",
+        "LingBot",
+        "具身智能",
+        "空间记忆",
+        "开源模型",
+        "机器人"
+      ],
+      "score": 9.0,
+      "material_status": "article_extracted",
+      "sections": [],
+      "summary": "蚂蚁灵波开源两款具身原生空间记忆基模 LingBot-Map 2.0 与 LingBot-Navi，支持实时纠偏建图与跨任务空间记忆，并可在机器人端侧运行。"
+    },
+    {
+      "title": "腾讯混元发布 Hy3D 3.6：高模表面更整洁、结构更清晰、刻画更细腻",
+      "original_title": "腾讯混元发布 Hy3D 3.6：高模表面更整洁、结构更清晰、刻画更细腻",
+      "image_url": null,
+      "url": "https://www.qbitai.com/2026/11/513155.html",
+      "briefing": "ai",
+      "source": "量子位",
+      "published_at": "2026-11-27T03:45:19+00:00",
+      "fetched_at": "2026-11-27T23:32:45.597636+00:00",
+      "category": "其他 AI 行业新闻",
+      "tags": [
+        "Tencent",
+        "Hunyuan",
+        "Hy3D 3.6",
+        "3D generation model",
+        "Tencent Cloud Token Hub"
+      ],
+      "score": 9.0,
+      "material_status": "article_extracted",
+      "sections": [
+        {
+          "title": "核心事件",
+          "content": "11月27日，腾讯混元发布最新一代3D大模型Hy3D 3.6。新版本面向专业3D创作，重点优化了高模和PBR材质贴图的生成能力，生成的几何表面整洁、结构清晰、高模刻画细腻，贴图质量更高。目前Hy3D 3.6已上线腾讯云Token Hub对外提供API服务，腾讯AI创意智能体Miora、腾讯游戏旗下专业资产生成平台LAP、专业影视AI平台WorkRally等也已接入。"
+        },
+        {
+          "title": "关键数据与产品变化",
+          "content": "腾讯内部组织数百位专业3D美术与建模师进行盲测，结果显示Hy3D 3.6的几何整体质量、纹理整体质量和可用性显著优于业界同类模型。几何方面，大形结构还原度和清晰度更高，表面更平整，在表面质量、硬表面和结构表达上优势突出；纹理方面，色彩和细节更贴近原画，贴图更整洁，与模型形体匹配度更高。\n\n技术层面，Hy3D 3.6通过VAE将几何和纹理压缩为统一的稀疏潜在表示，再通过DiT生成与参考图相符的几何和纹理；后训练阶段通过多专家生产多样化偏好候选，结合优胜样本SFT与偏好数据DPO提升模型效果。数据层面建立了\"敏捷评测—数据引擎—算法实验\"的迭代流程。\n\n使用入口：腾讯混元3D创作引擎（用户可免费体验5次/天）；腾讯云API调用（新用户开通服务后可获得100积分免费体验额度）。"
+        },
+        {
+          "title": "背景",
+          "content": "与通用语言模型通过编写代码、组合基础图元生成3D模型不同，Hy3D 3.6作为原生3D生成模型，在训练阶段直接学习3D资产中几何、纹理与材质的分布。语言模型适合生成具有规则硬表面的3D资产、参数化零件和场景布局；Hy3D 3.6更擅长角色、生物、服装和复杂道具的生成任务。\n\n自2024年11月发布并开源首代模型以来，混元3D系列模型的社区下载量已超过653万，是全球下载量领先的3D开源模型之一。目前混元3D已形成两条技术路线：一条侧重高质量3D高模资产生成，另一条侧重更符合专业美术规范的3D低模资产生成。腾讯混元3D负责人表示，3D生成的竞争重点正在从\"能看\"转向\"能用\"，拓扑、分件、UV和PBR材质等生产可用性越来越关键。"
+        }
+      ],
+      "summary": "11月27日，腾讯混元发布最新一代3D大模型Hy3D 3.6。新版本面向专业3D创作，重点优化了高模和PBR材质贴图的生成能力，生成的几何表面整洁、结构清晰、高模刻画细腻，贴图质量更高。目前Hy3D 3.6已上线腾讯云Token Hub对外提供API服务，腾讯AI创意智能体Miora、腾讯游戏旗下专业资产生成平台LAP、专业影视AI平台WorkRally等也已接入。"
+    },
+    {
+      "title": "NVIDIA 免费发布自回归图像生成 AI 模型",
+      "original_title": "NVIDIA Releases Autoregressive Image-Generation AI for Free, Challenging Diffusion-Model Assumptions - BigGo Finance",
+      "image_url": null,
+      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5lUFRLRVlDa2ZGOS1mQXAzYzY1bmp5c3psSFlXLTQySnZJa3V0LTAzNDBjNHdTMlZyRi01ZS1QNUtoWHp4UDN5LWdUMVdKaWh2MloyRWFnbW5fcmdEdVVlNkNKLWVTbjhzaFVQVk8zaGVrNHRNRHc?oc=5",
+      "briefing": "ai",
+      "source": "BigGo Finance",
+      "published_at": "2026-11-27T03:55:00+00:00",
+      "fetched_at": "2026-11-27T23:32:38.412330+00:00",
+      "category": "其他 AI 行业新闻",
+      "tags": [
+        "NVIDIA",
+        "autoregressive image generation",
+        "AI model release",
+        "open-source/free release",
+        "diffusion models"
+      ],
+      "score": 9.0,
+      "material_status": "search_excerpt",
+      "sections": [
+        {
+          "title": "核心事件",
+          "content": "据 BigGo Finance 报道，NVIDIA 免费发布了一款采用自回归（autoregressive）架构的图像生成 AI 模型，该技术路线与主流的扩散模型（diffusion model）方法形成对照。除标题信息外，来源未披露模型名称、参数规模、发布渠道或具体许可条款。"
+        }
+      ],
+      "summary": "据 BigGo Finance 报道，NVIDIA 免费发布了一款采用自回归（autoregressive）架构的图像生成 AI 模型，该技术路线与主流的扩散模型（diffusion model）方法形成对照。除标题信息外，来源未披露模型名称、参数规模、发布渠道或具体许可条款。"
+    },
+    {
+      "title": "中国移动、中国电信启动合计超550亿元AI超节点及智算集群设备集采",
+      "original_title": "中国移动、中国电信启动超550亿元AI超节点集采 运营商加码智算投资",
+      "image_url": "https://img.caixin.com/2026-11-25/179561582392677_560_373.jpg",
+      "url": "https://www.caixin.com/2026-11-25/102508739.html",
+      "briefing": "operator",
+      "source": "财新网",
+      "published_at": "2026-11-25T21:45:00+08:00",
+      "fetched_at": "2026-11-27T23:32:37.966658+00:00",
+      "category": "政策、采购与招投标",
+      "tags": [
+        "中国移动",
+        "中国电信",
+        "AI超节点集采",
+        "智算基础设施",
+        "运营商资本开支"
+      ],
+      "score": 9.0,
+      "material_status": "search_excerpt",
+      "sections": [
+        {
+          "title": "事件概览",
+          "content": "中国移动与中国电信在2026年11月相继启动AI超节点及智算集群设备的集中采购，两家合计金额超过550亿元。中国移动于11月20日启动2026—2027年新一代AI超节点设备第二批集采，规模52160卡，12月14日开标，计划选取6—7家中标厂商。中国电信于11月16日启动2026年智算超节点（N系列）集群设备集采，预估采购智算服务器5248台及相关配套设备，最高投标限价257.88亿元（含税），最多选取五家中标厂商。中国移动相关负责人在11月25日表示，此次集采属既定投资计划，智算需求有所增加，客户以政企为主。"
+        },
+        {
+          "title": "采购或政策要点",
+          "content": "中国移动第二批集采规模为52160卡，约为第一批20480卡的2.5倍，计划选取6—7家中标厂商，12月14日开标。国联民生证券11月25日研报测算该批采购金额约300亿元。\n\n中国电信2026年智算超节点（N系列）集群设备集采预估采购智算服务器5248台及相关配套设备，最高投标限价257.88亿元（含税）；另采购110台高性能存储设备及374台RoCE交换机；合同有效期至2027年12月31日；最多选取五家中标厂商。\n\n两家合计金额超过550亿元，其中电信金额为公告的最高投标限价，移动金额为券商研报测算值。"
+        },
+        {
+          "title": "时间与进展",
+          "content": "中国电信集采于11月16日启动，合同有效期至2027年12月31日，尚处采购公告阶段，中标厂商未确定。中国移动第二批集采于11月20日启动，12月14日开标，计划选取6—7家中标厂商，截至来源发布时中标结果尚未公布。"
+        }
+      ],
+      "summary": "中国移动与中国电信在2026年11月相继启动AI超节点及智算集群设备的集中采购，两家合计金额超过550亿元。中国移动于11月20日启动2026—2027年新一代AI超节点设备第二批集采，规模52160卡，12月14日开标，计划选取6—7家中标厂商。中国电信于11月16日启动2026年智算超节点（N系列）集群设备集采，预估采购智算服务器5248台及相关配套设备，最高投标限价257.88亿元（含税），最多选取五家中标厂商。中国移动相关负责人在11月25日表示，此次集采属既定投资计划，智算需求有所增加，客户以政企为主。"
+    },
+    {
+      "title": "中国电信星辰团队将直播万亿参数大模型训练过程",
+      "original_title": "揭秘训练“黑箱”，一个万亿参数大模型的诞生丨直播预告",
+      "image_url": null,
+      "url": "https://www.sohu.com/a/1106581941_121956368",
+      "briefing": "operator",
+      "source": "吴晓波频道",
+      "published_at": "2026-11-26T10:30:00+08:00",
+      "fetched_at": "2026-11-27T23:32:37.966679+00:00",
+      "category": "运营商算力与智算",
+      "tags": [
+        "中国电信",
+        "星辰大模型",
+        "昇腾910C",
+        "万卡集群",
+        "国产算力"
+      ],
+      "score": 9.0,
+      "material_status": "search_excerpt",
+      "sections": [
+        {
+          "title": "算力动态",
+          "content": "中国电信星辰团队宣布将于11月27日至29日连续三晚在新华网数字演播厅直播万亿参数级大模型训练过程，主题为“大模型是怎样炼成的”。直播将通过实时训练大屏拆解预训练、数据配比、中训练、后训练与万卡集群协同。据披露，一个万亿参数级大模型正在紧张训练，动用1万多张国产芯片、2000多台服务器。"
+        },
+        {
+          "title": "资源与技术",
+          "content": "数据体系方面，该模型使用27T预训练数据、3T中训练数据。直播将展示预训练监控看板、中训练长上下文退火与稀疏注意力、后训练SFT与RL方法，以及升腾910C超节点、MindSpore协同优化等国产算力实践。"
+        },
+        {
+          "title": "部署及进展",
+          "content": "直播期间，关于12月初星辰是否有新版本，将在直播中给出说法。来源未提供更多细节。"
+        }
+      ],
+      "summary": "中国电信星辰团队宣布将于11月27日至29日连续三晚在新华网数字演播厅直播万亿参数级大模型训练过程，主题为“大模型是怎样炼成的”。直播将通过实时训练大屏拆解预训练、数据配比、中训练、后训练与万卡集群协同。据披露，一个万亿参数级大模型正在紧张训练，动用1万多张国产芯片、2000多台服务器。"
+    },
+    {
+      "title": "蚂蚁百灵Ling-3.2-air 开源发布",
+      "original_title": "蚂蚁百灵Ling-3.2-air 开源发布，提升编程、智能体与多模态能力- OSCHINA - 开源 × AI · 开发者生态社区 - OSCHINA",
+      "image_url": null,
+      "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE9SNkVWUVdyOS1WcGpZNXNWd0NUTHo2N1J3a3RJVS14TXRGN1pPSlN6bGRhbldnUUwybFE1dlQ3dE9Pbnh4UWRxMDRScw?oc=5",
+      "briefing": "ai",
+      "source": "OSCHINA",
+      "published_at": "2026-11-27T07:58:22+00:00",
+      "fetched_at": "2026-11-27T23:32:38.398712+00:00",
+      "category": "其他 AI 行业新闻",
+      "tags": [
+        "蚂蚁集团",
+        "百灵Ling-3.2-air",
+        "开源大模型",
+        "多模态",
+        "智能体"
+      ],
+      "score": 8.0,
+      "material_status": "search_excerpt",
+      "sections": [
+        {
+          "title": "核心事件",
+          "content": "蚂蚁集团开源发布百灵Ling-3.2-air大模型，据OSCHINA报道，该版本重点提升编程、智能体与多模态能力。具体技术细节、模型参数与基准测试数据在现有报道中未披露。"
+        }
+      ],
+      "summary": "蚂蚁集团开源发布百灵Ling-3.2-air大模型，据OSCHINA报道，该版本重点提升编程、智能体与多模态能力。具体技术细节、模型参数与基准测试数据在现有报道中未披露。"
+    },
+    {
+      "title": "华为云发布并开源具身世界模型CloudRobo-WM1.2",
+      "original_title": "华为云发布并开源具身世界模型CloudRobo-WM1.2|具身之家 - 具身之家",
+      "image_url": null,
+      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFA1WmxwcEdZUi1DZ2dFLWF5ZWtobWhNZ1JlSFA3SldBYTN1S2tQMkxWS0ZrQTdRMkNROE5LTFdjUjhyOVZHcjJxRGVfbVM0MHBhRlRBMXBCMHI?oc=5",
+      "briefing": "ai",
+      "source": "具身之家",
+      "published_at": "2026-11-27T07:18:31+00:00",
+      "fetched_at": "2026-11-27T23:32:38.398841+00:00",
+      "category": "其他 AI 行业新闻",
+      "tags": [
+        "华为云",
+        "具身智能",
+        "世界模型",
+        "CloudRobo-WM1.2",
+        "开源"
+      ],
+      "score": 8.0,
+      "material_status": "search_excerpt",
+      "sections": [
+        {
+          "title": "核心事件",
+          "content": "据具身之家报道，华为云发布并开源了具身世界模型CloudRobo-WM1.2，这是具身智能领域的一项产品发布与技术开源动态。报道未披露该模型的技术参数、开源许可及可用性等具体细节。"
+        }
+      ],
+      "summary": "据具身之家报道，华为云发布并开源了具身世界模型CloudRobo-WM1.2，这是具身智能领域的一项产品发布与技术开源动态。报道未披露该模型的技术参数、开源许可及可用性等具体细节。"
+    },
+    {
+      "title": "俄罗斯Sber发布GigaChat 4，部分基准对标DeepSeek V4 Flash与GLM 5.3",
+      "original_title": "Russia's Sber Releases GigaChat 4, Matches DeepSeek V4 Flash, GLM 5.3 On Some Benchmarks - OfficeChai",
+      "image_url": null,
+      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNUGh0Yk1rRFhaUDNxXzlEZDQxWDIteUpnM01FWVdTY05ha3E5aDNjSmQwaWFhM0NHTDlZdFMxWVFlWUo0cWhxQU4zNk5BUWNUbHV2Rnd2ZGowNmZpREpiNmtodldzT1pXSl9RTXNKSUVUNkotSW85ZjBpSVJubUsxb1l5R0Mxb2h1bjJISGZhV1RJNmJtWU1vblhaVXVfbzhVaV9tQXV4X0VvSFNmb0Y3d2ln?oc=5",
+      "briefing": "ai",
+      "source": "OfficeChai",
+      "published_at": "2026-11-27T08:24:37+00:00",
+      "fetched_at": "2026-11-27T23:32:38.412467+00:00",
+      "category": "其他 AI 行业新闻",
+      "tags": [
+        "Sber",
+        "GigaChat 4",
+        "DeepSeek",
+        "GLM",
+        "Russia AI"
+      ],
+      "score": 8.0,
+      "material_status": "search_excerpt",
+      "sections": [
+        {
+          "title": "核心事件",
+          "content": "据OfficeChai报道，俄罗斯Sber发布了GigaChat 4，该报道称其在部分基准测试上与DeepSeek V4 Flash和GLM 5.3相当。目前仅有该聚合来源的标题信息，未提供原始文档、具体基准数据或技术细节，因此相关说法尚待进一步核实。"
+        }
+      ],
+      "summary": "据OfficeChai报道，俄罗斯Sber发布了GigaChat 4，该报道称其在部分基准测试上与DeepSeek V4 Flash和GLM 5.3相当。目前仅有该聚合来源的标题信息，未提供原始文档、具体基准数据或技术细节，因此相关说法尚待进一步核实。"
+    },
+    {
+      "title": "2026 CUBE-Net论坛在京举办：智算光互联联创工作组启动，两部技术白皮书发布",
+      "original_title": "2026 CUBE-Net论坛在京举办：智算光互联联创工作组启动，两部技术白皮书发布",
+      "image_url": null,
+      "url": "http://www.iccsz.com/site/cn/News/2026/11/27/20261127142219089421.htm",
+      "briefing": "operator",
+      "source": "讯石光通讯网",
+      "published_at": "2026-11-27T22:10:02+08:00",
+      "fetched_at": "2026-11-27T23:32:37.966721+00:00",
+      "category": "运营商算力与智算",
+      "tags": [
+        "中国联通",
+        "CUBE-Net 4.0",
+        "智算光互联",
+        "算力光网协同调度",
+        "TOKEN NET白皮书"
+      ],
+      "score": 8.0,
+      "material_status": "search_excerpt",
+      "sections": [
+        {
+          "title": "算力动态",
+          "content": "11月27日，由中国联通指导、ICC讯石与深圳市电子学会主办的2026 CUBE-Net智算网联产业技术研讨会暨蓟门光电论坛在北京举办，200余位院士及高校、运营商、设备厂商和产业链企业代表参会。会上，由中国联通研究院发起筹建的智算光互联产业技术联创工作组正式启动，并发布《面向广域智算的算力与光网协同调度技术白皮书》和《TOKEN NET架构及关键技术白皮书》。中国联通研究院副院长、首席科学家唐雄燕在会上解读了CUBE-Net 4.0智能原生网络创新理念。"
+        },
+        {
+          "title": "资源与技术",
+          "content": "本次发布的两部白皮书分别为《面向广域智算的算力与光网协同调度技术白皮书》和《TOKEN NET架构及关键技术白皮书》，聚焦算力与光网协同调度及TOKEN NET架构及关键技术。唐雄燕提出的CUBE-Net 4.0智能原生网络创新理念，涵盖AI时代通信网与算力网融合发展路径、超级智算中心光电融合组网架构，以及算网模一体高效Token生产和分发机制等十大关键问题。"
+        },
+        {
+          "title": "部署及进展",
+          "content": "智算光互联产业技术联创工作组由中国联通研究院发起筹建，在本次论坛上正式启动。论坛由中国联通指导，ICC讯石与深圳市电子学会主办。来源未提供工作组的后续工作计划、成员构成及白皮书落地部署的具体时间表。"
+        }
+      ],
+      "summary": "11月27日，由中国联通指导、ICC讯石与深圳市电子学会主办的2026 CUBE-Net智算网联产业技术研讨会暨蓟门光电论坛在北京举办，200余位院士及高校、运营商、设备厂商和产业链企业代表参会。会上，由中国联通研究院发起筹建的智算光互联产业技术联创工作组正式启动，并发布《面向广域智算的算力与光网协同调度技术白皮书》和《TOKEN NET架构及关键技术白皮书》。中国联通研究院副院长、首席科学家唐雄燕在会上解读了CUBE-Net 4.0智能原生网络创新理念。"
+    },
+    {
+      "title": "商汤大装置Token工厂获中国信通院智算能力最高评级",
+      "original_title": "全国首批首家！商汤大装置获Token工厂智算能力最高评级",
+      "image_url": null,
+      "url": "https://www.qbitai.com/2026/11/513346.html",
+      "briefing": "ai",
+      "source": "量子位",
+      "published_at": "2026-11-27T11:18:24+00:00",
+      "fetched_at": "2026-11-27T23:32:43.084932+00:00",
+      "category": "其他 AI 行业新闻",
+      "tags": [
+        "商汤科技",
+        "SenseCore",
+        "Token工厂",
+        "中国信通院",
+        "智算基础设施"
+      ],
+      "score": 7.0,
+      "material_status": "article_extracted",
+      "sections": [
+        {
+          "title": "核心事件",
+          "content": "11月27日，在第二十八届中国国际高新技术成果交易会（高交会）·可信Token云服务论坛上，中国信息通信研究院正式发布Token工厂智算能力评估成果。商汤大装置Token工厂获得“全栈服务型·领先级”评级认证，成为全国首批首家通过该项能力评估的Token工厂，也是行业内最高评级。"
+        },
+        {
+          "title": "关键数据",
+          "content": "中国信通院“Token工厂·智算能力分级评价体系”以五层技术架构（基础设施层—模型服务层—聚合分发层—计量结算层—场景部署层）为评价主线，围绕Token生产能力、生产能效水平、交付服务能力、智能运营能力、安全合规能力五大维度及14项测评指标进行综合测评。商汤大装置Token工厂已适配20余款国产AI芯片，主流国产芯片MFU提升85%~152%；同成本下，异构混推方案Token产出达到国产同构推理方案的2.5倍。截至2026年10月，平台日均Token服务量已达6万亿，预计第四季度日均服务量将达到10万亿Token。单位电力成本Token产出提升80%，平均电费单价低于同地区IDC 10%，算力负荷预测准确率达96%，全年预估可实现碳减排24000吨/每万P。月度服务可用率稳定在99.95%以上。"
+        },
+        {
+          "title": "背景",
+          "content": "Token工厂作为AI工业化时代的核心算力与服务底座，近两年迅猛发展，但行业内此前尚未形成统一的能力评价标准。中国信通院云计算与数字化研究所在调研产业实践基础上，构建了首个面向Token工厂主体的能力评估认证——“Token工厂·智算能力分级评价体系”，按建设主体属性、核心能力边界、商业模式差异分类评估。"
+        }
+      ],
+      "summary": "11月27日，在第二十八届中国国际高新技术成果交易会（高交会）·可信Token云服务论坛上，中国信息通信研究院正式发布Token工厂智算能力评估成果。商汤大装置Token工厂获得“全栈服务型·领先级”评级认证，成为全国首批首家通过该项能力评估的Token工厂，也是行业内最高评级。"
+    },
+    {
+      "title": "20个AI Agents组队，4天狂跑350次实验，超越ClickBench最佳公开成绩",
+      "original_title": "20个AI Agents组队，4天狂跑350次实验，超越ClickBench最佳公开成绩",
+      "image_url": null,
+      "url": "https://www.qbitai.com/2026/11/513163.html",
+      "briefing": "ai",
+      "source": "量子位",
+      "published_at": "2026-11-27T03:53:49+00:00",
+      "fetched_at": "2026-11-27T23:32:45.258853+00:00",
+      "category": "其他 AI 行业新闻",
+      "tags": [
+        "TabbyML",
+        "Quickwit",
+        "ClickBench",
+        "AI Agents",
+        "autonomous software engineering"
+      ],
+      "score": 7.0,
+      "material_status": "article_extracted",
+      "sections": [],
+      "summary": "TabbyML used a 20-agent AI team to autonomously optimize Quickwit, cutting hot-query times by 31% (up to 87% on some queries) and surpassing prior public ClickBench data-lake scores."
+    },
+    {
+      "title": "如何让Agent 记得住、查得准、改得对？",
+      "original_title": "如何让Agent 记得住、查得准、改得对？",
+      "image_url": "https://static001.infoq.cn/resource/image/f8/d0/f8e0e4459b714d10090e5280fcac71d0.png",
+      "url": "https://www.infoq.cn/article/DUG6LEgK9Vi4sGy6QYTW?utm_source=rss&utm_medium=article",
+      "briefing": "ai",
+      "source": "InfoQ 中文",
+      "published_at": "2026-11-27T17:25:02+00:00",
+      "fetched_at": "2026-11-27T23:32:50.455753+00:00",
+      "category": "其他 AI 行业新闻",
+      "tags": [
+        "Tencent",
+        "Octop",
+        "Agent Memory",
+        "Multi-Agent Framework",
+        "RAG"
+      ],
+      "score": 7.0,
+      "material_status": "article_extracted",
+      "sections": [],
+      "summary": "Tencent Technology details Octop Memory, a five-stage configurable memory architecture for its open-source multi-agent framework Octop, designed to let agents retain, verify, and update experiential knowledge beyond basic RAG retrieval."
+    },
+    {
+      "title": "马斯克据报向xAI员工承认落后对手，并警告浪费GPU者将被开除",
+      "original_title": "“打不过，”马斯克公开认输AI模型之争，向员工承认“落后于对手”，警告浪费GPU者将被开除 - 36Kr",
+      "image_url": null,
+      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1Jc3FRUEYtWXAwLUROWUJNNWgtNE1hRGdTOUhRSEUwOTUxcjNpazVmekZyOEd0VzVEU2s4RC1lcnEzbXgwMUowTzhSNFUzNVE?oc=5",
+      "briefing": "ai",
+      "source": "36Kr",
+      "published_at": "2026-11-27T12:33:10+00:00",
+      "fetched_at": "2026-11-27T23:32:38.391380+00:00",
+      "category": "其他 AI 行业新闻",
+      "tags": [
+        "xAI",
+        "Elon Musk",
+        "AI model competition",
+        "GPU infrastructure",
+        "36Kr"
+      ],
+      "score": 7.0,
+      "material_status": "search_excerpt",
+      "sections": [
+        {
+          "title": "核心事件",
+          "content": "据36Kr于2026年11月27日报道，埃隆·马斯克向xAI员工承认公司在AI模型竞争中“落后于对手”，并警告浪费GPU的员工将被开除。报道标题称其“公开认输AI模型之争”。相关说法来自36Kr的转述报道，原文未提供一手材料或独立核实。"
+        },
+        {
+          "title": "报道要点",
+          "content": "报道涉及三项具体说法：一是马斯克承认xAI在AI模型竞争中处于落后位置；二是其以“打不过”形容与对手的竞争态势；三是马斯克警告浪费GPU资源的员工将面临被开除的后果。上述内容均依据36Kr的标题与摘要，报道未披露具体模型版本、对比对象、GPU使用数据或时间节点等细节。"
+        },
+        {
+          "title": "信息可靠性说明",
+          "content": "该事件目前仅有36Kr的二手新闻报道，缺乏一手文件或独立信源佐证，相关言论属于转述而非已核实事实。报道也未说明马斯克表态的具体场合、时间及完整语境。"
+        }
+      ],
+      "summary": "据36Kr于2026年11月27日报道，埃隆·马斯克向xAI员工承认公司在AI模型竞争中“落后于对手”，并警告浪费GPU的员工将被开除。报道标题称其“公开认输AI模型之争”。相关说法来自36Kr的转述报道，原文未提供一手材料或独立核实。"
+    },
+    {
+      "title": "Sakana AI 发布 Namazu Small：3B 激活参数瞄准企业级 AI 效率",
+      "original_title": "30B 击败 120B！Sakana AI 发布 Namazu Small：以 3B 激活参数终结企业级 AI 的“算力焦虑” - AIBase",
+      "image_url": null,
+      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9DUWRPS3FzSFB1d21EWjhiSEpCa0QtUm5mUXNDdW55OC03RlBWNEV6N3RuY0ExWlVZZnp5Qld1bHM0RXphZl9EbTJwMXk4Zw?oc=5",
+      "briefing": "ai",
+      "source": "AIBase",
+      "published_at": "2026-11-27T09:15:00+00:00",
+      "fetched_at": "2026-11-27T23:32:38.398770+00:00",
+      "category": "其他 AI 行业新闻",
+      "tags": [
+        "Sakana AI",
+        "Namazu Small",
+        "AI model release",
+        "sparse activation",
+        "enterprise AI"
+      ],
+      "score": 7.0,
+      "material_status": "search_excerpt",
+      "sections": [
+        {
+          "title": "核心事件",
+          "content": "据 AIBase 报道，Sakana AI 于 2026 年 11 月 27 日前后发布新模型 Namazu Small。该模型采用稀疏激活架构，激活参数为 3B，报道称其表现可击败 120B 模型，定位为面向企业级 AI、以降低算力成本为卖点的产品。"
+        },
+        {
+          "title": "关键数据",
+          "content": "激活参数规模为 3B；报道标题中的对比对象为 120B 模型，标题另提及“30B 击败 120B”，但具体基准测试项目、评测口径与完整参数配置在所提供材料中未披露。"
+        },
+        {
+          "title": "背景",
+          "content": "上述性能对比来自二手新闻来源 AIBase 的标题与摘要，所提供内容中未包含独立验证的基准测试结果，相关性能说法应视为该媒体的报道表述而非已核实事实。"
+        }
+      ],
+      "summary": "据 AIBase 报道，Sakana AI 于 2026 年 11 月 27 日前后发布新模型 Namazu Small。该模型采用稀疏激活架构，激活参数为 3B，报道称其表现可击败 120B 模型，定位为面向企业级 AI、以降低算力成本为卖点的产品。"
+    },
+    {
+      "title": "AliceAI 80B 开放权重模型发布",
+      "original_title": "AliceAI 80B Open Weights: 3B Active, 262K Context - explainx.ai",
+      "image_url": null,
+      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOVzhkb3lILUhEeFFUakJNZ1ZDZFlzTXNEcEJaV0NMTUh2OEg4dHl6Um5pTUhNYmo4a0pxeGRkMHp2a2VFZ002aDB0aTVQUklXWDJsaG1ZSkhsR0dZTmVTcHVFR0hkck1LVjA4S0Z2SUdDTjdLcTdvR2ZwLThXNGdHNmxwUUVidDJOTl9zOXpiaW9SdUE?oc=5",
+      "briefing": "ai",
+      "source": "explainx.ai",
+      "published_at": "2026-11-27T00:00:00+00:00",
+      "fetched_at": "2026-11-27T23:32:38.412456+00:00",
+      "category": "其他 AI 行业新闻",
+      "tags": [
+        "AliceAI",
+        "open weights",
+        "MoE / sparse activation",
+        "262K context window",
+        "model release"
+      ],
+      "score": 7.0,
+      "material_status": "search_excerpt",
+      "sections": [
+        {
+          "title": "核心事件",
+          "content": "据 explainx.ai 报道的标题，AliceAI 以开放权重形式发布，总参数量为 80B，激活参数为 3B，上下文窗口为 262K。开发公司、发布日期、许可证条款及基准测试结果在所提供材料中未披露。"
+        }
+      ],
+      "summary": "据 explainx.ai 报道的标题，AliceAI 以开放权重形式发布，总参数量为 80B，激活参数为 3B，上下文窗口为 262K。开发公司、发布日期、许可证条款及基准测试结果在所提供材料中未披露。"
+    },
+    {
+      "title": "字节腾讯阿里AI人才大迁徙：超百起核心岗流动，顶薪2000万",
+      "original_title": "字节腾讯阿里AI人才大迁徙：超百起核心岗流动，顶薪2000万",
+      "image_url": "https://img.36krcdn.com/hsossms/20261127/v2_b5ed8f948d3344e0ae9175d0488b6019@000000@ai_oswg323678oswg1872oswg1248_img_000~tplv-1marlgjv7f-ai-v3:600:400:600:400:q70.jpg",
+      "url": "https://www.36kr.com/p/4087191926929793",
+      "briefing": "ai",
+      "source": "今日热榜 · 36氪",
+      "published_at": "2026-11-28T07:32:39+08:00",
+      "fetched_at": "2026-11-27T23:32:41.817376+00:00",
+      "category": "其他 AI 行业新闻",
+      "tags": [
+        "ByteDance",
+        "Tencent",
+        "Alibaba",
+        "AI talent mobility",
+        "large model industry"
+      ],
+      "score": 7.0,
+      "material_status": "article_extracted",
+      "sections": [],
+      "summary": "Over 100 core AI positions have shifted among ByteDance, Tencent, and Alibaba, with top salaries reaching 20 million yuan, as talent flows diversify beyond major tech firms toward startups and traditional industries."
+    },
+    {
+      "title": "游戏和影视之后，儒意集团联手腾讯进军AI服务",
+      "original_title": "游戏和影视之后，儒意集团联手腾讯进军AI服务",
+      "image_url": "https://img.36krcdn.com/hsossms/20261126/v2_c2a0f610f9234f4cb0786a77ee606300@000000_oswg112369oswg1280oswg545_img_000?x-oss-process=image/resize,m_mfit,w_600,h_400,limit_0/crop,w_600,h_400,g_center",
+      "url": "https://www.36kr.com/p/4086757655231105",
+      "briefing": "ai",
+      "source": "今日热榜 · 36氪",
+      "published_at": "2026-11-28T07:32:43+08:00",
+      "fetched_at": "2026-11-27T23:32:44.456582+00:00",
+      "category": "其他 AI 行业新闻",
+      "tags": [
+        "儒意集团",
+        "腾讯",
+        "AIGC",
+        "影视垂类大模型",
+        "元拍 Meta Shot"
+      ],
+      "score": 7.0,
+      "material_status": "article_extracted",
+      "sections": [],
+      "summary": "Ruyi Holdings and Tencent announced a partnership to launch the 'Meta Shot' film/TV AIGC workflow and co-develop a vertical large model and world model, marking Ruyi's expansion from content into AI technical services."
+    },
+    {
+      "title": "中国信通院1ms城市算网中国行走进江苏：城域算力访问平均时延0.6毫秒",
+      "original_title": "毫秒之间见真章：C114实地探访江苏1ms城市算网建与用",
+      "image_url": null,
+      "url": "https://www.c114.com.cn/4app/3542/a1321570.html",
+      "briefing": "operator",
+      "source": "C114通信网",
+      "published_at": "2026-11-24T10:58:00+08:00",
+      "fetched_at": "2026-11-27T23:32:37.966618+00:00",
+      "category": "运营商算力与智算",
+      "tags": [
+        "AI compute infrastructure",
+        "telecom operators",
+        "compute network latency",
+        "intelligent computing centers",
+        "Jiangsu province"
+      ],
+      "score": 7.0,
+      "material_status": "search_excerpt",
+      "sections": [
+        {
+          "title": "算力动态",
+          "content": "中国信通院“1ms城市算网中国行”于11月17—18日走进江苏，C114实地探访后报道：江苏各设区市城域网内算力节点访问平均时延为0.6毫秒，南京、无锡、苏州为工信部城域“毫秒用算”试点城市。三大运营商是江苏算力网络建设主力，江苏电信、江苏联通、江苏移动分别公布了各自的算力布局与规模数据。"
+        },
+        {
+          "title": "资源与技术",
+          "content": "时延与覆盖：江苏各设区市城域网内算力节点访问平均时延0.6毫秒；1ms时延圈覆盖率普遍超70%，其中无锡移动达94.5%、苏州移动达97%。\n\n运营商算力规模：江苏电信“2+13+X”云智一体布局纳管算力12.9EFLOPS；江苏联通“4+2+X”体系规划4个300MW级智算中心；江苏移动总算力20EFLOPS，其中南京智算中心算力突破17EFLOPS，为全国首批5A级智算中心。\n\n数据中心能效：无锡马山数据中心全年PUE为1.248。\n\n应用案例：移动云全光算网服务支撑亨通光电产线AI质检，全链路时延由50毫秒以上压至10毫秒以内；九识智能无人车采用云边端协同方案。"
+        },
+        {
+          "title": "部署及进展",
+          "content": "南京、无锡、苏州为工信部城域“毫秒用算”试点城市。上述数据与案例来自中国信通院组织的实地探访及C114报道，反映江苏城域算力网络的当前建设与使用情况。"
+        }
+      ],
+      "summary": "中国信通院“1ms城市算网中国行”于11月17—18日走进江苏，C114实地探访后报道：江苏各设区市城域网内算力节点访问平均时延为0.6毫秒，南京、无锡、苏州为工信部城域“毫秒用算”试点城市。三大运营商是江苏算力网络建设主力，江苏电信、江苏联通、江苏移动分别公布了各自的算力布局与规模数据。"
+    },
+    {
+      "title": "沐曦股份全栈GPU产品在中国联通上海临港智算中心实现规模化部署",
+      "original_title": "沐曦股份：公司全栈GPU产品在上海临港智算中心实现规模化部署",
+      "image_url": null,
+      "url": "https://www.cs.com.cn/ssgs/01/2026/11/26/detail_2026112610054851.html",
+      "briefing": "operator",
+      "source": "中国证券报·中证网",
+      "published_at": "2026-11-26T13:27:00+08:00",
+      "fetched_at": "2026-11-27T23:32:37.966694+00:00",
+      "category": "运营商算力与智算",
+      "tags": [
+        "沐曦股份",
+        "中国联通",
+        "上海临港智算中心",
+        "GPU部署",
+        "智算中心"
+      ],
+      "score": 7.0,
+      "material_status": "search_excerpt",
+      "sections": [
+        {
+          "title": "算力动态",
+          "content": "沐曦股份发布消息称，其全栈GPU产品已在中国联通上海临港智算中心实现规模化部署，并与联通的算力网络、调度平台及绿色能源方案对接，形成可对外服务的智算底座。旗舰产品曦云C600为首款基于全国产工艺打造的高性能GPU，于2026年5月实现量产，目前已规模化出货。该消息来自公司方面发布的内容，运营商侧的独立招标或官方文件未在来源中提供。"
+        },
+        {
+          "title": "资源与技术",
+          "content": "据该消息披露的具体信息：上海临港智算中心是运营商领域首批5A级智算中心，具备7000P智算输出能力；中国联通上海市分公司自研的“星罗”算力调度平台统一纳管万卡集群，算力利用率提升30%以上。在应用层面，双方联合打造的气象MaaS平台预报精度提升15%，工业AI方案助力制造企业良率提升5%—8%、运维成本降低20%以上。上述指标均为消息中的表述，未附独立第三方验证。"
+        },
+        {
+          "title": "部署及进展",
+          "content": "按消息描述，此次部署的适用对象为中国联通上海临港智算中心，部署形态为全栈GPU产品与联通算力网络、调度平台、绿色能源方案的对接集成，当前状态为规模化部署并对外提供智算服务。曦云C600的量产时间为2026年5月，来源未提供部署规模的具体卡数、交付时间表或后续扩容计划。"
+        }
+      ],
+      "summary": "沐曦股份发布消息称，其全栈GPU产品已在中国联通上海临港智算中心实现规模化部署，并与联通的算力网络、调度平台及绿色能源方案对接，形成可对外服务的智算底座。旗舰产品曦云C600为首款基于全国产工艺打造的高性能GPU，于2026年5月实现量产，目前已规模化出货。该消息来自公司方面发布的内容，运营商侧的独立招标或官方文件未在来源中提供。"
+    },
+    {
+      "title": "三大运营商算力网络落地进展：调度平台、低时延互联与绿色算电协同",
+      "original_title": "算网共生：算力网络从概念走向落地",
+      "image_url": null,
+      "url": "https://www.infoobs.com/article/20261127/72253.html",
+      "briefing": "operator",
+      "source": "信息化观察网",
+      "published_at": "2026-11-27T09:33:00+08:00",
+      "fetched_at": "2026-11-27T23:32:37.966708+00:00",
+      "category": "运营商算力与智算",
+      "tags": [
+        "算力网络",
+        "中国电信",
+        "中国移动",
+        "中国联通",
+        "绿色算电协同"
+      ],
+      "score": 7.0,
+      "material_status": "search_excerpt",
+      "sections": [
+        {
+          "title": "算力动态",
+          "content": "人民邮电报梳理了中国电信、中国移动、中国联通三家运营商算力网络建设的落地进展。文章称，全国一体化算力网已初步实现八大枢纽节点间20毫秒低时延互联，全网算力资源利用率从不足50%提升至满载状态；三家运营商还联合产业界推动算力标识统一编码，使算力可寻址、可调度。需注意，该文为媒体对行业进展的综合梳理，而非单一运营商的官方公告。"
+        },
+        {
+          "title": "资源与技术",
+          "content": "三家运营商的具体平台与技术方案如下：\n\n- 中国电信：以“息壤”算力分发平台贯通枢纽间超低时延直联。\n- 中国移动：以自研“磐石”算力底座与“算网大脑”，将通用、智能、超级三类算力纳入统一调度。\n- 中国联通：以“算力智联网”和“星罗”平台实现算网一体编排、跨域按需开通。\n\n绿色算电协同方面，文章给出的指标为：中国联通在三江源建成青藏高原最大AI算力园，一年一千多万度电全为绿电；中国电信数字青海中心实现100%清洁能源可溯源；中国移动高原绿色算力网绿电占比超95%。"
+        },
+        {
+          "title": "部署及进展",
+          "content": "文章将上述成果置于全国一体化算力网建设背景下，称八大枢纽节点间20毫秒低时延互联已初步实现、全网算力资源利用率已提升至满载状态。这些进展和指标均来自人民邮电报的梳理，来源未提供各项目的具体时间节点、投资规模或独立核实数据。"
+        }
+      ],
+      "summary": "人民邮电报梳理了中国电信、中国移动、中国联通三家运营商算力网络建设的落地进展。文章称，全国一体化算力网已初步实现八大枢纽节点间20毫秒低时延互联，全网算力资源利用率从不足50%提升至满载状态；三家运营商还联合产业界推动算力标识统一编码，使算力可寻址、可调度。需注意，该文为媒体对行业进展的综合梳理，而非单一运营商的官方公告。"
+    },
+    {
+      "title": "中国联通济南市分公司宣传Token服务赋能行业应用",
+      "original_title": "智算“活水”润百业：中国联通济南市分公司硬核Token服务激活发展动能 - 山东新闻",
+      "image_url": null,
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5NRjk0eXdvbm1OamN0bEd0eXVudnBpcHhTd2Mya1pLbk5KdWQ2N1ozRWlJd2tXbDVsZmItSmQ4dXg2WXdlODlyOUIxNEZJZlk5YThCbXJEQnJXOGRzeFMtRTEzV1h6dw?oc=5",
+      "briefing": "operator",
+      "source": "山东新闻",
+      "published_at": "2026-11-27T09:21:00+00:00",
+      "fetched_at": "2026-11-27T23:32:38.375376+00:00",
+      "category": "运营商 Token 与模型服务",
+      "tags": [
+        "中国联通",
+        "Token服务",
+        "智算",
+        "济南",
+        "运营商MaaS"
+      ],
+      "score": 6.0,
+      "material_status": "search_excerpt",
+      "sections": [
+        {
+          "title": "业务动态",
+          "content": "据山东新闻发布的报道标题，中国联通济南市分公司提供Token服务，面向各行业输出智算能力，以激活相关行业发展动能。该报道以“智算‘活水’润百业”为题，将Token服务定位为运营商面向行业客户的智算供给方式。来源未提供更多细节，报道正文未给出服务的产品形态、模型类型、计量口径、价格、配额或具体客户与落地案例等可核实信息，因此相关规模和实施情况暂无法确认。"
+        }
+      ],
+      "summary": "据山东新闻发布的报道标题，中国联通济南市分公司提供Token服务，面向各行业输出智算能力，以激活相关行业发展动能。该报道以“智算‘活水’润百业”为题，将Token服务定位为运营商面向行业客户的智算供给方式。来源未提供更多细节，报道正文未给出服务的产品形态、模型类型、计量口径、价格、配额或具体客户与落地案例等可核实信息，因此相关规模和实施情况暂无法确认。"
+    },
+    {
+      "title": "媒体分析：运营商从卖流量到卖Token的转型路径",
+      "original_title": "从卖流量到卖Token，运营商这条路怎么走？ - Sohu",
+      "image_url": null,
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQYWsyV2VYVlVyTTR2WF8zQURZMzFMdWxDemJIU3dmTHFPMHU4WGFPZjVONzZZSjhCMHBWZ3h1NGpzOWczTVRyWFhXeWgyNTRINUVXOTFzSVppVTdYTHg5SmxTcTg0UHV6aVk2U2NMQVg1cUN4RVUtVTQ1TGlJMzZuZ2FaTmxHdW5w?oc=5",
+      "briefing": "operator",
+      "source": "Sohu",
+      "published_at": "2026-11-27T09:57:40+00:00",
+      "fetched_at": "2026-11-27T23:32:38.375407+00:00",
+      "category": "运营商 Token 与模型服务",
+      "tags": [
+        "telecom operators",
+        "Token/MaaS",
+        "metering",
+        "go-to-market",
+        "industry analysis"
+      ],
+      "score": 6.0,
+      "material_status": "search_excerpt",
+      "sections": [
+        {
+          "title": "业务动态",
+          "content": "搜狐（Sohu）于2026年11月27日发布一篇行业分析文章，标题为《从卖流量到卖Token，运营商这条路怎么走？》，聚焦电信运营商从传统流量经营向Token（模型服务计量）业务转型的路径问题。该文属于媒体分析内容，直接对应运营商Token/MaaS与计量计费这一核心议题，可作为行业关注方向的信号。来源未提供更多细节：文章正文、涉及的具体运营商名称、Token定价、配额、计量口径或官方产品信息在所提供内容中均不可核实，因此不对具体产品条件或业务进展作任何肯定表述。"
+        }
+      ],
+      "summary": "搜狐（Sohu）于2026年11月27日发布一篇行业分析文章，标题为《从卖流量到卖Token，运营商这条路怎么走？》，聚焦电信运营商从传统流量经营向Token（模型服务计量）业务转型的路径问题。该文属于媒体分析内容，直接对应运营商Token/MaaS与计量计费这一核心议题，可作为行业关注方向的信号。来源未提供更多细节：文章正文、涉及的具体运营商名称、Token定价、配额、计量口径或官方产品信息在所提供内容中均不可核实，因此不对具体产品条件或业务进展作任何肯定表述。"
+    },
+    {
+      "title": "中电信无人科技吴爱军：网联是低空经济高质量发展的最优解",
+      "original_title": "专访中电信无人科技吴爱军：网联是低空经济高质量发展的最优解 - C114通信网",
+      "image_url": null,
+      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE91OVVXQUwxckxFbDNuakhWWFZJT2lFNHdrZU93YURrVmNhSVg3TmIxcE9IYnJSYngyV05hLXlyYVdZeWlUOWw0c3JNcUlOa2IzVHc?oc=5",
+      "briefing": "operator",
+      "source": "C114通信网",
+      "published_at": "2026-11-27T01:37:00+00:00",
+      "fetched_at": "2026-11-27T23:32:38.174798+00:00",
+      "category": "运营商 AI 产品与应用",
+      "tags": [
+        "China Telecom",
+        "low-altitude economy",
+        "network connectivity",
+        "unmanned technology",
+        "operator strategy"
+      ],
+      "score": 6.0,
+      "material_status": "search_excerpt",
+      "sections": [
+        {
+          "title": "产品动态",
+          "content": "C114通信网发布对中国电信无人科技负责人吴爱军的专访。吴爱军在专访中提出，网联（网络连接）是低空经济实现高质量发展的最优路径，并阐述了相关观点。该内容为访谈形式的观点表达，反映中国电信在低空经济与无人科技领域的战略定位。来源未提供更多细节。"
+        }
+      ],
+      "summary": "C114通信网发布对中国电信无人科技负责人吴爱军的专访。吴爱军在专访中提出，网联（网络连接）是低空经济实现高质量发展的最优路径，并阐述了相关观点。该内容为访谈形式的观点表达，反映中国电信在低空经济与无人科技领域的战略定位。来源未提供更多细节。"
+    }
+  ]
+}
